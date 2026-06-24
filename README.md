@@ -82,13 +82,14 @@ SkillQuest is privacy-aware and demo-safe:
 - It uses local role, course, funding, and Skills Framework reference data by default.
 - `data/skills_framework.json` is generated from the supplied Jobs-Skills SkillsFuture XLSX datasets: unique skills, full framework role-skill rows, and TSC-to-unique-skill mappings.
 - `data/course_directory_cache.json` is a small cached slice of the public MySkillsFuture Course Directory, used by default for exact course-reference links without network startup.
-- It only calls MyCareersFuture and OneMap when the learner enables **Use live job and map lookup**.
+- It only calls MyCareersFuture, Apify, OneMap, and Google Maps when the learner enables **Use live job and map lookup**.
 - Direct `/api/jobs` and `/api/location` requests also stay local unless `allowLiveData=true` is provided, and `?demo=1` always blocks live calls.
 - The help panel includes a **Your data** notice explaining what stays local and what only leaves after consent.
 - The form has a persistent `aria-live` status line for loading, success, and error states, so assistive-tech users are not left guessing.
 - `?demo=1` always uses deterministic offline signals so judging does not depend on network speed.
 - It ranks against local course and role datasets so the demo still works if an external provider is slow, unavailable, or requires credentials.
 - Opt-in live job and map lookups share one recommendation deadline (`SKILLQUEST_LIVE_TIMEOUT_SECONDS`, default 6.5s), then fall back to local signals instead of making the learner wait twice.
+- Optional Apify job datasets are parsed defensively because scraped fields may arrive as strings, dicts, or missing values.
 - Returned live-source URLs redact secret-like query parameters such as Google API keys before they reach the frontend.
 - You can point `COURSE_DATA_URL` at a JSON or CSV course dataset to replace or extend the seed courses.
 - You can opt in to the public data.gov.sg MySkillsFuture Course Directory import with `SKILLQUEST_ENABLE_DATA_GOV_COURSES=true`. This uses the no-key data.gov.sg poll-download API at server start and parses the XLSX with the Python standard library.

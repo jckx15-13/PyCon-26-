@@ -15,7 +15,7 @@ from pathlib import Path
 import backend.app as app_module
 import backend.connectors as connectors_module
 from backend.app import DATA, Handler, _join_threads_until_deadline
-from backend.connectors import DataGovCourseDirectoryClient, GoogleCloudGeocodeClient, _xlsx_dict_rows
+from backend.connectors import ApifyJobClient, DataGovCourseDirectoryClient, GoogleCloudGeocodeClient, _xlsx_dict_rows
 from backend.recommendation_engine import build_recommendation
 
 
@@ -232,6 +232,61 @@ class SkillQuestApiTests(unittest.TestCase):
         self.assertEqual(result["status"], "ok")
         self.assertIn("key=REDACTED", result["url"])
         self.assertNotIn("demo-google-secret", result["url"])
+
+    def test_apify_job_dataset_parses_scraped_string_fields_safely(self) -> None:
+        originals = {
+            "APIFY_API_TOKEN": os.environ.get("APIFY_API_TOKEN"),
+            "APIFY_DATASET_ID": os.environ.get("APIFY_DATASET_ID"),
+        }
+        original_fetch_json = connectors_module.fetch_json
+        captured: dict[str, object] = {}
+
+        def fake_fetch_json(url: str, timeout: float = 5.0, headers: dict | None = None) -> tuple[list, None]:
+            captured["url"] = url
+            captured["headers"] = headers or {}
+            return (
+                [
+                    {
+                        "title": "Data Analyst",
+                        "company": "Acme Pte Ltd",
+                        "address": "Tampines",
+                        "salary": "$3,000 - $4,500",
+                        "skills": "Python, SQL|Excel",
+                        "description": "Use data analyst skills to build dashboards.",
+                        "url": "https://example.com/jobs/data-analyst",
+                    },
+                    {"title": "Retail Associate", "description": "Serve customers."},
+                    "not a job row",
+                ],
+                None,
+            )
+
+        os.environ["APIFY_API_TOKEN"] = "demo-apify-token"
+        os.environ["APIFY_DATASET_ID"] = "demo-dataset"
+        connectors_module.fetch_json = fake_fetch_json
+        try:
+            result = ApifyJobClient().search_jobs("data analyst", limit=3)
+        finally:
+            connectors_module.fetch_json = original_fetch_json
+            for key, value in originals.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+        self.assertEqual(result["status"], "ok")
+        self.assertEqual(result["total"], 1)
+        self.assertEqual(result["records"], {"inspected": 2, "matched": 1})
+        self.assertEqual(captured["headers"], {"Authorization": "Bearer demo-apify-token"})
+        self.assertNotIn("demo-apify-token", str(captured["url"]))
+        self.assertNotIn("demo-apify-token", result["url"])
+        job = result["items"][0]
+        self.assertEqual(job["company"], "Acme Pte Ltd")
+        self.assertEqual(job["location"], "Tampines")
+        self.assertEqual(job["salary_min"], 3000)
+        self.assertEqual(job["salary_max"], 4500)
+        self.assertEqual(job["skills"], ["Python", "SQL", "Excel"])
+        self.assertIn({"name": "Python", "demand": 1}, result["top_skills"])
 
     def test_direct_live_endpoints_require_explicit_non_demo_consent(self) -> None:
         status, jobs = self.get_json("/api/jobs?query=Data%20Analyst")

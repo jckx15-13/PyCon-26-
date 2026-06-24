@@ -96,7 +96,7 @@ Optional integrations:
 
 - MyCareersFuture job lookup
 - OneMap location lookup
-- Apify dataset lookup
+- Apify dataset lookup with defensive parsing for scraped job rows
 - Google Maps geocoding
 - data.gov.sg MySkillsFuture Course Directory import
 - Optional Google Cloud Gemini / OpenAI mentor wording, disabled by default
@@ -121,7 +121,7 @@ The SIMCC talk "AI Prompt Engineering with Coding" highlights directing, challen
 
 Yeo Wee Kiang's "SKILL.md is the SOP your AI agent never had" maps to the project's own structured process: data provenance, process logs, repeatable import script, and clear rules for optional AI behavior.
 
-The PyLadies track includes an Apify Web Scraping & Parsing Workshop, and the hackathon page mentions Apify credits. SkillQuest applies this with an optional Apify job-signal connector, while keeping it off by default unless configured and consented.
+The PyLadies track includes an Apify Web Scraping & Parsing Workshop, and the hackathon page mentions Apify credits. SkillQuest applies this with an optional Apify job-signal connector, defensive parsing for messy scraped rows, and opt-in consent before any learner goal is sent.
 
 AI Ready ASEAN, backed by AI Singapore, influenced the low-literacy AI design: users should understand what AI does, what it does not do, and when their data leaves the app.
 

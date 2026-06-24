@@ -464,19 +464,24 @@ class ApifyJobClient:
                 "latency_ms": int((time.time() - started) * 1000),
             }
 
-        filtered = [self._normalise_apify_job(item) for item in payload if self._matches_query(item, query)]
+        valid_rows = [item for item in payload if isinstance(item, dict)]
+        filtered = [self._normalise_apify_job(item) for item in valid_rows if self._matches_query(item, query)]
         normalized = [item for item in filtered if item]
         top_skills = self._collect_skills(normalized)
         return {
             "status": "ok" if normalized else "empty",
             "source": "Apify",
             "url": url,
+            "total": len(normalized),
+            "records": {"inspected": len(valid_rows), "matched": len(normalized)},
             "items": normalized[:limit],
             "top_skills": top_skills[:10],
             "latency_ms": int((time.time() - started) * 1000),
         }
 
     def _matches_query(self, row: dict[str, Any], query: str) -> bool:
+        if not isinstance(row, dict):
+            return False
         if not query:
             return True
         query_terms = [part.strip().lower() for part in query.split() if part.strip()]
@@ -492,24 +497,58 @@ class ApifyJobClient:
         return all(term in blob for term in query_terms)
 
     def _normalise_apify_job(self, row: dict[str, Any]) -> dict[str, Any] | None:
+        if not isinstance(row, dict):
+            return None
         raw_skills = self._extract_skills(row.get("skills")) or self._extract_skills(row.get("tags")) or []
-        title = row.get("title") or row.get("jobTitle") or row.get("position") or "Untitled role"
+        title = row.get("title") or row.get("jobTitle") or row.get("position")
         if not title and not row.get("description"):
             return None
-        address = row.get("address") or {}
-        company = row.get("company") or {}
-        salary = row.get("salary") or {}
+        title = title or "Untitled role"
+        address = row.get("address") if isinstance(row.get("address"), dict) else {}
+        salary = row.get("salary")
+        salary_range = self._salary_range(salary)
+        location = (
+            address.get("region")
+            or address.get("city")
+            or address.get("area")
+            or _string_or_none(row.get("location"))
+            or _string_or_none(row.get("address"))
+        )
         return {
             "title": title,
-            "company": company.get("name") or row.get("companyName"),
+            "company": self._company_name(row),
             "description": strip_html(str(row.get("description", ""))),
             "skills": raw_skills,
             "key_skills": raw_skills[:6],
-            "salary_min": salary.get("min") if isinstance(salary, dict) else None,
-            "salary_max": salary.get("max") if isinstance(salary, dict) else None,
-            "location": address.get("region") or address.get("city") or address.get("area"),
+            "salary_min": salary_range[0],
+            "salary_max": salary_range[1],
+            "location": location,
             "job_url": row.get("url") or row.get("jobUrl") or row.get("link"),
         }
+
+    def _company_name(self, row: dict[str, Any]) -> str | None:
+        company = row.get("company")
+        if isinstance(company, dict):
+            return _string_or_none(company.get("name")) or _string_or_none(row.get("companyName"))
+        return _string_or_none(company) or _string_or_none(row.get("companyName"))
+
+    def _salary_range(self, value: Any) -> tuple[float | None, float | None]:
+        if isinstance(value, dict):
+            return _float_or_none(value.get("min")), _float_or_none(value.get("max"))
+        if isinstance(value, (int, float)):
+            amount = _float_or_none(value)
+            return amount, amount
+        if isinstance(value, str):
+            amounts = [
+                _float_or_none(item.replace(",", ""))
+                for item in re.findall(r"\d[\d,]*(?:\.\d+)?", value)
+            ]
+            amounts = [item for item in amounts if item is not None]
+            if len(amounts) >= 2:
+                return amounts[0], amounts[1]
+            if len(amounts) == 1:
+                return amounts[0], amounts[0]
+        return None, None
 
     def _collect_skills(self, jobs: list[dict[str, Any]]) -> list[dict[str, Any]]:
         counts: Counter[str] = Counter()
@@ -618,6 +657,11 @@ def _float_or_none(value: Any) -> float | None:
         return float(value)
     except (TypeError, ValueError):
         return None
+
+
+def _string_or_none(value: Any) -> str | None:
+    text = str(value or "").strip()
+    return text or None
 
 
 def _xlsx_dict_rows(blob: bytes) -> list[dict[str, str]]:

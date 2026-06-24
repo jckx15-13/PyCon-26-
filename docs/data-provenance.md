@@ -29,19 +29,27 @@ SkillQuest uses data in layers so the product remains useful, honest, and reliab
    - Purpose: add current job skill signals when available.
    - Fallback: local role-skill signals.
 
-4. **Optional live OneMap lookup**
+4. **Optional Apify job-signal dataset**
+   - Trigger: learner enables **Use live job and map lookup** and the server has `APIFY_API_TOKEN` plus `APIFY_DATASET_ID`.
+   - Data sent: target role or interest search text.
+   - Purpose: add parsed skill signals from a selected Apify job dataset.
+   - Handling: scraped rows are normalised defensively because job fields may arrive as strings, dicts, or missing values.
+   - Fallback: MyCareersFuture and local role-skill signals.
+   - Limitation: dataset quality and freshness depend on the selected Apify scrape; SkillQuest only checks returned rows.
+
+5. **Optional live OneMap lookup**
    - Trigger: learner enables **Use live job and map lookup**.
    - Direct API trigger: `/api/location?...&allowLiveData=true` outside `?demo=1`.
    - Data sent: typed location text.
    - Purpose: improve travel estimates.
    - Fallback: local MRT/region estimate.
 
-5. **Optional external course dataset**
+6. **Optional external course dataset**
    - Environment variable: `COURSE_DATA_URL`
    - Supported formats: JSON or CSV.
    - Purpose: replace or extend seed courses without code changes.
 
-6. **Cached and optional public MySkillsFuture Course Directory import**
+7. **Cached and optional public MySkillsFuture Course Directory import**
    - Cached file: `data/course_directory_cache.json`
    - Refresh script: `tools/import_data_gov_course_cache.py`
    - Source: [MySkillsFuture Course Directory on data.gov.sg](https://data.gov.sg/datasets/d_b5802b76f409764c16dde4bf2feb19cd/view)
@@ -51,12 +59,12 @@ SkillQuest uses data in layers so the product remains useful, honest, and reliab
    - Privacy: no learner data is sent; the cache loads locally, and the refresh/live import fetches only a public dataset.
    - Limitation: the cached slice is small, and all course rows still require provider verification before enrolment.
 
-7. **Local mentor grounding examples**
+8. **Local mentor grounding examples**
    - File: `data/ai_training_examples.jsonl`
    - Purpose: shape no-key mentor responses for plain-language explanations, low-cost rewrites, two-hour/week plans, and helper scripts.
    - Limitation: this is not a trained model and does not add new facts. It rewrites facts already returned by the recommendation engine.
 
-8. **Optional live Google Cloud mentor**
+9. **Optional live Google Cloud mentor**
    - Trigger: learner enables **Use live mentor for wording**.
    - Environment variables: `SKILLQUEST_ENABLE_GOOGLE_MENTOR`, `GOOGLE_CLOUD_AI_API_KEY`.
    - Optional model variable: `GOOGLE_CLOUD_AI_MODEL` (defaults to `gemini-1.5-flash-latest`).
@@ -69,7 +77,7 @@ SkillQuest uses data in layers so the product remains useful, honest, and reliab
 - The app does not decide SkillsFuture Credit eligibility, subsidy eligibility, or enrolment status.
 - Source summaries distinguish local, offline, optional live, unavailable, and partial data.
 - `/api/integrations` exposes readiness metadata for every data layer without printing secret values.
-- MyCareersFuture text says how many returned records were checked; it does not claim a complete market scan.
+- MyCareersFuture and Apify text says only how many returned records were checked; it does not claim a complete market scan.
 - Skills Framework text says "mapped from local SkillsFuture XLSX datasets" rather than official certification.
 - Course source links point users to official or provider pages for verification when available.
 - Mentor guidance is derived from the recommendation facts and does not claim official advice or eligibility decisions.
@@ -81,6 +89,7 @@ The app reports these layers through `GET /api/integrations`:
 - local role and course seed data,
 - local Skills Framework reference slice,
 - optional MyCareersFuture job skill signal,
+- optional Apify job-signal dataset,
 - optional OneMap location lookup,
 - optional `COURSE_DATA_URL` course import,
 - cached/optional data.gov.sg MySkillsFuture Course Directory rows,

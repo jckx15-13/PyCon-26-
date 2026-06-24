@@ -32,6 +32,7 @@
 - Changed default recommendation calls to avoid live external API calls unless the user opts in.
 - Changed direct `/api/jobs` and `/api/location` calls to use local signals unless explicit non-demo live consent is present.
 - Changed parallel live job/map lookups to use a shared deadline so slow providers do not stack into double waits.
+- Hardened the Apify job dataset parser for common scraped field shapes such as string company, address, salary, skills, and malformed rows.
 - Added confidence, caveats, and explanation fields to recommendation responses.
 - Added official role and official skill evidence to recommendation responses for the mapped app role.
 - Changed course scoring so a course is capped if it does not cover the top skill gap.
@@ -82,6 +83,7 @@
 - Covered the simple-first result disclosure so evidence stays available without overwhelming the default view.
 - Covered the optional data-source disclosure so privacy stays visible while technical provenance remains available.
 - Covered Google Cloud geocode URL redaction so outbound requests can use a key without returning it to the frontend.
+- Covered Apify job-signal parsing with a fake scraped dataset response and verified the token is sent only as an authorization header, not in returned URLs.
 - Verification commands:
 
 ```powershell

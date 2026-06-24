@@ -263,12 +263,11 @@ class Handler(BaseHTTPRequestHandler):
             interests = payload.get("interests") or []
             search_query = " ".join(interests[:2]) if isinstance(interests, list) else str(interests)
         allow_live_data = bool(payload.get("allowLiveData")) and not bool(payload.get("demo"))
-        if allow_live_data:
-            market_signal = self._merge_job_signals(search_query or "data analyst", limit=5)
-            location_signal = self._location_signal(payload.get("location", ""))
-        else:
-            market_signal = self._offline_market_signal(search_query or "data analyst")
-            location_signal = self._offline_location_signal(payload.get("location", ""))
+        market_signal, location_signal = self._recommendation_context_signals(
+            search_query or "data analyst",
+            payload.get("location", ""),
+            allow_live_data=allow_live_data,
+        )
         recommendation = build_recommendation(
             payload,
             roles=DATA.roles,
@@ -378,6 +377,65 @@ class Handler(BaseHTTPRequestHandler):
             "latency_ms": 0,
             "detail": "Live job lookup was not used. Using local role-skill signals for a fast private demo.",
         }
+
+    def _recommendation_context_signals(
+        self,
+        search_query: str,
+        location_query: str,
+        allow_live_data: bool,
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        if not allow_live_data:
+            return self._offline_market_signal(search_query), self._offline_location_signal(location_query)
+
+        market_state: dict[str, Any] = {}
+        location_state: dict[str, Any] = {}
+
+        def load_market() -> None:
+            try:
+                market_state["result"] = self._merge_job_signals(search_query, limit=5)
+            except Exception as exc:  # pragma: no cover - defensive against provider changes.
+                market_state["error"] = str(exc)
+
+        def load_location() -> None:
+            try:
+                location_state["result"] = self._location_signal(location_query)
+            except Exception as exc:  # pragma: no cover - defensive against provider changes.
+                location_state["error"] = str(exc)
+
+        threads = [
+            threading.Thread(target=load_market, daemon=True),
+            threading.Thread(target=load_location, daemon=True),
+        ]
+        for thread in threads:
+            thread.start()
+        _join_threads_until_deadline(threads, LIVE_API_TIMEOUT_SECONDS)
+
+        market_signal = market_state.get("result")
+        if not isinstance(market_signal, dict):
+            market_signal = self._offline_market_signal(search_query)
+            market_signal["warning"] = (
+                market_state.get("error")
+                or f"Live job lookup did not finish within {LIVE_API_TIMEOUT_SECONDS:g} seconds."
+            )
+            market_signal["detail"] = "Live job lookup timed out. Using local role-skill signals to keep the plan fast."
+            market_signal["sources"] = [
+                {
+                    "source": "MyCareersFuture + Apify",
+                    "status": "timeout",
+                    "error": market_signal["warning"],
+                }
+            ]
+
+        location_signal = location_state.get("result")
+        if not isinstance(location_signal, dict):
+            location_signal = self._offline_location_signal(location_query)
+            location_signal["warning"] = (
+                location_state.get("error")
+                or f"Live map lookup did not finish within {LIVE_API_TIMEOUT_SECONDS:g} seconds."
+            )
+            location_signal["detail"] = "Live map lookup timed out. Using local location estimates to keep the plan fast."
+
+        return market_signal, location_signal
 
     def _merge_job_signals(self, query: str, limit: int) -> dict:
         normalized_query = str(query or "").strip().lower()

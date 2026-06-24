@@ -11,6 +11,7 @@ import urllib.request
 import zipfile
 from http.server import ThreadingHTTPServer
 
+import backend.app as app_module
 from backend.app import DATA, Handler, _join_threads_until_deadline
 from backend.connectors import DataGovCourseDirectoryClient, _xlsx_dict_rows
 from backend.recommendation_engine import build_recommendation
@@ -179,6 +180,50 @@ class SkillQuestApiTests(unittest.TestCase):
         status, demo_location = self.get_json("/api/location?query=Tampines%20MRT&live=1&demo=true")
         self.assertEqual(status, 200)
         self.assertEqual(demo_location["status"], "offline")
+
+    def test_live_recommendation_uses_shared_deadline_for_job_and_location(self) -> None:
+        original_timeout = app_module.LIVE_API_TIMEOUT_SECONDS
+        original_market = Handler._merge_job_signals
+        original_location = Handler._location_signal
+
+        def slow_market(self: Handler, query: str, limit: int) -> dict:
+            time.sleep(0.25)
+            return {"status": "ok", "source": "slow market", "items": [], "top_skills": []}
+
+        def slow_location(self: Handler, query: str) -> dict:
+            time.sleep(0.25)
+            return {"status": "ok", "source": "slow location", "items": []}
+
+        app_module.LIVE_API_TIMEOUT_SECONDS = 0.05
+        Handler._merge_job_signals = slow_market
+        Handler._location_signal = slow_location
+        try:
+            request_payload = {
+                "demo": False,
+                "mode": "pathfinder",
+                "interests": ["Data"],
+                "targetRole": "Data Analyst",
+                "skills": ["Excel"],
+                "weeklyHours": 3,
+                "budget": 100,
+                "learningMode": "Online",
+                "location": "Tampines MRT",
+                "allowLiveData": True,
+            }
+            started = time.time()
+            status, payload = self.post_json("/api/recommend", json.dumps(request_payload).encode("utf-8"))
+            elapsed = time.time() - started
+        finally:
+            app_module.LIVE_API_TIMEOUT_SECONDS = original_timeout
+            Handler._merge_job_signals = original_market
+            Handler._location_signal = original_location
+
+        self.assertEqual(status, 200)
+        self.assertLess(elapsed, 0.35)
+        sources = {source["name"]: source["status"] for source in payload["sourceSummary"]}
+        self.assertEqual(sources["MyCareersFuture"], "offline")
+        self.assertEqual(sources["OneMap"], "offline")
+        self.assertIn("timed out", payload["sourceSummary"][2]["detail"])
 
     def test_local_mentor_returns_two_hour_plan_without_key(self) -> None:
         request_payload = {

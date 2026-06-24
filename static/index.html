@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillQuest</title>
+    <link rel="stylesheet" href="/styles.css?v=20260624-minimal-ui" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" aria-label="SkillQuest header">
+      <a class="brand" href="#main" aria-label="SkillQuest home">
+        <span class="brand-mark" aria-hidden="true">SQ</span>
+        <span>SkillQuest</span>
+      </a>
+      <div class="header-actions">
+        <button class="voice-button" id="read-page" type="button">
+          <span class="button-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 10v4h4l5 4V6L9 10H5z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></svg>
+          </span>
+          <span>Read aloud</span>
+        </button>
+        <button class="help-button" id="help-button" type="button">
+          <span class="button-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.7 2c-.9.6-1.5 1.1-1.5 2.4"/><path d="M12 17h.01"/></svg>
+          </span>
+          <span>Help</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" class="simple-shell">
+      <section class="hero-panel" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="start-label">Start here</p>
+          <h1 id="page-title">Get one clear next step now.</h1>
+          <p class="lede">Pick what you can do today and where you want to grow. We will give you one simple step.</p>
+        </div>
+        <div class="safe-note" aria-label="Data note">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-2.8 8.3-7 10-4.2-1.7-7-5.6-7-10V6l7-3z"/><path d="M8.5 12l2.2 2.2 4.8-5"/></svg>
+          </span>
+          Private mode works without live lookup.
+        </div>
+      </section>
+
+      <form id="quest-form" class="guided-card">
+        <div class="stepper" aria-label="Three simple steps">
+          <span class="step active">1</span>
+          <span class="step-line"></span>
+          <span class="step">2</span>
+          <span class="step-line"></span>
+          <span class="step">3</span>
+        </div>
+
+        <section class="simple-step" aria-labelledby="path-heading">
+          <div class="step-heading">
+            <span class="step-number">1</span>
+            <div>
+              <h2 id="path-heading">First, choose your starting point</h2>
+              <p>Not sure? Pick the first option.</p>
+            </div>
+          </div>
+
+          <fieldset class="choice-grid">
+            <legend class="visually-hidden">Journey mode</legend>
+            <label class="big-choice selected">
+              <input type="radio" name="mode" value="explorer" checked />
+              <span class="choice-icon teal" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3l7 7-7 11-7-11 7-7z"/><path d="M12 7v10"/><path d="M8.5 10h7"/></svg>
+              </span>
+              <span>
+                <strong>I am not sure</strong>
+                <small>Give me one good path.</small>
+              </span>
+            </label>
+
+            <label class="big-choice">
+              <input type="radio" name="mode" value="pathfinder" />
+              <span class="choice-icon blue" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v3"/><path d="M20 12h-3"/></svg>
+              </span>
+              <span>
+                <strong>I know my goal</strong>
+                <small>Help me reach this role.</small>
+              </span>
+            </label>
+          </fieldset>
+        </section>
+
+        <section class="simple-step" aria-labelledby="ability-heading">
+          <div class="step-heading">
+            <span class="step-number">2</span>
+            <div>
+              <h2 id="ability-heading">Second, tell us what you can do now</h2>
+              <p>Pick the boxes that feel right.</p>
+            </div>
+          </div>
+
+          <div id="ability-grid" class="ability-grid" aria-live="polite">
+            <button type="button" class="ability-card selected" data-skill="Excel" data-interest="Data">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M5 10h14"/><path d="M10 5v14"/></svg>
+              </span>
+              <strong>Use Excel</strong>
+            </button>
+            <button type="button" class="ability-card selected" data-skill="Customer Service" data-interest="Helping people">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M4 19c.8-3 2.4-5 4-5s3.2 2 4 5"/><path d="M12 19c.8-3 2.4-5 4-5s3.2 2 4 5"/></svg>
+              </span>
+              <strong>Help people</strong>
+            </button>
+            <button type="button" class="ability-card selected" data-skill="Data Entry" data-interest="Technology">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>
+              </span>
+              <strong>Type data</strong>
+            </button>
+            <button type="button" class="ability-card" data-skill="Presentation" data-interest="Business">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 4h14v10H5z"/><path d="M12 14v6"/><path d="M8 20h8"/></svg>
+              </span>
+              <strong>Explain things</strong>
+            </button>
+            <button type="button" class="ability-card" data-skill="Operations" data-interest="Problem-solving">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M3 12h4"/><path d="M17 12h4"/><path d="M12 3v4"/><path d="M12 17v4"/></svg>
+              </span>
+              <strong>Fix problems</strong>
+            </button>
+          </div>
+        </section>
+
+        <section class="simple-step" aria-labelledby="goal-heading">
+          <div class="step-heading">
+            <span class="step-number">3</span>
+            <div>
+              <h2 id="goal-heading">Press upgrade</h2>
+              <p>We will choose one next step.</p>
+            </div>
+          </div>
+
+          <div class="simple-fields">
+            <label>
+                <span>Goal role (optional)</span>
+              <select id="target-role" name="targetRole"></select>
+            </label>
+            <label>
+                <span>Nearby place</span>
+              <input id="location" name="location" type="text" value="Tampines MRT" />
+            </label>
+          </div>
+
+          <details class="more-options">
+            <summary>Show more options</summary>
+            <div class="optional-grid">
+              <label>
+                <span>Current role</span>
+                <input id="current-role" name="currentRole" type="text" value="Admin Executive" />
+              </label>
+              <label>
+                <span>Hours each week</span>
+                <input id="weekly-hours" name="weeklyHours" type="range" min="1" max="20" value="6" />
+                <small><output id="weekly-hours-output">6</output> hours</small>
+              </label>
+              <label>
+                <span>Budget in dollars</span>
+                <input id="budget" name="budget" type="number" min="0" step="50" value="700" />
+              </label>
+              <label>
+                <span>Class style</span>
+                <select id="learning-mode" name="learningMode">
+                  <option>Blended</option>
+                  <option>Online</option>
+                  <option>Physical</option>
+                </select>
+              </label>
+              <label>
+                <span>Best time</span>
+                <select id="schedule" name="preferredSchedule">
+                  <option>Evenings</option>
+                  <option>Weekends</option>
+                  <option>Weekdays</option>
+                  <option>Flexible</option>
+                </select>
+              </label>
+              <label>
+                <span>Your skills</span>
+                <input id="skills" name="skills" type="text" value="Excel, Customer Service, Data Entry" />
+              </label>
+            <label class="consent-row">
+              <input id="allow-live-data" name="allowLiveData" type="checkbox" />
+              <span>Use live job and map lookup</span>
+              <small>Sends only your goal and place to public services. Off keeps the demo private and fast.</small>
+            </label>
+            <label class="consent-row">
+              <input id="allow-live-mentor" name="allowLiveMentor" type="checkbox" />
+              <span>Use live mentor wording</span>
+              <small>Uses optional Google/OpenAI provider for simpler explanations and rewrites.</small>
+            </label>
+          </div>
+          </details>
+
+          <button id="upgrade-button" class="upgrade-button" type="submit">
+            <span class="button-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg>
+            </span>
+            <span>Upgrade my path</span>
+          </button>
+        </section>
+      </form>
+
+      <section id="snapshot" class="result-panel" aria-live="polite" aria-labelledby="snapshot-heading">
+        <div id="empty-state" class="empty-state">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l7 7-7 11-7-11 7-7z"/></svg>
+          </span>
+          <div>
+            <h2 id="snapshot-heading">Your first step will appear here</h2>
+            <p>Press the green button when ready.</p>
+          </div>
+        </div>
+
+        <div id="results" class="results hidden">
+          <article class="next-card">
+            <p class="result-label">Your next step</p>
+            <h2 id="mentor-action">Start with Data Analysis</h2>
+            <p id="mentor-summary">This is the best first skill for your path.</p>
+            <div id="mentor-advice" class="mentor-advice" hidden>
+              <strong id="mentor-advice-title">Simple guide</strong>
+              <p id="mentor-advice-summary"></p>
+              <ul id="mentor-advice-steps"></ul>
+              <small id="mentor-advice-source">Local guide. No AI key needed.</small>
+            </div>
+            <div class="ready-row">
+              <div class="ring" id="readiness-ring" style="--score: 0">
+                <span id="readiness-score">0%</span>
+              </div>
+              <div>
+                <strong id="readiness-label">Start here</strong>
+                <p id="readiness-summary"></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="course-card" id="course-card"></article>
+
+          <article class="simple-factors">
+            <h3>Why this is easy</h3>
+            <dl id="factor-list" class="factor-list"></dl>
+          </article>
+
+          <article class="evidence-card">
+            <h3>Why this path</h3>
+            <p id="confidence-line" class="confidence-line">Medium confidence.</p>
+            <ul id="why-list" class="plain-list"></ul>
+          </article>
+
+          <article class="skills-card">
+            <h3>Skills to learn first</h3>
+            <div id="skill-gap-list" class="skill-gap-list"></div>
+          </article>
+
+          <article class="compare-card" id="compare-card">
+            <h3>Compare options</h3>
+            <div id="compare-list" class="compare-list"></div>
+          </article>
+
+          <article class="action-card">
+            <h3>Need simpler?</h3>
+            <div class="quick-actions" aria-label="Adjust recommendation">
+              <button id="why-button" type="button">Why this?</button>
+              <button id="cheaper-button" type="button">Cheaper plan</button>
+              <button id="two-hours-button" type="button">Only 2 hours</button>
+              <button id="helper-button" type="button">Use a helper</button>
+              <button id="copy-plan-button" type="button">Copy this plan</button>
+              <button id="save-sheet-button" type="button">Save helper sheet</button>
+            </div>
+            <form id="ask-guide-form" class="ask-guide">
+              <label for="mentor-question">Ask one question</label>
+              <div class="ask-guide-row">
+                <input
+                  id="mentor-question"
+                  name="mentorQuestion"
+                  type="text"
+                  maxlength="140"
+                  autocomplete="off"
+                  placeholder="Can I do this with no money?"
+                />
+                <button id="ask-guide-button" type="submit">Ask guide</button>
+              </div>
+            </form>
+            <div id="helper-sheet-panel" class="helper-sheet" hidden>
+              <strong>Helper sheet ready</strong>
+              <p>A helper can read this, copy it, or save it as a text file.</p>
+              <textarea id="helper-sheet-text" aria-label="Helper sheet text" readonly></textarea>
+              <div class="helper-sheet-actions">
+                <button id="copy-sheet-button" type="button">Copy sheet</button>
+                <button id="download-sheet-button" type="button">Download .txt</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="quest-card">
+            <h3>Do these 3 small steps</h3>
+            <div id="questline" class="questline"></div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="support-panel" aria-labelledby="support-heading">
+        <h2 id="support-heading">Need help?</h2>
+        <button class="support-button" id="read-result" type="button">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 10v4h4l5 4V6L9 10H5z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>
+          </span>
+          Read this screen
+        </button>
+          <p>Ask someone nearby to help you read this page. You can use it without logging in.</p>
+        <div class="integration-panel" aria-labelledby="integration-heading">
+          <h3 id="integration-heading">Simple data checks</h3>
+          <div id="integration-list" class="integration-list"></div>
+        </div>
+        <div id="source-list" class="source-list"></div>
+      </aside>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js?v=20260624-helper-sheet" defer></script>
+  </body>
+</html>

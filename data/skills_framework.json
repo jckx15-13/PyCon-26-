@@ -1,0 +1,2141 @@
+{
+  "status": "official-xlsx-normalised",
+  "name": "Singapore SkillsFuture Jobs-Skills dataset slice",
+  "source_url": "https://jobsandskills.skillsfuture.gov.sg/frameworks/skills-frameworks",
+  "sector_information_url": "https://jobsandskills.skillsfuture.gov.sg/frameworks/sector-information",
+  "source_owner": "SkillsFuture Singapore Jobs-Skills Portal",
+  "last_reviewed": "2026-06-24",
+  "generated_by": "tools/import_skillsfuture_datasets.py",
+  "source_files": [
+    {
+      "path": "C:\\Users\\jaron\\Downloads\\jobsandskills-skillsfuture-unique-skills-list.xlsx",
+      "rows": 2316
+    },
+    {
+      "path": "C:\\Users\\jaron\\Downloads\\jobsandskills-skillsfuture-skills-framework-dataset.xlsx",
+      "rows": 58564
+    },
+    {
+      "path": "C:\\Users\\jaron\\Downloads\\jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx",
+      "rows": 12326
+    }
+  ],
+  "record_counts": {
+    "uniqueSkills": 2316,
+    "jobRoles": 2030,
+    "jobRoleSkillRows": 44527,
+    "skillKeyRows": 12007,
+    "tscToUniqueSkillRows": 12326,
+    "mappedAppRoles": 6
+  },
+  "limitations": [
+    "This is a normalised app slice generated from local SkillsFuture XLSX datasets supplied by the user.",
+    "SkillQuest maps its six demo roles to adjacent official job roles for explainability; it does not claim official endorsement.",
+    "Course details, funding, eligibility, and enrolment must still be verified on official provider or MySkillsFuture pages."
+  ],
+  "role_mappings": {
+    "data-analyst": {
+      "framework": "Skills Framework for Infocomm Technology and Financial Services data analytics roles",
+      "sector": "Infocomm Technology / Financial Services",
+      "confidence": "high",
+      "skills": [
+        "Spreadsheet Modelling",
+        "Data Analysis",
+        "SQL Basics",
+        "Data Visualisation",
+        "Business Storytelling",
+        "Python Automation"
+      ],
+      "officialSkills": [
+        {
+          "title": "Networking",
+          "uniqueSkill": "Business Opportunities Development",
+          "code": "ICT-BIN-3108-1.1",
+          "type": "tsc",
+          "category": "Business Development",
+          "description": "Identifying, evaluating and strategising to seize new business opportunities to grow the organisation's business operations.",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Identify and analyse business opportunities",
+          "uniqueSkillDescription": "Enhance organisational growth by developing and implementing business performance plans, identifying and capitalising on new and strategic business opportunities, exploring new markets and partnerships, curating business proposals, and promoting products and services to continuously create customer value, ensuring commercial viability and integration with existing markets",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Analytics",
+          "uniqueSkill": "Data Analytics",
+          "code": "ICT-BIN-2104-1.1",
+          "type": "tsc",
+          "category": "Business Development",
+          "description": "Implementing data analytics within the organisation to generate business insights and intelligence through the use of statistical and computational techniques and tools, algorithms, predictive data modelling and data visualisation.",
+          "proficiencyLevels": [
+            2,
+            3
+          ],
+          "proficiencyDescription": "Identify underlying trends and patterns in business data using statistical and computational techniques and tools",
+          "uniqueSkillDescription": "Apply data extraction and analytic methods to evaluate financial and non-financial information, organise and systematically analyse structured or unstructured data, implement data analytics using statistical and computational techniques, and perform segmentation and integration of quantitative and qualitative data to generate business insights, improve user experience, and optimise operations",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Ethical Culture",
+          "uniqueSkill": "Ethical Culture",
+          "code": "FSE-PVE-3004-1.1-1",
+          "type": "tsc",
+          "category": "Business Development and Strategy Management",
+          "description": "Foster strong ethical standards in accordance with the ethical principles, financial markets code of conduct, and market practices",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Uphold ethical standards during performance of individual duties and responsibilities",
+          "uniqueSkillDescription": "Evaluate and foster a strong ethical climate by adhering to ethical principles, code of conduct, regulations, and market practices",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Project Management",
+          "uniqueSkill": "Project Management",
+          "code": "FSE-BIN-3021-1.1",
+          "type": "tsc",
+          "category": "Business Development and Strategy Management",
+          "description": "Execute projects by managing stakeholder engagement, resources, budgets and resolving problems",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Implement project plans for small projects or project modules",
+          "uniqueSkillDescription": "Perform planning, organization, monitoring, and control of all project aspects, ensuring strategic resource utilization to meet objectives within agreed timelines, costs, and performance expectations",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Budgeting",
+          "uniqueSkill": "Budgeting",
+          "code": "ICT-FIN-3001-1.1",
+          "type": "tsc",
+          "category": "Business Finance",
+          "description": "Preparing organisational budgets to support short- and long-term business plans through forecasting, allocation and financial policy setting.",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Prepare business unit's operational budgets",
+          "uniqueSkillDescription": "Manage organisational budgets and financial systems by preparing forecasts and allocations to support business plans whilst tracking utilisation to ensure efficient and effective budget deployment",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Innovation",
+          "uniqueSkill": "Business Innovation",
+          "code": "ICT-SNA-4003-1.1",
+          "type": "tsc",
+          "category": "Business and Project Management",
+          "description": "Identify and evaluate digitisation and innovative business opportunities provided by new advancements in information and communication technology to establish new services or businesses to bridge the physical and digital worlds",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Explore opportunities for business innovation and reform, and lead the implementation of innovative business initiatives",
+          "uniqueSkillDescription": "Identify and evaluate digitisation and innovative business opportunities provided by new advancements in information and communication technology to establish new services or businesses to bridge the physical and digital worlds",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Stakeholder Management",
+          "uniqueSkill": "Stakeholder Management",
+          "code": "FSE-BIN-3074-1.1",
+          "type": "tsc",
+          "category": "Customer Relationship and Stakeholder Management",
+          "description": "Manage stakeholder expectations to ensure continuous levels of engagement by identifying and addressing needs, setting service standards and resolving issues in accordance with organisational procedures",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Maintain working level relationships to support project implementation activities and create partnerships",
+          "uniqueSkillDescription": "Manage stakeholder expectations and relationships by identifying needs, setting service standards, resolving issues, and planning strategies to align with organizational goals, effectively communicate, negotiate, and influence stakeholders, ensuring continuous engagement and support for business objectives",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Analytics and Computational Modelling",
+          "uniqueSkill": "Data Analytics and Computational Modelling",
+          "code": "FSE-DAT-3019-1.1",
+          "type": "tsc",
+          "category": "Data Analytics and Information Technology Management",
+          "description": "Develop, select and apply statistical techniques, algorithms and advanced computational methods to enable systems or software agents to learn, improve, adapt and produce business insights and intelligence to address a specific issue or requirement",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Identify and utilise appropriate statistical algorithms and data models to perform data analyses, test hypotheses and derive inferences, patterns or solutions from data",
+          "uniqueSkillDescription": "Develop, select and apply statistical techniques, algorithms and advanced computational methods to enable systems or software agents to learn, improve, adapt and produce business insights and intelligence to address a specific issue or requirement",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Collection and Analysis",
+          "uniqueSkill": "Data Collection and Analysis",
+          "code": "FSE-IAD-3003-1.1-1",
+          "type": "tsc",
+          "category": "Data Analytics and Information Technology Management",
+          "description": "Collect, extract and interpret data according to defined requirement to obtain business insights",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Collect data using appropriate techniques and business intelligence tools to extract meaningful data for preliminary analyses according to requirements",
+          "uniqueSkillDescription": "Collect, extract, and interpret data according to defined requirements to obtain project and business insights",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Governance",
+          "uniqueSkill": "Data Governance",
+          "code": "FSE-SNA-3008-1.1-1",
+          "type": "tsc",
+          "category": "Data Analytics and Information Technology Management",
+          "description": "Develop, implement and practice guidelines, laws, and regulations across the organisation for the handling of data at various stages in its lifecycle as well as the provision of advice on proper data handling and resolution of data breaches",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Identify and select appropriate scenarios to practice and adhere to data usage, data management and data protection guidelines and policies across lifecycle",
+          "uniqueSkillDescription": "Establish and implement comprehensive data governance standards, guidelines, laws, and regulations across the organization, ensuring proper data handling at all lifecycle stages, providing advice on resolution of data breaches, and reviewing compliance levels in complex and ambiguous contexts",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Storytelling and Visualisation",
+          "uniqueSkill": "Data Storytelling and Visualisation",
+          "code": "FSE-DAT-3020-1.1",
+          "type": "tsc",
+          "category": "Data Analytics and Information Technology Management",
+          "description": "Combine data insights, and dynamic visual displays with illustrative and interactive graphics and narrative representative formats to present patterns, trends, meanings, messages and analytical insights from data or new concepts in a strategic manner",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Select appropriate visualisation techniques to translate data insights into visual and narrative formats to deliver tailors and compelling messages and reflect data findings",
+          "uniqueSkillDescription": "Combine data insights and implement contemporary techniques using dynamic visual displays with illustrative and interactive graphics to strategically present patterns, trends, meanings, messages, and analytical insights from data or new concepts tailored for the intended audience",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Mining and Modelling",
+          "uniqueSkill": "Data-mining and Modelling",
+          "code": "FSE-DAT-3003-1.1-1",
+          "type": "tsc",
+          "category": "Data Analytics and Information Technology Management",
+          "description": "Establish and deploy data modelling techniques to support narrative and predictive analytics efforts and identify trends and patterns for simulation and forecasting purposes",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Address potential data quality issues, conduct narrative analytics and deep-dive analyses to identify patterns and trends",
+          "uniqueSkillDescription": "Establish and deploy data modelling techniques to support narrative and predictive analytics efforts and identify trends and patterns for simulation and forecasting purposes",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Emerging Technology Synthesis",
+          "uniqueSkill": "Emerging Technology Synthesis",
+          "code": "FSE-SNA-3011-1.1-1",
+          "type": "tsc",
+          "category": "Data Analytics and Information Technology Management",
+          "description": "Monitor, gather data and identify emerging technology trends, developments, products, services and techniques for integration. In addition, perform cost-benefit analysis and evaluation of their relevance, viability, sustainability and potential value add to the business.",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Conduct research and identify opportunities for new and emerging technology to support the business",
+          "uniqueSkillDescription": "Monitor and integrate emerging technology trends and developments, gather structured data to identify new products, services, and techniques, and perform cost-benefit analysis to evaluate their relevance, viability, sustainability, and potential value to the business",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Programming and Coding",
+          "uniqueSkill": "Programming and Coding",
+          "code": "FSE-DIT-3018-1.1",
+          "type": "tsc",
+          "category": "Data Analytics and Information Technology Management",
+          "description": "Develop technical capabilities to understand, design and write instructions to be processed by computers as software programmes to achieve desired outcomes",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Analyse business objectives to identify programming and coding opportunities, to ensure that the technical functionality of software designed is aligned to intended outcomes",
+          "uniqueSkillDescription": "Develop technical capabilities to understand, design and write instructions to be processed by computers as software programmes to achieve desired outcomes",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Design Thinking Practice",
+          "uniqueSkill": "Design Thinking Practice",
+          "code": "ICT-ACE-3014-1.2",
+          "type": "tsc",
+          "category": "Design and Architecture",
+          "description": "Manage design thinking methodologies and processes to solve specific challenges for the organisation, and guide stakeholders through the phases of inspiration, empathy, ideation and implementation",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Apply design thinking methodologies and execute design thinking processes to challenge norms and conventions in the organisation",
+          "uniqueSkillDescription": "Manage design thinking methodologies and processes to solve specific challenges for the organization, guiding stakeholders through the phases of inspiration, empathy, ideation, and implementation",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-20"
+        },
+        {
+          "title": "Data Engineering",
+          "uniqueSkill": "Data Engineering",
+          "code": "ICT-DIT-2005-1.1",
+          "type": "tsc",
+          "category": "Development and Implementation",
+          "description": "Develop and implement efficient and stable processes to collect, store, extract, transform, load and integrate data at various stages in the data pipeline. This also involves processing varying amounts of data from a variety of sources and preparing data in a structure that is easily access and analysed according to business requirements",
+          "proficiencyLevels": [
+            2
+          ],
+          "proficiencyDescription": "Utilise appropriate tools, systems and techniques to collect, store, extract, transform and load data according to set guidelines",
+          "uniqueSkillDescription": "Develop and implement efficient and stable processes to collect, store, extract, transform, load and integrate data at various stages in the data pipeline. This also involves processing varying amounts of data from a variety of sources and preparing data in a structure that is easily access and analysed according to business requirements",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        }
+      ],
+      "officialRoles": [
+        {
+          "sector": "Infocomm Technology",
+          "track": "Data and Artificial Intelligence",
+          "jobRole": "Data Analyst / Associate Data Engineer",
+          "description": "The Data Analyst/Associate Data Engineer blends historical data from available industry reports, public information, field reports or purchased sources, basic data cleaning and transformation, and performs analysis to support business and product decisions. He/She uses development tools to generate reports, dashboards, clean and prepare the data and analytic"
+        },
+        {
+          "sector": "Financial Services",
+          "track": "Digital and Data Analytics",
+          "jobRole": "Data Analyst",
+          "description": "The Data Analyst is responsible for collecting, blending and conducting analyses on data from various sources to interpret and draw meaningful insights to support decision-making on business, products and solutions. He/She assists in building analytical tools and working with business units to understand their requirements to design reports and visualisation"
+        }
+      ],
+      "alignedAppSkills": [
+        {
+          "appSkill": "Spreadsheet Modelling",
+          "officialSkill": "Data Analytics",
+          "officialCode": "ICT-BIN-2104-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Data Analysis",
+          "officialSkill": "Data Collection and Analysis",
+          "officialCode": "FSE-IAD-3003-1.1-1",
+          "matchScore": 1.0
+        },
+        {
+          "appSkill": "SQL Basics",
+          "officialSkill": null,
+          "officialCode": null,
+          "matchScore": 0
+        },
+        {
+          "appSkill": "Data Visualisation",
+          "officialSkill": "Data Analytics",
+          "officialCode": "ICT-BIN-2104-1.1",
+          "matchScore": 1.0
+        },
+        {
+          "appSkill": "Business Storytelling",
+          "officialSkill": "Business Opportunities Development",
+          "officialCode": "ICT-BIN-3108-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Python Automation",
+          "officialSkill": null,
+          "officialCode": null,
+          "matchScore": 0
+        }
+      ],
+      "sourceFiles": [
+        "jobsandskills-skillsfuture-unique-skills-list.xlsx",
+        "jobsandskills-skillsfuture-skills-framework-dataset.xlsx",
+        "jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
+      ]
+    },
+    "digital-marketing-specialist": {
+      "framework": "Skills Framework references for digital marketing and sales/marketing roles",
+      "sector": "Hotel and Accommodation Services / Wholesale Trade",
+      "confidence": "high",
+      "skills": [
+        "Campaign Analytics",
+        "Content Strategy",
+        "Audience Research",
+        "Search Marketing",
+        "Marketing Automation"
+      ],
+      "officialSkills": [
+        {
+          "title": "Brand Portfolio Management",
+          "uniqueSkill": "Brand Portfolio Management",
+          "code": "WST-SNM-4002-1.1-1",
+          "type": "tsc",
+          "category": "Branding, Publicity, Digital Marketing and E-Commerce",
+          "description": "Formulate brand portfolio strategies, define branding features as well as create brand differentiators to expand portfolio user base",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Manage and execute branding features to create impactful point of differentiation for a brand and activate key levers for consumer awareness in growing portfolio user base",
+          "uniqueSkillDescription": "Formulate brand portfolio strategies, define branding features, and create brand differentiators to expand the portfolio's user base",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Digital Marketing",
+          "uniqueSkill": "Digital Marketing Management",
+          "code": "WST-SNM-4042-1.1-1",
+          "type": "tsc",
+          "category": "Branding, Publicity, Digital Marketing and E-Commerce",
+          "description": "Develop, execute and evaluate digital marketing strategies and campaigns to promote online presence and deliver value proposition through the use of various digital marketing channels and platforms",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Evaluate performance of digital marketing channels and develop processes to create, integrate and improve digital marketing campaigns",
+          "uniqueSkillDescription": "Develop, execute, and evaluate digital marketing strategies and campaigns to enhance online presence and deliver value propositions, utilizing channels like SEO, SEM, and affiliate marketing to promote business objectives effectively",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "E-commerce Campaign Management",
+          "uniqueSkill": "E-commerce Campaign Management",
+          "code": "WST-SNM-4014-1.1-1",
+          "type": "tsc",
+          "category": "Branding, Publicity, Digital Marketing and E-Commerce",
+          "description": "Develop, manage and execute e-Commerce strategies and campaigns according to agreed timelines and budgetary requirements",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Develop detailed e-Commerce campaigns, manage its performance and liaise with partners to enhance online awareness, website and campaign visibility",
+          "uniqueSkillDescription": "Develop, manage and execute e-Commerce strategies and campaigns according to agreed timelines and budgetary requirements",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Marketing Campaign Management",
+          "uniqueSkill": "Marketing Campaign Management",
+          "code": "WST-SNM-4017-1.1-1",
+          "type": "tsc",
+          "category": "Branding, Publicity, Digital Marketing and E-Commerce",
+          "description": "Develop evaluation strategies for marketing campaign effectiveness and analyse data to provide recommendations for improvements in future marketing campaigns",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Develop marketing campaigns and enhance campaign awareness and campaign visibility",
+          "uniqueSkillDescription": "Develop evaluation strategies for marketing campaign effectiveness and analyse data to provide recommendations for improvements in future marketing campaigns",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Social Media Management",
+          "uniqueSkill": "Social Media Management",
+          "code": "WST-OTO-4006-1.1-1",
+          "type": "tsc",
+          "category": "Branding, Publicity, Digital Marketing and E-Commerce",
+          "description": "Leverage various social networking platforms to deliver the organisation's value propositions as well as contextual and targeted messaging based on real-time customer insights to engage in two-way communication with prospects and customers",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Develop social media strategies aimed at customer acquisition, engagement, loyalty and conversion review performance analysis of social media management campaigns to identify opportunities for improvement",
+          "uniqueSkillDescription": "Leverage various social networking platforms to deliver the organisation's value propositions as well as contextual and targeted messaging based on real-time customer insights to engage in two-way communication with prospects and customers",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Website Design",
+          "uniqueSkill": "Website Design",
+          "code": "WST-DES-4011-1.1-1",
+          "type": "tsc",
+          "category": "Branding, Publicity, Digital Marketing and E-Commerce",
+          "description": "Determine and review purposes, expectations and functionalities of websites, as well as analyse the user-interface design requirements",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Evaluate functionalities and user experience of website and develop organisational guidelines and requirements for website design and content",
+          "uniqueSkillDescription": "Determine and review purposes, expectations and functionalities of websites, as well as analyse the user-interface design requirements",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Website Performance Management",
+          "uniqueSkill": "Website Performance Management",
+          "code": "WST-DES-4012-1.1-1",
+          "type": "tsc",
+          "category": "Branding, Publicity, Digital Marketing and E-Commerce",
+          "description": "Design mechanisms to identify website maintenance, administration, or performance problems, as well as generate website performance benchmarks reports and record outcomes against specification",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Review website performance reports and implement website performance policies and procedures",
+          "uniqueSkillDescription": "Design mechanisms to identify website maintenance, administration, or performance problems, generate website performance benchmark reports, and record outcomes against specifications",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Presentation Delivery",
+          "uniqueSkill": "Business Presentation Delivery",
+          "code": "WST-BIN-4077-1.1",
+          "type": "tsc",
+          "category": "Business Development",
+          "description": "Perform required tasks to prepare and present information in various business settings involving preparation, understanding of audience, delivery and tailoring of messages to be conveyed",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Adapt various techniques and concepts in presentation skills that are widely used and effective in engaging individuals and/or teams",
+          "uniqueSkillDescription": "Deliver effective and engaging presentations in various business settings, performing tasks that involve preparation, understanding the audience, and tailoring messages for effective persuasion",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Customer Acquisition Management",
+          "uniqueSkill": "Customer Acquisition Management",
+          "code": "WST-CFC-4022-1.1-1",
+          "type": "tsc",
+          "category": "Business Development",
+          "description": "Develop customer acquisition strategies as well as foster customer relationships to attract new customers",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Develop customer acquisition plans to build new customer relationships",
+          "uniqueSkillDescription": "Develop customer acquisition strategies and foster relationships to attract new customers",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Analytics",
+          "uniqueSkill": "Data Analytics",
+          "code": "WST-BIN-3104-1.1",
+          "type": "tsc",
+          "category": "Business Development",
+          "description": "Implement data analytics within the organisation to generate business insights and intelligence through the use of statistical and computational techniques and tools, algorithms, predictive data modelling and data visualisation",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Develop, apply and evaluate algorithms, predictive data modelling and data visualisation to identify underlying trends and patterns in data",
+          "uniqueSkillDescription": "Apply data extraction and analytic methods to evaluate financial and non-financial information, organise and systematically analyse structured or unstructured data, implement data analytics using statistical and computational techniques, and perform segmentation and integration of quantitative and qualitative data to generate business insights, improve user experience, and optimise operations",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Networking",
+          "uniqueSkill": "Networking",
+          "code": "WST-BIN-4108-1.1",
+          "type": "tsc",
+          "category": "Business Development",
+          "description": "Identify and establish industry stakeholder relationships at all levels of business operations to further the organisation's strategies and objectives",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Enhance stakeholder relationships through targeted programmes and activities",
+          "uniqueSkillDescription": "Identify and establish industry stakeholder relationships at all levels of business operations to advance the organisation's strategies and objectives",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Budgeting",
+          "uniqueSkill": "Budgeting",
+          "code": "WST-FIN-4001-1.1",
+          "type": "tsc",
+          "category": "Business Finance",
+          "description": "Prepare organisational budgets to support short- and long-term business plans through forecasting, allocation and financial policy setting",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Manage budgeting and forecasting for annual financial and business planning within the business unit",
+          "uniqueSkillDescription": "Manage organisational budgets and financial systems by preparing forecasts and allocations to support business plans whilst tracking utilisation to ensure efficient and effective budget deployment",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Continuous Improvement Management",
+          "uniqueSkill": "Continuous Improvement Management",
+          "code": "WST-BIN-4034-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Apply continuous improvement processes to optimise operating cost, task efficiency and effectiveness in production, services and processes",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Facilitate the organisation's systems and processes related to continuous improvement",
+          "uniqueSkillDescription": "Apply continuous improvement strategies to optimise cost, task efficiency, and effectiveness of processes, procedures and services across the organisation",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Resource Management",
+          "uniqueSkill": "Resource Management",
+          "code": "WST-SPI-4006-1.1-1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Plan and manage resources to ensure optimisation of resources and sustainability of business operations",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Evaluate suitability of resources and develop resource plans in support of business units",
+          "uniqueSkillDescription": "Plan and manage resources to optimise resource use and ensure sustainability of business operations",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Solutions Design Thinking",
+          "uniqueSkill": "Solutions Design Thinking",
+          "code": "WST-SPM-4003-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Construct solution based upon logic, imagination, intuition, and systemic reasoning, to explore possibilities of what can be and create desired outcomes that benefit the organisation and customers",
+          "proficiencyLevels": [
+            4,
+            3
+          ],
+          "proficiencyDescription": "Develop solutions by breaking down complex issues and taking customers through a process, constantly engaging them to design an end-to-end solution",
+          "uniqueSkillDescription": "Develop solutions using logic, imagination, intuition, and systemic reasoning to explore possibilities and create desired outcomes that benefit the organization and customers",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Strategy Planning",
+          "uniqueSkill": "Strategy Planning",
+          "code": "WST-BIN-4049-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Develop organisational strategies and policies by analysing the impact of internal and external influencing factors and seeking consultation from relevant stakeholders",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Develop resource allocation plans and implementation of strategies and policies",
+          "uniqueSkillDescription": "Develop organisational strategies and policies by analysing internal and external factors, consulting relevant stakeholders, and implementing plans to achieve departmental and organisational goals while providing strategic direction",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Wholesale Trade",
+          "latestUpdateDate": "2024-12-16"
+        }
+      ],
+      "officialRoles": [
+        {
+          "sector": "Hotel and Accommodation Services",
+          "track": "Sales and Marketing",
+          "jobRole": "Marketing Communications Executive / Digital Marketing Executive / Public Relations Executive",
+          "description": "The Marketing Communications Executive/Digital Marketing Executive/Public Relations Executive provides advertising, promotions and public relations support for various portfolios in the property. He/She supports the compliance of corporate brand guidelines across marketing channels and departments, conducts market profiling and analyses market findings and m"
+        },
+        {
+          "sector": "Wholesale Trade",
+          "track": "Marketing, Business Development and Analysis",
+          "jobRole": "Marketing Executive",
+          "description": "The Marketing Executive executes the organisation's branding and marketing efforts. He/She protects brand image by training key internal stakeholders on brand guidelines. He also executes marketing campaigns and digital marketing communications activities to promote the organisation's product and service offerings. Furthermore, he performs market research an"
+        },
+        {
+          "sector": "Wholesale Trade",
+          "track": "Marketing, Business Development and Analysis",
+          "jobRole": "Marketing Manager",
+          "description": "The Marketing Manager manages execution of the organisation's branding and marketing efforts. This includes managing the organisation's brand image, digital marketing communications and promotional campaigns. He/She leverages market research on brand awareness, market trends and target buyer and seller landscapes to enhance promotion of the organisation's pr"
+        }
+      ],
+      "alignedAppSkills": [
+        {
+          "appSkill": "Campaign Analytics",
+          "officialSkill": "E-commerce Campaign Management",
+          "officialCode": "WST-SNM-4014-1.1-1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Content Strategy",
+          "officialSkill": "Strategy Planning",
+          "officialCode": "WST-BIN-4049-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Audience Research",
+          "officialSkill": "Business Presentation Delivery",
+          "officialCode": "WST-BIN-4077-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Search Marketing",
+          "officialSkill": "Digital Marketing Management",
+          "officialCode": "WST-SNM-4042-1.1-1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Marketing Automation",
+          "officialSkill": "Digital Marketing Management",
+          "officialCode": "WST-SNM-4042-1.1-1",
+          "matchScore": 0.5
+        }
+      ],
+      "sourceFiles": [
+        "jobsandskills-skillsfuture-unique-skills-list.xlsx",
+        "jobsandskills-skillsfuture-skills-framework-dataset.xlsx",
+        "jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
+      ]
+    },
+    "ux-designer": {
+      "framework": "Skills Framework for Infocomm Technology and Design user-experience roles",
+      "sector": "Infocomm Technology / Design",
+      "confidence": "high",
+      "skills": [
+        "User Research",
+        "Wireframing",
+        "Usability Testing",
+        "Information Architecture",
+        "Visual Design Basics"
+      ],
+      "officialSkills": [
+        {
+          "title": "Conceptual Thinking",
+          "uniqueSkill": "Conceptual Thinking",
+          "code": "DSN-ACE-3011-1.1",
+          "type": "tsc",
+          "category": "Analytical Thinking",
+          "description": "Analyse and synthesise information by identifying key issues, perceiving unseen patterns and trends and deducing connections between issues to develop relevant ideas and solutions",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Relate pieces of information to one another to identify root causes, patterns and logical errors",
+          "uniqueSkillDescription": "Identify key issues, perceive unseen patterns and trends, and deduce connections between issues to develop relevant ideas and solutions by analysing and synthesising information",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Critical Thinking",
+          "uniqueSkill": "Critical Thinking",
+          "code": "DSN-ACE-3012-1.1",
+          "type": "tsc",
+          "category": "Analytical Thinking",
+          "description": "Examine, manage and connect issues and ideas from multiple perspectives to identify reasoning in a variety of fields with differing assumptions, contents and methods",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Identify and examine problems to generate ideas and solutions",
+          "uniqueSkillDescription": "Examine, manage and connect issues and ideas from multiple perspectives to identify reasoning in a variety of fields with differing assumptions, contents and methods",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Analysis and Interpretation",
+          "uniqueSkill": "Data Analysis and Interpretation",
+          "code": "DSN-DAT-3017-1.1",
+          "type": "tsc",
+          "category": "Analytical Thinking",
+          "description": "Extract meaningful patterns and insights from data to improve organisational performance and decision-making",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Execute data manipulation and data mining techniques to look for connections and structures between data variables",
+          "uniqueSkillDescription": "Extract meaningful patterns and insights from data to improve organisational performance and decision-making",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data and Information Visualisation",
+          "uniqueSkill": "Data and Information Visualisation",
+          "code": "DSN-DAT-3018-1.1",
+          "type": "tsc",
+          "category": "Analytical Thinking",
+          "description": "Combine communication, data science and design to present complex insights and information in a manner that facilitates meaningful storytelling and better decision-making for the organisation",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Communicate information in a clear and efficient manner by using statistical graphics, plots and information graphics",
+          "uniqueSkillDescription": "Integrate data into expressive storytelling to communicate key messages intuitively, stimulating audience engagement and resonating on both intellectual and emotional levels",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Systems Thinking",
+          "uniqueSkill": "Systems Thinking Application",
+          "code": "DSN-ACE-3013-1.1",
+          "type": "tsc",
+          "category": "Analytical Thinking",
+          "description": "Identify, analyse and evaluate relationships among systems' parts, with the use of simulation tools and systems thinking techniques and frameworks to understand situations and drive change for improvements",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Examine the interactions of components within systems to attain holistic understanding of how the parts relate to one another",
+          "uniqueSkillDescription": "Evaluate complex cause-and-effect relationships in organisational systems and processes. Identify and analyse systems’ parts using simulation tools and systems thinking to drive change",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Presentation Delivery",
+          "uniqueSkill": "Business Presentation Delivery",
+          "code": "DSN-BIN-3077-1.1",
+          "type": "tsc",
+          "category": "Business Development",
+          "description": "Perform required tasks to prepare and present information in various business settings involving preparation, understanding of audience, delivery and tailoring of messages to be conveyed",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Prepare and collate relevant information to deliver presentations within project teams",
+          "uniqueSkillDescription": "Deliver effective and engaging presentations in various business settings, performing tasks that involve preparation, understanding the audience, and tailoring messages for effective persuasion",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Budgeting",
+          "uniqueSkill": "Budgeting",
+          "code": "ICT-FIN-3001-1.1",
+          "type": "tsc",
+          "category": "Business Finance",
+          "description": "Preparing organisational budgets to support short- and long-term business plans through forecasting, allocation and financial policy setting.",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Prepare business unit's operational budgets",
+          "uniqueSkillDescription": "Manage organisational budgets and financial systems by preparing forecasts and allocations to support business plans whilst tracking utilisation to ensure efficient and effective budget deployment",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Behavioural Economics in Design",
+          "uniqueSkill": "Behavioural Economics",
+          "code": "DSN-MKI-3007-1.1",
+          "type": "tsc",
+          "category": "Business Strategy",
+          "description": "Examine psychological, behavioural, emotional and social factors to uncover insights on how people behave and make decisions",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Analyse consumers' decision making processes to predict how they would behave when interacting with the organisation and its products and/or services",
+          "uniqueSkillDescription": "Examine psychological, behavioural, emotional and social factors to uncover insights on how people behave and make decisions",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Model Innovation",
+          "uniqueSkill": "Business Model Innovation",
+          "code": "DSN-PIN-3019-1.1",
+          "type": "tsc",
+          "category": "Business Strategy",
+          "description": "Identify and capitalise on untapped areas of business opportunity by proposing and instituting innovative changes to existing business models",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Provide support in necessary areas of research, execution of innovation pilot projects, and management of insights from innovation pilot projects",
+          "uniqueSkillDescription": "Identify and capitalise on untapped areas of business opportunity by proposing and instituting innovative changes to existing business models",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Emerging Technology Synthesis",
+          "uniqueSkill": "Emerging Technology Synthesis",
+          "code": "DSN-SNA-3011-1.1",
+          "type": "tsc",
+          "category": "Business Strategy",
+          "description": "Monitor and integrate emerging technology trends and developments, structured data gathering for the identification of new and emerging technological products, services and techniques. In addition, the performance of cost-benefit analysis and evaluation of their relevance, viability, sustainability and potential value add to the business",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Conduct research and identify opportunities for new and emerging technology to support the business",
+          "uniqueSkillDescription": "Monitor and integrate emerging technology trends and developments, gather structured data to identify new products, services, and techniques, and perform cost-benefit analysis to evaluate their relevance, viability, sustainability, and potential value to the business",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Market Research",
+          "uniqueSkill": "Market Trend Analysis",
+          "code": "DSN-SNM-3036-1.1",
+          "type": "tsc",
+          "category": "Business Strategy",
+          "description": "Plan and conduct marketing and digital research and analysis to uncover market, customer and competitor trends in order to extract useful business insights. This also includes the evaluation of marketing activity effectiveness and development of ways to optimise marketing efforts",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Plan market, competitor and customer research activities and analyse trends and dynamics through information gathered",
+          "uniqueSkillDescription": "Conduct marketing and digital research to uncover market, customer, and competitor trends, extracting valuable business insights. Manage and execute situational analysis to identify new opportunities, evaluate marketing effectiveness, and develop strategies to optimise efforts",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Scenario and Strategic Planning",
+          "uniqueSkill": "Scenario and Strategic Planning",
+          "code": "DSN-ACE-3016-1.1",
+          "type": "tsc",
+          "category": "Business Strategy",
+          "description": "Brainstorm alternative accounts of the future that may be caused by emerging factors, and develop a plans of action for each of the scenarios",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Conduct market analysis to identify emerging factors in the industry that may impact future scenarios",
+          "uniqueSkillDescription": "Brainstorm alternative accounts of the future that may be caused by emerging factors, and develop a plans of action for each of the scenarios",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Trend Forecasting",
+          "uniqueSkill": "Trend Forecasting",
+          "code": "DSN-ACE-3017-1.1",
+          "type": "tsc",
+          "category": "Business Strategy",
+          "description": "Drive the practice of collecting and comparing information over time to identify trends and patterns, in order to predict and plan for future events",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Analyse information gathered on market and industry trends to discover patterns, and report the findings",
+          "uniqueSkillDescription": "Analyse information gathered on market and industry trends to discover patterns and report findings, while managing trend analysis activities to make sound and purposeful predictions for the future",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Design",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Requirements Mapping",
+          "uniqueSkill": "Business Requirements Mapping",
+          "code": "ICT-BIN-3139-1.1",
+          "type": "tsc",
+          "category": "Business and Project Management",
+          "description": "Map business requirements to existing processes to identify gaps or opportunities for possible solutions and evaluate impact of solutions against requirements to propose adjustments as needed",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Analyse relevant information from stakeholders and map business requirements to existing processes to identify gaps and/or opportunities",
+          "uniqueSkillDescription": "Map business requirements to existing processes to identify gaps or opportunities for solutions and evaluate their impact to propose necessary adjustments",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Process Improvement and Optimisation",
+          "uniqueSkill": "Process Improvement and Optimisation",
+          "code": "ICT-PIN-3016-1.1",
+          "type": "tsc",
+          "category": "Business and Project Management",
+          "description": "Establish systems to discover critical processes and maximise these processes to achieve maximum efficiency in accordance with organisation procedures",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Identify and Implement the adoption of process improvement and optimisation methods",
+          "uniqueSkillDescription": "Apply process control to monitor and optimise process plant performance and quality of operations and/or production output",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Product Management",
+          "uniqueSkill": "Product Management",
+          "code": "ICT-SNA-3018-1.1",
+          "type": "tsc",
+          "category": "Business and Project Management",
+          "description": "Create and manage a product roadmap, involving the ideating, planning, forecasting, marketing and management of a product or a suite of products throughout stages of its lifecycle, from its conceptualisation to market entrance and eventual phasing-out. This includes the creation of a new product idea or concept and definition of the product strategy based on a projection of its potential benefits to the customer as well as the review of product performance against milestones and targets set.",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Identify competitor, consumer and technology trends impacting the product, and manage the product lifecycle and performance",
+          "uniqueSkillDescription": "Create and manage product roadmaps, involving ideating, planning, forecasting, marketing, and managing a product or suite of products throughout its lifecycle from conceptualisation to market entrance and eventual phasing-out, including creating new product concepts, defining strategy based on projected customer benefits, and reviewing performance against milestones and targets",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        }
+      ],
+      "officialRoles": [
+        {
+          "sector": "Infocomm Technology",
+          "track": "Strategy and Governance",
+          "jobRole": "Associate UX Designer",
+          "description": "The Associate User Experience Designer assists in the design of user journeys and development of wireframes, ensuring design work is consistent with design and brand standards, analytics insights and customer feedback. He/She coordinates consultation sessions with stakeholders to gather requirements and needs, conducts research on user needs and behaviours, "
+        },
+        {
+          "sector": "Design",
+          "track": "Innovation",
+          "jobRole": "Lead Service Designer/Lead Experience Designer",
+          "description": "The Lead Service Designer/Lead Experience Designer develops engaging user experiences for a variety of applications, and manages the creation of design assets. He/She determines relevant user experience research to be conducted, and translates user needs and business requirements into features with the overall aim of enhancing application experiences. He ove"
+        },
+        {
+          "sector": "Design",
+          "track": "Innovation",
+          "jobRole": "Design Researcher",
+          "description": "The Design Researcher supports the development of user experiences for a variety of applications. He/She studies key industry trends and competitors' user experience strategies in order to support the development of user journeys, wireframes and prototypes. Together with the service design and experience design team, he ensures that design work executed is i"
+        }
+      ],
+      "alignedAppSkills": [
+        {
+          "appSkill": "User Research",
+          "officialSkill": "Market Trend Analysis",
+          "officialCode": "DSN-SNM-3036-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Wireframing",
+          "officialSkill": null,
+          "officialCode": null,
+          "matchScore": 0
+        },
+        {
+          "appSkill": "Usability Testing",
+          "officialSkill": "User Testing and Usability Testing",
+          "officialCode": "DSN-PMN-3022-1.1",
+          "matchScore": 1.0
+        },
+        {
+          "appSkill": "Information Architecture",
+          "officialSkill": "User Experience Design",
+          "officialCode": "DSN-DES-4007-1.1-1",
+          "matchScore": 1.0
+        },
+        {
+          "appSkill": "Visual Design Basics",
+          "officialSkill": "Visual Communication",
+          "officialCode": "DSN-COM-3005-1.1",
+          "matchScore": 0.67
+        }
+      ],
+      "sourceFiles": [
+        "jobsandskills-skillsfuture-unique-skills-list.xlsx",
+        "jobsandskills-skillsfuture-skills-framework-dataset.xlsx",
+        "jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
+      ]
+    },
+    "cybersecurity-associate": {
+      "framework": "Skills Framework for Infocomm Technology cyber security roles",
+      "sector": "Infocomm Technology",
+      "confidence": "high",
+      "skills": [
+        "Security Fundamentals",
+        "Network Basics",
+        "Incident Documentation",
+        "Log Analysis",
+        "Cloud Security Basics"
+      ],
+      "officialSkills": [
+        {
+          "title": "Strategy Planning",
+          "uniqueSkill": "Strategy Planning",
+          "code": "ICT-BIN-4049-1.1",
+          "type": "tsc",
+          "category": "Business and Project Management",
+          "description": "Develop organisational strategies and policies by analysing the impact of internal and external influencing factors and seeking consultation from relevant stakeholders",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Develop resource allocation plans and implement strategies and policies",
+          "uniqueSkillDescription": "Develop organisational strategies and policies by analysing internal and external factors, consulting relevant stakeholders, and implementing plans to achieve departmental and organisational goals while providing strategic direction",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Security Assessment and Testing",
+          "uniqueSkill": "Security Assessment and Testing",
+          "code": "ICT-DIT-3012-1.1",
+          "type": "tsc",
+          "category": "Development and Implementation",
+          "description": "Conduct threat modelling, vulnerability assessment and penetration testing to reveal vulnerabilities or lapses in the existing systems or security mechanisms and evaluate the extent to which systems are able to protect the organisation's data and maintain functionality as intended",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Conduct authorised penetration testing of systems and to expose threats, vulnerabilities and potential attack vectors in systems",
+          "uniqueSkillDescription": "Conduct threat modelling, vulnerability assessment and penetration testing to reveal vulnerabilities or lapses in the existing systems or security mechanisms and evaluate the extent to which systems are able to protect the organisation's data and maintain functionality as intended",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Security Programme Management",
+          "uniqueSkill": "Security Programme Management",
+          "code": "ICT-DIT-3013-1.1",
+          "type": "tsc",
+          "category": "Development and Implementation",
+          "description": "Develop and manage security solutions, products and services through technology innovation, experimentation and collaboration. This includes security programme planning, developing and testing new security capabilities and implementing security technologies and programmes",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Detail the security requirements for system architecture components and implement security programmes",
+          "uniqueSkillDescription": "Develop and manage security solutions, products and services through technology innovation, experimentation and collaboration. This includes security programme planning, developing and testing new security capabilities and implementing security technologies and programmes",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Audit and Compliance",
+          "uniqueSkill": "Audit and Compliance",
+          "code": "ICT-SNA-3001-1.1",
+          "type": "tsc",
+          "category": "Governance and Compliance",
+          "description": "Develop compliance processes and audit strategy for the organisation to review adherence to statutory regulatory and standards. Assessment and enhancement of the thoroughness of compliance and/or governance processes and organisation's internal controls to align with changing compliance standards. This also includes the actual conduct and/or performance of audit activities",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Conduct audits, analyse results and implement changes to address identified gaps",
+          "uniqueSkillDescription": "Develop compliance processes and audit strategy for the organisation to review adherence to statutory regulatory and standards. Assessment and enhancement of the thoroughness of compliance and/or governance processes and organisation's internal controls to align with changing compliance standards. This also includes the actual conduct and/or performance of audit activities",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Cyber Risk Management",
+          "uniqueSkill": "Cyber Risk Management",
+          "code": "ICT-SNA-4007-1.1",
+          "type": "tsc",
+          "category": "Governance and Compliance",
+          "description": "Develop cyber risk assessment and treatment techniques that can effectively pre-empt and identify significant security loopholes and weaknesses, demonstration of the business risks associated with these loopholes and provision of risk treatment and prioritisation strategies to effectively address the cyber-related risks, threats and vulnerabilities identified to ensure appropriate levels of protection, confidentiality, integrity and privacy in alignment with the security framework",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Develop cyber risk assessment techniques and roll-out endorsed measures to address identified cyber security risks, threats and vulnerabilities",
+          "uniqueSkillDescription": "Develop cyber risk assessment and treatment techniques that can effectively pre-empt and identify significant security loopholes and weaknesses, demonstration of the business risks associated with these loopholes and provision of risk treatment and prioritisation strategies to effectively address the cyber-related risks, threats and vulnerabilities identified to ensure appropriate levels of protection, confidentiality, integrity and privacy in alignment with the security framework",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "IT Governance",
+          "uniqueSkill": "IT Governance",
+          "code": "ICT-SNA-4014-1.1",
+          "type": "tsc",
+          "category": "Governance and Compliance",
+          "description": "Set and monitor IT infrastructure, information, digital services and associated technology. This involves developing policies and practices to govern the organisation's approach toward handling and using IT products and services in order to ensure conformance with regulations and accountability in decision making in alignment with the business strategic plans and service standards",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Develop and implement standard operating procedures based on IT policies and practices, ensuring compliance with standards and regulations",
+          "uniqueSkillDescription": "Set and monitor IT infrastructure, information, digital services and associated technology. This involves developing policies and practices to govern the organisation's approach toward handling and using IT products and services in order to ensure conformance with regulations and accountability in decision making in alignment with the business strategic plans and service standards",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Security Governance",
+          "uniqueSkill": "Security Governance",
+          "code": "ICT-SNA-4020-1.1",
+          "type": "tsc",
+          "category": "Governance and Compliance",
+          "description": "Develop and disseminate corporate security policies, frameworks and guidelines to ensure that day-to-day business operations guard or are well protected against risks, threats and vulnerabilities",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Proactively identify security risks in business operations and implement security guidelines and protocols, in line with corporate security policies",
+          "uniqueSkillDescription": "Develop and disseminate corporate security policies, frameworks and guidelines to ensure that day-to-day business operations guard or are well protected against risks, threats and vulnerabilities",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Cyber Forensics",
+          "uniqueSkill": "Cyber Forensics",
+          "code": "ICT-OUS-3002-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Develop and manage digital forensic investigation and reporting plan which specifies the tools, methods, procedures and practices to be used. This includes the collection, analysis and preservation of digital evidence in line with standard procedures and reporting of findings for legal proceedings",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Coordinate the collection and preservation of evidence and analyse forensic evidence to draw inferences",
+          "uniqueSkillDescription": "Develop and manage digital forensic investigation and reporting plan which specifies the tools, methods, procedures and practices to be used. This includes the collection, analysis and preservation of digital evidence in line with standard procedures and reporting of findings for legal proceedings",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Cyber and Data Breach Incident Management",
+          "uniqueSkill": "Cyber and Data Breach Incident Management",
+          "code": "ICT-OUS-3003-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Detect and report cyber and data-related incidents, identify affected systems and user groups, trigger alerts and announcements to relevant stakeholders and efficient resolution of the situation.",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Troubleshoot incidents, escalate alerts to relevant stakeholder, and analyse root causes and implications of incidents",
+          "uniqueSkillDescription": "Detect and report incidents, identify affected systems and user groups, trigger alerts and announcements to relevant stakeholders, and ensure efficient situation resolution",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Infrastructure Support",
+          "uniqueSkill": "Infrastructure Support",
+          "code": "ICT-OUS-3007-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Provide services to end users by systematically identifying, classifying and troubleshooting technical issues and incidents that disrupt and impact their day-to-day business activities, within a specified timeframe. This also includes implementing an end-to-end problem management process to analyse underlying problems, advising on infrastructure related upgrades and improvements and developing user guides and training materials",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Diagnose, troubleshoot and provide end-to-end management of infrastructure disruptions or technical issues encountered by users, and plan infrastructure upgrade activities",
+          "uniqueSkillDescription": "Provide services to end users by systematically identifying, classifying and troubleshooting technical issues and incidents that disrupt and impact their day-to-day business activities, within a specified timeframe. Implement an end-to-end problem management process to analyse underlying problems, advising on infrastructure related upgrades and improvements and developing user guides and training materials",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Network Administration and Maintenance",
+          "uniqueSkill": "Network Administration and Maintenance",
+          "code": "ICT-OUS-1009-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Monitor network in order to provide for optimum levels of network performance and minimisation of downtime. This includes detection, isolation, recovery and limitation of the impact of failures on the network as well as provision of support to system users through ongoing maintenance information sharing and training",
+          "proficiencyLevels": [
+            1,
+            2
+          ],
+          "proficiencyDescription": "Document network performance levels, and identify and isolate network faults",
+          "uniqueSkillDescription": "Monitor network in order to provide for optimum levels of network performance and minimisation of downtime. This includes detection, isolation, recovery and limitation of the impact of failures on the network as well as provision of support to system users through ongoing maintenance information sharing and training",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Problem Management",
+          "uniqueSkill": "Problem Management",
+          "code": "ICT-OUS-3011-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Manage the lifecycle of problems to prevent problems and incidents from occurring, eliminate recurring incidents and minimise impact of unavoidable incidents",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Handle specific problems from diagnosis and prioritisation to the identification and implementation of solutions",
+          "uniqueSkillDescription": "Manage the lifecycle of problems to prevent problems and incidents from occurring, eliminate recurring incidents and minimise impact of unavoidable incidents",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Security Administration",
+          "uniqueSkill": "Security Administration",
+          "code": "ICT-OUS-2012-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Administer, configure and update of security programmes and mechanisms, including the application of system patches to ensure that enterprise assets are adequately protected against threats. This also includes the authorisation, management and monitoring of access control permissions and/or rights to various IT facilities",
+          "proficiencyLevels": [
+            2,
+            3
+          ],
+          "proficiencyDescription": "Run system diagnostic tools, and install and update simple, basic security programmes, virus protection and system patches",
+          "uniqueSkillDescription": "Administer, configure and update of security programmes and mechanisms, including the application of system patches to ensure that enterprise assets are adequately protected against threats. This also includes the authorisation, management and monitoring of access control permissions and/or rights to various IT facilities",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Security Education and Awareness",
+          "uniqueSkill": "Security Education and Awareness",
+          "code": "ICT-OUS-3013-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Drive security education and awareness in an organisation by providing advice and guidance on potential risks, mitigation strategies and best practices. This includes development of communication strategies and training materials to ensure employee adoption and adherence to security policies and standards",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Develop security education materials and manage delivery of security activities and programmes according to plan",
+          "uniqueSkillDescription": "Drive security education and awareness in an organisation by providing advice and guidance on potential risks, mitigation strategies and best practices. This includes development of communication strategies and training materials to ensure employee adoption and adherence to security policies and standards",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Threat Analysis and Defence",
+          "uniqueSkill": "Threat Analysis and Defence",
+          "code": "ICT-OUS-3014-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Enable and conduct analysis of malicious threats, to examine their characteristics, behaviours, capabilities, intent and interactions with the environment as well as the development of defence and mitigation strategies and techniques to effectively combat such threats",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Perform static, dynamic or behavioural analysis on malicious codes and threats, debug malware and thwart malicious attacks",
+          "uniqueSkillDescription": "Enable and conduct analysis of malicious threats, to examine their characteristics, behaviours, capabilities, intent and interactions with the environment as well as the development of defence and mitigation strategies and techniques to effectively combat such threats",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Threat Intelligence and Detection",
+          "uniqueSkill": "Threat Intelligence and Detection",
+          "code": "ICT-OUS-3015-1.1",
+          "type": "tsc",
+          "category": "Operations and User Support",
+          "description": "Monitor intelligence-gathering and anticipate potential threats to an ICT system proactively. This involves the pre-emptive analysis of potential perpetrators, anomalous activities and evidence-based knowledge and inferences on perpetrators' motivations and tactics",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Implement intrusion detection technology and analyse multi-source information to identify vulnerabilities, potential exploits, methods, motives, and capabilities",
+          "uniqueSkillDescription": "Monitor intelligence-gathering and anticipate potential threats to an ICT system proactively. This involves the pre-emptive analysis of potential perpetrators, anomalous activities and evidence-based knowledge and inferences on perpetrators' motivations and tactics",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Infocomm Technology",
+          "latestUpdateDate": "2024-12-16"
+        }
+      ],
+      "officialRoles": [
+        {
+          "sector": "Infocomm Technology",
+          "track": "Cyber Security",
+          "jobRole": "Associate Security Analyst",
+          "description": "The Associate Security Analyst supports security systems, operations administration, monitoring and maintenance of cyber security systems and applications. He/She monitors security alerts and events. He collects and documents information based on established practices and supports the preparation and publishing of security advisories. He assists with the ana"
+        },
+        {
+          "sector": "Infocomm Technology",
+          "track": "Cyber Security",
+          "jobRole": "Cyber Risk Analyst",
+          "description": "The Cyber Risk Analyst conducts cyber risk assessment in support of technology initiatives to help identify IT related risk and determines appropriate controls to mitigate risks. He/She monitors, tracks and manages risk mitigations and exceptions to ensure cyber security standards and policies are established. He applies a defined set of analytical or scient"
+        },
+        {
+          "sector": "Infocomm Technology",
+          "track": "Cyber Security",
+          "jobRole": "Incident Investigator",
+          "description": "The Incident Investigator conducts complex analysis to investigate causes of intrusion, attack, loss or breach occurring in an organisation. He/She identifies and defines cyber threats and root causes. He develops reports that detail incident timeline, evidence, findings, conclusions and recommendations. He is responsible for managing cyber incidents and res"
+        }
+      ],
+      "alignedAppSkills": [
+        {
+          "appSkill": "Security Fundamentals",
+          "officialSkill": "Security Assessment and Testing",
+          "officialCode": "ICT-DIT-3012-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Network Basics",
+          "officialSkill": "Network Administration and Maintenance",
+          "officialCode": "ICT-OUS-1009-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Incident Documentation",
+          "officialSkill": "Cyber and Data Breach Incident Management",
+          "officialCode": "ICT-OUS-3003-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Log Analysis",
+          "officialSkill": "Cyber Forensics",
+          "officialCode": "ICT-OUS-3002-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Cloud Security Basics",
+          "officialSkill": "Security Assessment and Testing",
+          "officialCode": "ICT-DIT-3012-1.1",
+          "matchScore": 0.33
+        }
+      ],
+      "sourceFiles": [
+        "jobsandskills-skillsfuture-unique-skills-list.xlsx",
+        "jobsandskills-skillsfuture-skills-framework-dataset.xlsx",
+        "jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
+      ]
+    },
+    "healthcare-operations-analyst": {
+      "framework": "Skills Framework for Healthcare operations roles",
+      "sector": "Healthcare",
+      "confidence": "high",
+      "skills": [
+        "Process Mapping",
+        "Data Analysis",
+        "Stakeholder Communication",
+        "Dashboard Reporting",
+        "Quality Improvement"
+      ],
+      "officialSkills": [
+        {
+          "title": "Billing Procedure",
+          "uniqueSkill": "Billing Procedure",
+          "code": "HCE-DMH-5001-1.1",
+          "type": "tsc",
+          "category": "Department Management",
+          "description": "Perform and manage billing procedures and finance-related activities",
+          "proficiencyLevels": [
+            5,
+            2
+          ],
+          "proficiencyDescription": "Manage escalated exceptions and downgrading processes",
+          "uniqueSkillDescription": "Perform and manage billing procedures and finance-related activities",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Frontline Services Management",
+          "uniqueSkill": "Frontline Services Management",
+          "code": "HCE-DMH-4002-1.1",
+          "type": "tsc",
+          "category": "Department Management",
+          "description": "Manage patient reception for medical appointment scheduling, registration, and/or patients' admission and discharge procedures",
+          "proficiencyLevels": [
+            4,
+            1,
+            3
+          ],
+          "proficiencyDescription": "Review the organisational frontline services workflow",
+          "uniqueSkillDescription": "Manage patient reception for medical appointment scheduling, registration, and/or patients' admission and discharge procedures",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Programme Delivery",
+          "uniqueSkill": "Programme Delivery",
+          "code": "HCE-PDV-5039-1.1",
+          "type": "tsc",
+          "category": "Education for Healthcare Professions",
+          "description": "Deliver learning experiences according to the profile and learning needs of the students, staff or professionals, including the provision of mentorship or coaching.",
+          "proficiencyLevels": [
+            5,
+            2,
+            4
+          ],
+          "proficiencyDescription": "Drive the development of healthcare professionals in the organisation and cluster through delivery of specialised training programmes. Guide delivery of programmes by direct reports and develop guidelines to improve delivery of training programmes and presentations",
+          "uniqueSkillDescription": "Deliver learning experiences according to the profile and learning needs of the students, staff or professionals, including the provision of mentorship or coaching",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Staff Training Facilitation",
+          "uniqueSkill": "Staff Training Facilitation",
+          "code": "HCE-PDV-5013-1.1",
+          "type": "tsc",
+          "category": "Education for Healthcare Professions",
+          "description": "Identify training needs and coordinate staff training according to customised training roadmaps to improve employees' skills and capabilities",
+          "proficiencyLevels": [
+            5,
+            4
+          ],
+          "proficiencyDescription": "Identify training needs for the organisation, develop training roadmaps to enhance employees' skills and capabilities and take lead to improve training and assessment programmes for continuous improvements",
+          "uniqueSkillDescription": "Identify training needs and coordinate staff training according to customized training roadmaps to improve and evaluate employees' skills and capabilities",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Continuity Planning",
+          "uniqueSkill": "Business Continuity Management",
+          "code": "HCE-RIM-3001-1.1",
+          "type": "tsc",
+          "category": "Enterprise Risk Management",
+          "description": "Develop and implement business continuity plans for organisational preparedness of disruptive events",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Facilitate the development of business continuity strategies and plans",
+          "uniqueSkillDescription": "Develop and manage business continuity strategies and plans by executing business impact and risk analyses, implementing recovery solutions, and providing guidance on crisis responses to ensure organisational preparedness and minimise disruptions to critical functions, aligning policies with strategic objectives and establishing return-to-normal procedures for full functionality",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Emergency Response and Crisis Management",
+          "uniqueSkill": "Emergency Response and Crisis Management",
+          "code": "HCE-ICM-3023-1.1",
+          "type": "tsc",
+          "category": "Enterprise Risk Management",
+          "description": "Support, implement and develop emergency response and crisis management plans and policies",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Implement emergency response and/or crisis management plans and suggest improvements to these plans",
+          "uniqueSkillDescription": "Develop and implement emergency response and crisis management plans and policies, providing guidance on their development and execution",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Professional, Legal and Ethical Healthcare Practice",
+          "uniqueSkill": "Professional, Legal and Ethical Healthcare Practice",
+          "code": "HCE-PVE-2008-1.1",
+          "type": "tsc",
+          "category": "Ethics and Professionalism",
+          "description": "Apply legal and ethical principles and professional code of conduct to uphold the integrity and reputation of the organisation and the profession",
+          "proficiencyLevels": [
+            2
+          ],
+          "proficiencyDescription": "Apply organisational code of conduct in the delivery of services to clients and patients",
+          "uniqueSkillDescription": "Apply legal and ethical principles and professional code of conduct to uphold the integrity and reputation of the organisation and the profession",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data and Statistical Analytics",
+          "uniqueSkill": "Data and Statistical Analysis",
+          "code": "HCE-DAT-3007-1.1",
+          "type": "tsc",
+          "category": "Evidence Based Practice",
+          "description": "Interpret and analyse data using statistical techniques to uncover trends and patterns to locate and define new process improvement opportunities",
+          "proficiencyLevels": [
+            3,
+            1,
+            2
+          ],
+          "proficiencyDescription": "Analyse data using statistical techniques to identify trends and patterns",
+          "uniqueSkillDescription": "Interpret and analyse large complex data sets using statistical techniques to uncover trends and patterns, locating and defining new process and business improvement opportunities by identifying relevant statistical tools",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Change Management",
+          "uniqueSkill": "Change Management",
+          "code": "HCE-BIN-3063-1.1",
+          "type": "tsc",
+          "category": "General Management",
+          "description": "Initiate and facilitate organisational changes and business transformation initiatives",
+          "proficiencyLevels": [
+            3,
+            1,
+            2
+          ],
+          "proficiencyDescription": "Apply change control procedures to prepare stakeholders for change",
+          "uniqueSkillDescription": "Drive and facilitate organisational change management by planning and executing seamless transitions, preparing and equipping teams for adoption, managing reactions, and aligning resources and processes to achieve sustainable success and business transformation",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Clinical Support for Patient Service Associates",
+          "uniqueSkill": "Clinical Support for Patient Service Associates",
+          "code": "HCE-PTC-2009-1.1",
+          "type": "tsc",
+          "category": "Patient Care",
+          "description": "Assist with clinical duties or perform simple clinical procedures during consultation as instructed by registered practitioners and according to organisational guidelines and procedures",
+          "proficiencyLevels": [
+            2
+          ],
+          "proficiencyDescription": "Prepare work environment, equipment, personal protective equipment and resources for patient care procedures",
+          "uniqueSkillDescription": "Assist with clinical duties or perform simple clinical procedures during consultation as instructed by registered practitioners and according to organisational guidelines and procedures",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Patient Education and Engagement",
+          "uniqueSkill": "Patient Education and Engagement",
+          "code": "HCE-PEH-2006-1.1",
+          "type": "tsc",
+          "category": "Patient and/or Client Education and Health Promotion",
+          "description": "Provide patients with the necessary information pre- and post-consultations with doctors and promote awareness on health and wellness",
+          "proficiencyLevels": [
+            2
+          ],
+          "proficiencyDescription": "Provide patients with the necessary information pre- and post-consultations or procedures",
+          "uniqueSkillDescription": "Provide patients with the necessary information pre- and post-consultations with doctors and promote awareness on health and wellness",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "People Management",
+          "uniqueSkill": "People Management",
+          "code": "HCE-PDV-4045-1.1",
+          "type": "tsc",
+          "category": "People Development",
+          "description": "Manage the recruitment, performance and development of staff",
+          "proficiencyLevels": [
+            4,
+            5,
+            3
+          ],
+          "proficiencyDescription": "Manage performance, development and engagement of team",
+          "uniqueSkillDescription": "Manage recruitment, performance, and development of staff, ensuring effective staffing and development practices",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Audit Management",
+          "uniqueSkill": "Audit Management",
+          "code": "HCE-AUD-3011-1.1",
+          "type": "tsc",
+          "category": "Quality and Patient Safety",
+          "description": "Ensure the quality of services adheres to standards and develop initiatives to enhance quality",
+          "proficiencyLevels": [
+            3,
+            2
+          ],
+          "proficiencyDescription": "Carry out audits to ensure quality of services delivered adheres to organisational and/or professional practices and standards",
+          "uniqueSkillDescription": "Review and assess organisational objectives, policies, procedures, structure, controls, and systems to verify efficient management of activities and ensure service quality adheres to standards while developing initiatives to enhance quality",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Continuous Improvement Management",
+          "uniqueSkill": "Continuous Improvement Management",
+          "code": "HCE-BIN-4034-1.1-1",
+          "type": "tsc",
+          "category": "Quality and Patient Safety",
+          "description": "Apply continuous improvement processes to optimise operating cost, task efficiency and effectiveness in production, services and processes",
+          "proficiencyLevels": [
+            4,
+            2,
+            3
+          ],
+          "proficiencyDescription": "Facilitate the organisation's systems and processes related to continuous improvement",
+          "uniqueSkillDescription": "Apply continuous improvement strategies to optimise cost, task efficiency, and effectiveness of processes, procedures and services across the organisation",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Excellence in Service",
+          "uniqueSkill": "Excellence in Service",
+          "code": "HCE-CEX-5031-1.1",
+          "type": "tsc",
+          "category": "Quality and Patient Safety",
+          "description": "Create strategies to foster positive customer and/or patient experiences and deliver service excellence throughout the engagement lifecycle",
+          "proficiencyLevels": [
+            5,
+            1,
+            4
+          ],
+          "proficiencyDescription": "Drive service excellence at an organisational level",
+          "uniqueSkillDescription": "Develop a service framework to manage challenges and collaborate with partners for service excellence, create strategies to foster positive customer and patient experiences throughout the engagement lifecycle, and enhance the organisation's overall customer experience",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Infection Control",
+          "uniqueSkill": "Infection Control",
+          "code": "HCE-QPH-2005-1.1",
+          "type": "tsc",
+          "category": "Quality and Patient Safety",
+          "description": "Prevent the spread of infectious agents through compliance to good infection control practices and regular audits",
+          "proficiencyLevels": [
+            2
+          ],
+          "proficiencyDescription": "Support in the maintenance of the organisation's infection prevention and control processes",
+          "uniqueSkillDescription": "Prevent the spread of infectious agents through compliance to good infection control practices and regular audits",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Healthcare",
+          "latestUpdateDate": "2024-12-16"
+        }
+      ],
+      "officialRoles": [
+        {
+          "sector": "Healthcare",
+          "track": "Operations",
+          "jobRole": "Patient Service Executive",
+          "description": "A Patient Service Executive is responsible for overseeing frontline services and department operations. S/He leads the risk and quality management of the department within her/his scope of work and leads the management of the team. S/He may work in various locations such as private and public hospitals, community and primary care settings. S/He may supervise"
+        },
+        {
+          "sector": "Healthcare",
+          "track": "Operations",
+          "jobRole": "Patient Service Associate",
+          "description": "A Patient Service Associate is responsible for providing frontline services in areas such as scheduling of appointments, payment collection, liaising with patients and caregivers, and providing financial counselling. S/He may provide support to clinicians by preparing patients and consultation rooms. S/He is required to perform department operations such as "
+        },
+        {
+          "sector": "Healthcare",
+          "track": "Operations",
+          "jobRole": "Patient Service Supervisor",
+          "description": "A Patient Service Supervisor is responsible for managing frontline services provided by the staff. S/He is responsible for assisting managers to oversee department operations and the team. S/He assists managers to oversee the risk and quality management of the department and management of the team. S/He may work in various locations such as private and publi"
+        }
+      ],
+      "alignedAppSkills": [
+        {
+          "appSkill": "Process Mapping",
+          "officialSkill": "Data and Statistical Analysis",
+          "officialCode": "HCE-DAT-3007-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Data Analysis",
+          "officialSkill": "Data and Statistical Analysis",
+          "officialCode": "HCE-DAT-3007-1.1",
+          "matchScore": 1.0
+        },
+        {
+          "appSkill": "Stakeholder Communication",
+          "officialSkill": "Stakeholder Management",
+          "officialCode": "HCE-CFC-2035-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Dashboard Reporting",
+          "officialSkill": null,
+          "officialCode": null,
+          "matchScore": 0
+        },
+        {
+          "appSkill": "Quality Improvement",
+          "officialSkill": "Data and Statistical Analysis",
+          "officialCode": "HCE-DAT-3007-1.1",
+          "matchScore": 0.5
+        }
+      ],
+      "sourceFiles": [
+        "jobsandskills-skillsfuture-unique-skills-list.xlsx",
+        "jobsandskills-skillsfuture-skills-framework-dataset.xlsx",
+        "jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
+      ]
+    },
+    "sustainability-analyst": {
+      "framework": "Skills Framework references for sustainability reporting and assurance roles",
+      "sector": "Accountancy",
+      "confidence": "high",
+      "skills": [
+        "Sustainability Reporting",
+        "Data Analysis",
+        "Carbon Accounting Basics",
+        "Stakeholder Communication",
+        "Spreadsheet Modelling"
+      ],
+      "officialSkills": [
+        {
+          "title": "Auditing and Assurance Standards",
+          "uniqueSkill": "Auditing and Assurance Standards",
+          "code": "ACC-AUD-4001-1.1",
+          "type": "tsc",
+          "category": "Assurance",
+          "description": "Use applicable auditing and assurance standards to carry out auditing and assurance activities",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Perform engagement procedures in accordance with applicable auditing and assurance standards",
+          "uniqueSkillDescription": "Use applicable auditing and assurance standards to carry out auditing and assurance activities",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Benchmarking",
+          "uniqueSkill": "Benchmarking",
+          "code": "ACC-MAC-3001-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Compare organisational performance to other organisations and industries",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Identify internal and external factors that affect business performance",
+          "uniqueSkillDescription": "Compare organisational performance to other organisations and industries",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Acumen",
+          "uniqueSkill": "Business Acumen",
+          "code": "ACC-IAD-4001-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Assess the impact of changes in the business organisation, environment, and industry",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Analyse implications of significant changes to the organisation, business units and key processes",
+          "uniqueSkillDescription": "Assess the impact of changes in the business organisation, environment, and industry",
+          "emerging": false,
+          "casl": true,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Continuity Management",
+          "uniqueSkill": "Business Continuity Management",
+          "code": "ACC-RIM-4007-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Develop business continuity strategies to manage risks in response to disruptive events",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Manage and evaluate the development of specific risk mitigation strategies for business-critical functions in response to crisis situations",
+          "uniqueSkillDescription": "Develop and manage business continuity strategies and plans by executing business impact and risk analyses, implementing recovery solutions, and providing guidance on crisis responses to ensure organisational preparedness and minimise disruptions to critical functions, aligning policies with strategic objectives and establishing return-to-normal procedures for full functionality",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Process Analysis",
+          "uniqueSkill": "Business Process Analysis",
+          "code": "ACC-IAD-4002-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Analyse business processes for improvement, optimisation and efficiency",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Analyse the design of business processes and make recommendations to improve business processes",
+          "uniqueSkillDescription": "Analyse business processes for improvement, optimisation and efficiency",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Change Management",
+          "uniqueSkill": "Change Management",
+          "code": "ACC-BTF-4002-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Manage changes and developments within teams and organisation",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Collaborate with management on possible opportunities for change",
+          "uniqueSkillDescription": "Drive and facilitate organisational change management by planning and executing seamless transitions, preparing and equipping teams for adoption, managing reactions, and aligning resources and processes to achieve sustainable success and business transformation",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Macroeconomic Analysis",
+          "uniqueSkill": "Macroeconomic Analysis",
+          "code": "ACC-SBM-5004-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Evaluate impact of external factors on the organisation",
+          "proficiencyLevels": [
+            5
+          ],
+          "proficiencyDescription": "Evaluate the influences and impact of the rapidly changing business environment on organisation's performance",
+          "uniqueSkillDescription": "Evaluate impact of external factors on the organisation",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Project Management",
+          "uniqueSkill": "Project Management",
+          "code": "ACC-BIN-4021-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Execute projects by managing stakeholder engagement, resources, budgets and resolving problems",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Manage medium scale projects by implementing appropriate methodologies and tools",
+          "uniqueSkillDescription": "Perform planning, organization, monitoring, and control of all project aspects, ensuring strategic resource utilization to meet objectives within agreed timelines, costs, and performance expectations",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Stakeholder Management",
+          "uniqueSkill": "Stakeholder Management",
+          "code": "ACC-BRL-3002-1.1",
+          "type": "tsc",
+          "category": "Business Management",
+          "description": "Manage stakeholder expectations to ensure continuous levels of engagement by identifying and addressing needs, setting service standards and resolving issues in accordance with organisational procedures",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Maintain working level relationships to support project implementation activities and create partnerships",
+          "uniqueSkillDescription": "Manage stakeholder expectations and relationships by identifying needs, setting service standards, resolving issues, and planning strategies to align with organizational goals, effectively communicate, negotiate, and influence stakeholders, ensuring continuous engagement and support for business objectives",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Data Analytics",
+          "uniqueSkill": "Data Analytics",
+          "code": "ACC-ICT-3003-1.1",
+          "type": "tsc",
+          "category": "Digital and Data Management",
+          "description": "Apply data extraction and analytic methods to analyse and evaluate financial and non-financial information and provide business intelligence",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Apply data extraction and analysis using software and business intelligence tools to extract financial and non-financial information and generate reports",
+          "uniqueSkillDescription": "Apply data extraction and analytic methods to evaluate financial and non-financial information, organise and systematically analyse structured or unstructured data, implement data analytics using statistical and computational techniques, and perform segmentation and integration of quantitative and qualitative data to generate business insights, improve user experience, and optimise operations",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Financial Analysis",
+          "uniqueSkill": "Financial Analysis",
+          "code": "ACC-MAC-3004-1.1",
+          "type": "tsc",
+          "category": "Financial and Transaction Management",
+          "description": "Analyse the financial statements and data to provide insights about the financial performance and position of the organisation over time",
+          "proficiencyLevels": [
+            3,
+            4
+          ],
+          "proficiencyDescription": "Perform basic financial ratio analyses to evaluate organisational performance",
+          "uniqueSkillDescription": "Analyse the financial statements and data to provide insights about the financial performance and position of the organisation over time",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Accountancy",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Collaboration",
+          "uniqueSkill": "Collaboration",
+          "code": "CCS-CLB-B001-1",
+          "type": "ccs",
+          "category": "Interacting with Others",
+          "description": "Manage relationships and work collaboratively and effectively with others to achieve goals",
+          "proficiencyLevels": [],
+          "proficiencyDescription": "Contribute to a positive and cooperative working environment by fulfilling own responsibilities, managing interpersonal relationships and providing support to others to achieve goals",
+          "uniqueSkillDescription": "Manage relationships and work collaboratively and effectively with others to achieve goals",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Critical Core Skills",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Communication",
+          "uniqueSkill": "Communication",
+          "code": "CCS-CMC-B002-1",
+          "type": "ccs",
+          "category": "Interacting with Others",
+          "description": "Convey and exchange thoughts, ideas and information effectively through various mediums and approaches",
+          "proficiencyLevels": [],
+          "proficiencyDescription": "Communicate with others to share information, respond to general inquiries and obtain specific information",
+          "uniqueSkillDescription": "Convey and exchange thoughts, ideas and information effectively through various mediums and approaches",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Critical Core Skills",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Business Environment Analysis",
+          "uniqueSkill": "Business Environment Analysis",
+          "code": "FSE-ACE-4001-1.1-1",
+          "type": "tsc",
+          "category": "Investment and Financial Management",
+          "description": "Analyse data pertaining to the business landscape and environment, including competitor-analysis, trends and developments in laws and regulations and the impact on the business",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Monitor the influence of external and internal factors on the critical business functions, report findings and recommend responses to management",
+          "uniqueSkillDescription": "Analyse data on the business landscape and environment, including competitor analysis, trends, and legal and regulatory developments, assessing their impact on the business",
+          "emerging": true,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Market Research and Analysis",
+          "uniqueSkill": "Market Research and Analysis",
+          "code": "FSE-SNM-3036-1.1-1",
+          "type": "tsc",
+          "category": "Investment and Financial Management",
+          "description": "Develop market analysis frameworks and objectives to guide and conduct analyses of market trends, developments, competitive factors and economic changes to identify useful business insights, drive economic decisions and forecast market needs",
+          "proficiencyLevels": [
+            3
+          ],
+          "proficiencyDescription": "Analyse market trends and developments to forecast emerging market needs. Interpret and aggregate data and information to provide observations relevant to research objectives",
+          "uniqueSkillDescription": "Develop market analysis frameworks and objectives to guide and conduct analyses of market trends, developments, competitive factors and economic changes to identify useful business insights, drive economic decisions and forecast market needs",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Financial Services",
+          "latestUpdateDate": "2024-12-16"
+        },
+        {
+          "title": "Audit and Review Management",
+          "uniqueSkill": "Audit and Review Management",
+          "code": "ECM-QAM-4002-1.1",
+          "type": "tsc",
+          "category": "Quality Assurance and Quality Control Management",
+          "description": "Manage audit and review processes and procedures including planning, execution and reporting, to ensure compliance with legal and Quality Management System (QMS) requirements",
+          "proficiencyLevels": [
+            4
+          ],
+          "proficiencyDescription": "Establish audit process and procedures so as to conduct routine audit and compliance reviews",
+          "uniqueSkillDescription": "Manage audit and review processes and procedures, including planning, execution, and reporting, to ensure compliance with legal and quality management system requirements",
+          "emerging": false,
+          "casl": false,
+          "sectorTagging": "Energy and Chemicals",
+          "latestUpdateDate": "2024-12-16"
+        }
+      ],
+      "officialRoles": [
+        {
+          "sector": "Accountancy",
+          "track": "Sustainability Reporting and Assurance",
+          "jobRole": "Sustainability / Environment, Social and Governance Analyst",
+          "description": "The Sustainability / Environment, Social and Governance Analyst supports the assessment and evaluation of the organisation’s environmental, social and governance (ESG) performance and practices against established goals and targets. He/She will utilise their analytical skills to collect and analyse data related to the organisation’s ESG performance. He will "
+        },
+        {
+          "sector": "Accountancy",
+          "track": "Sustainability Reporting and Assurance",
+          "jobRole": "Sustainability / Environment, Social and Governance Specialist",
+          "description": "The Sustainability / Environment, Social and Governance (ESG) Specialist focuses on the development and implementation of sustainability strategies and initiatives, aligned to the organisation’s goals and industry best practices. He/She oversees ESG reporting and disclosure efforts and conducts ESG risk assessments and impact evaluations across operations, s"
+        }
+      ],
+      "alignedAppSkills": [
+        {
+          "appSkill": "Sustainability Reporting",
+          "officialSkill": "Sustainability Assurance",
+          "officialCode": "ACC-BAS-0001-1.1",
+          "matchScore": 1.0
+        },
+        {
+          "appSkill": "Data Analysis",
+          "officialSkill": "Business Environment Analysis",
+          "officialCode": "FSE-ACE-4001-1.1-1",
+          "matchScore": 1.0
+        },
+        {
+          "appSkill": "Carbon Accounting Basics",
+          "officialSkill": "Greenhouse Gas Accounting",
+          "officialCode": "ACC-BAS-0002-1.1",
+          "matchScore": 0.33
+        },
+        {
+          "appSkill": "Stakeholder Communication",
+          "officialSkill": "Project Management",
+          "officialCode": "ACC-BIN-4021-1.1",
+          "matchScore": 0.5
+        },
+        {
+          "appSkill": "Spreadsheet Modelling",
+          "officialSkill": "Risk Analytics",
+          "officialCode": "FSE-ACE-3024-1.1",
+          "matchScore": 0.5
+        }
+      ],
+      "sourceFiles": [
+        "jobsandskills-skillsfuture-unique-skills-list.xlsx",
+        "jobsandskills-skillsfuture-skills-framework-dataset.xlsx",
+        "jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
+      ]
+    }
+  }
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "data-analyst",
+    "title": "Data Analyst",
+    "category": "Data",
+    "description": "Turns business questions into data-backed insights, dashboards, and decision support.",
+    "interests": ["Data", "Technology", "Business", "Problem-solving"],
+    "current_role_bridges": ["Admin Executive", "Customer Service", "Finance Assistant", "Operations Executive"],
+    "daily_tasks": ["Clean spreadsheets", "Build dashboards", "Explain patterns", "Prepare reports"],
+    "required_skills": [
+      {"name": "Spreadsheet Modelling", "level": 3, "importance": 5, "category": "Core", "quest": "Clean a messy sales spreadsheet and explain three trends."},
+      {"name": "Data Analysis", "level": 4, "importance": 5, "category": "Core", "quest": "Analyse a small public dataset and write a decision summary."},
+      {"name": "SQL Basics", "level": 3, "importance": 4, "category": "Core", "quest": "Query a customer table and segment active users."},
+      {"name": "Data Visualisation", "level": 3, "importance": 4, "category": "Core", "quest": "Create a dashboard with one clear recommendation."},
+      {"name": "Business Storytelling", "level": 3, "importance": 3, "category": "Transferable", "quest": "Turn a chart into a short stakeholder update."},
+      {"name": "Python Automation", "level": 2, "importance": 2, "category": "Optional", "quest": "Automate a repeated CSV cleanup task."}
+    ]
+  },
+  {
+    "id": "digital-marketing-specialist",
+    "title": "Digital Marketing Specialist",
+    "category": "Business",
+    "description": "Plans and improves online campaigns using audience, content, and performance data.",
+    "interests": ["Business", "Design", "Data", "Communication"],
+    "current_role_bridges": ["Retail Associate", "Customer Service", "Sales Coordinator", "Admin Executive"],
+    "daily_tasks": ["Plan content", "Read campaign metrics", "Run experiments", "Write briefs"],
+    "required_skills": [
+      {"name": "Campaign Analytics", "level": 3, "importance": 5, "category": "Core", "quest": "Read campaign results and identify the best channel."},
+      {"name": "Content Strategy", "level": 3, "importance": 4, "category": "Core", "quest": "Draft a one-week content plan for a product launch."},
+      {"name": "Audience Research", "level": 3, "importance": 4, "category": "Core", "quest": "Create two audience segments from customer notes."},
+      {"name": "Search Marketing", "level": 2, "importance": 3, "category": "Support", "quest": "Choose keywords for a local services campaign."},
+      {"name": "Marketing Automation", "level": 2, "importance": 2, "category": "Optional", "quest": "Map a simple welcome email sequence."}
+    ]
+  },
+  {
+    "id": "ux-designer",
+    "title": "UX Designer",
+    "category": "Design",
+    "description": "Improves digital products by understanding user needs and designing clearer journeys.",
+    "interests": ["Design", "Helping people", "Technology", "Problem-solving"],
+    "current_role_bridges": ["Customer Service", "Teacher", "Operations Executive", "Product Coordinator"],
+    "daily_tasks": ["Interview users", "Map journeys", "Prototype flows", "Test usability"],
+    "required_skills": [
+      {"name": "User Research", "level": 4, "importance": 5, "category": "Core", "quest": "Run a five-question interview and extract user needs."},
+      {"name": "Wireframing", "level": 3, "importance": 4, "category": "Core", "quest": "Sketch a booking flow with fewer steps."},
+      {"name": "Usability Testing", "level": 3, "importance": 4, "category": "Core", "quest": "Test a form and record three usability issues."},
+      {"name": "Information Architecture", "level": 3, "importance": 3, "category": "Support", "quest": "Reorganise a content menu for quicker scanning."},
+      {"name": "Visual Design Basics", "level": 2, "importance": 2, "category": "Optional", "quest": "Improve contrast and spacing on a simple screen."}
+    ]
+  },
+  {
+    "id": "cybersecurity-associate",
+    "title": "Cybersecurity Associate",
+    "category": "Technology",
+    "description": "Helps protect systems by monitoring risks, responding to alerts, and improving security habits.",
+    "interests": ["Technology", "Problem-solving", "Engineering", "Data"],
+    "current_role_bridges": ["IT Support", "Operations Executive", "Admin Executive", "Helpdesk Officer"],
+    "daily_tasks": ["Review alerts", "Document incidents", "Check access controls", "Explain safe practices"],
+    "required_skills": [
+      {"name": "Security Fundamentals", "level": 4, "importance": 5, "category": "Core", "quest": "Classify common phishing and password risks."},
+      {"name": "Network Basics", "level": 3, "importance": 4, "category": "Core", "quest": "Trace how data moves between a browser and a server."},
+      {"name": "Incident Documentation", "level": 3, "importance": 4, "category": "Core", "quest": "Write an incident note from an alert timeline."},
+      {"name": "Log Analysis", "level": 3, "importance": 3, "category": "Support", "quest": "Find suspicious events in a short log sample."},
+      {"name": "Cloud Security Basics", "level": 2, "importance": 2, "category": "Optional", "quest": "Spot risky cloud storage settings."}
+    ]
+  },
+  {
+    "id": "healthcare-operations-analyst",
+    "title": "Healthcare Operations Analyst",
+    "category": "Healthcare",
+    "description": "Uses process and data skills to improve patient flow, resource use, and service quality.",
+    "interests": ["Healthcare", "Data", "Helping people", "Business"],
+    "current_role_bridges": ["Healthcare Assistant", "Clinic Admin", "Operations Executive", "Customer Service"],
+    "daily_tasks": ["Track queues", "Prepare utilisation reports", "Find bottlenecks", "Coordinate improvements"],
+    "required_skills": [
+      {"name": "Process Mapping", "level": 3, "importance": 5, "category": "Core", "quest": "Map a clinic visit and identify wait-time causes."},
+      {"name": "Data Analysis", "level": 3, "importance": 4, "category": "Core", "quest": "Analyse appointment data and propose one improvement."},
+      {"name": "Stakeholder Communication", "level": 3, "importance": 4, "category": "Transferable", "quest": "Write a concise update for nurses and admin staff."},
+      {"name": "Dashboard Reporting", "level": 2, "importance": 3, "category": "Support", "quest": "Build a simple weekly queue dashboard."},
+      {"name": "Quality Improvement", "level": 2, "importance": 3, "category": "Support", "quest": "Suggest a small service improvement experiment."}
+    ]
+  },
+  {
+    "id": "sustainability-analyst",
+    "title": "Sustainability Analyst",
+    "category": "Sustainability",
+    "description": "Collects sustainability data, prepares reports, and helps organisations improve environmental performance.",
+    "interests": ["Sustainability", "Data", "Business", "Engineering"],
+    "current_role_bridges": ["Operations Executive", "Facilities Coordinator", "Admin Executive", "Finance Assistant"],
+    "daily_tasks": ["Collect emissions data", "Prepare compliance reports", "Compare initiatives", "Coordinate evidence"],
+    "required_skills": [
+      {"name": "Sustainability Reporting", "level": 4, "importance": 5, "category": "Core", "quest": "Summarise a company's emissions categories."},
+      {"name": "Data Analysis", "level": 3, "importance": 4, "category": "Core", "quest": "Analyse monthly energy use and identify anomalies."},
+      {"name": "Carbon Accounting Basics", "level": 3, "importance": 4, "category": "Core", "quest": "Classify sample activities into emissions scopes."},
+      {"name": "Stakeholder Communication", "level": 3, "importance": 3, "category": "Transferable", "quest": "Explain a sustainability metric to non-technical staff."},
+      {"name": "Spreadsheet Modelling", "level": 2, "importance": 3, "category": "Support", "quest": "Create a basic emissions tracker."}
+    ]
+  }
+]
+

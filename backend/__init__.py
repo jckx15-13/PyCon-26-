@@ -1,0 +1,2 @@
+"""SkillQuest backend package."""
+

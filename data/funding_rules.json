@@ -1,0 +1,18 @@
+{
+  "currency": "SGD",
+  "credit_assumption": 500,
+  "disclaimer": "Funding estimates are for planning only. Actual SkillsFuture Credit, subsidy eligibility, and provider fees must be verified with official providers before enrolment.",
+  "rules": [
+    {
+      "name": "SkillsFuture Credit estimate",
+      "applies_to": "Singapore citizens and eligible users",
+      "calculation": "Apply course funding_rate first, then apply up to the assumed remaining credit."
+    },
+    {
+      "name": "Budget fit",
+      "applies_to": "All users",
+      "calculation": "Compare estimated out-of-pocket amount with the user's stated budget."
+    }
+  ]
+}
+

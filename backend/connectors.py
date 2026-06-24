@@ -15,6 +15,8 @@ from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
 
+from backend.config import env_flag, env_float, env_int
+
 
 USER_AGENT = "SkillQuestBaseline/0.1 (+local prototype)"
 DATA_GOV_COURSE_DATASET_ID = "d_b5802b76f409764c16dde4bf2feb19cd"
@@ -136,7 +138,7 @@ class MyCareersFutureClient:
         }
         url = f"{self.base_url}?{urllib.parse.urlencode(params)}"
         started = time.time()
-        timeout = float(os.getenv("MCF_TIMEOUT_SECONDS", "12"))
+        timeout = env_float("MCF_TIMEOUT_SECONDS", 12, min_value=0.5, max_value=45)
         payload, error = fetch_json(url, timeout=timeout)
         if error or not payload:
             return {
@@ -292,7 +294,7 @@ class DataGovCourseDirectoryClient:
     """Optional no-key import for the official MySkillsFuture Course Directory dataset."""
 
     def fetch(self) -> dict[str, Any]:
-        if os.getenv("SKILLQUEST_ENABLE_DATA_GOV_COURSES", "").strip().lower() not in {"1", "true", "yes", "on"}:
+        if not env_flag("SKILLQUEST_ENABLE_DATA_GOV_COURSES"):
             return {
                 "status": "skipped",
                 "source": "data.gov.sg MySkillsFuture Course Directory",
@@ -303,7 +305,10 @@ class DataGovCourseDirectoryClient:
             }
 
         started = time.time()
-        metadata, error = fetch_json(DATA_GOV_COURSE_POLL_URL, timeout=float(os.getenv("DATA_GOV_TIMEOUT_SECONDS", "12")))
+        metadata, error = fetch_json(
+            DATA_GOV_COURSE_POLL_URL,
+            timeout=env_float("DATA_GOV_TIMEOUT_SECONDS", 12, min_value=1, max_value=60),
+        )
         if error or not metadata:
             return self._unavailable(error or "Empty data.gov.sg response.", started)
         if metadata.get("code") != 0:
@@ -313,7 +318,10 @@ class DataGovCourseDirectoryClient:
         if not download_url:
             return self._unavailable("data.gov.sg response did not include a download URL.", started)
 
-        blob, error = fetch_bytes(download_url, timeout=float(os.getenv("DATA_GOV_DOWNLOAD_TIMEOUT_SECONDS", "45")))
+        blob, error = fetch_bytes(
+            download_url,
+            timeout=env_float("DATA_GOV_DOWNLOAD_TIMEOUT_SECONDS", 45, min_value=1, max_value=180),
+        )
         if error or not blob:
             return self._unavailable(error or "Course directory download was empty.", started)
 
@@ -322,7 +330,7 @@ class DataGovCourseDirectoryClient:
         except Exception as exc:
             return self._unavailable(f"Could not parse XLSX: {type(exc).__name__}: {exc}", started)
 
-        limit = int(float(os.getenv("DATA_GOV_COURSE_LIMIT", "40") or "40"))
+        limit = env_int("DATA_GOV_COURSE_LIMIT", 40, min_value=1, max_value=500)
         items = []
         inspected = 0
         for row in rows:

@@ -72,6 +72,7 @@
 - Added an in-app **Your data** notice that updates when live lookup or live mentor wording is toggled.
 - Redacted secret-like query parameters from returned live-source URLs so Google Cloud keys are not exposed through API payloads or source summaries.
 - Kept logs to request metadata rather than full learner profile payload.
+- Added bounded environment parsing for optional live API and AI settings so malformed timeouts, limits, or token counts do not crash readiness or demo flows.
 
 ### Tests And Verification
 
@@ -84,6 +85,7 @@
 - Covered the optional data-source disclosure so privacy stays visible while technical provenance remains available.
 - Covered Google Cloud geocode URL redaction so outbound requests can use a key without returning it to the frontend.
 - Covered Apify job-signal parsing with a fake scraped dataset response and verified the token is sent only as an authorization header, not in returned URLs.
+- Covered malformed optional AI numeric settings and shared safe env parsing defaults/clamps.
 - Verification commands:
 
 ```powershell

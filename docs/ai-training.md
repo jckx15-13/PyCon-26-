@@ -69,3 +69,5 @@ Live providers are intentionally disabled in the default run. To enable for loca
 3. Optional fallback: OpenAI with `SKILLQUEST_ENABLE_OPENAI_MENTOR=true` and `OPENAI_API_KEY`.
 
 When either provider is active, `/api/ai/status` reports `provider: google-cloud-live` or `provider: openai-live`. If no usable key is present, `local-deterministic` is used.
+
+Malformed optional tuning values such as model timeout, temperature, or max token settings fall back to bounded defaults so readiness checks and the local demo do not break.

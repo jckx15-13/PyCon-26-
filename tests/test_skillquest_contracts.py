@@ -15,6 +15,7 @@ from pathlib import Path
 import backend.app as app_module
 import backend.connectors as connectors_module
 from backend.app import DATA, Handler, _join_threads_until_deadline
+from backend.config import env_float, env_int
 from backend.connectors import ApifyJobClient, DataGovCourseDirectoryClient, GoogleCloudGeocodeClient, _xlsx_dict_rows
 from backend.recommendation_engine import build_recommendation
 
@@ -172,6 +173,61 @@ class SkillQuestApiTests(unittest.TestCase):
             self.assertTrue(payload["googleEnabled"])
             self.assertTrue(payload["googleKeyPresent"])
             self.assertFalse(payload["openaiEnabled"])
+        finally:
+            for key, value in originals.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+    def test_malformed_optional_ai_numeric_config_uses_safe_defaults(self) -> None:
+        originals = {
+            "SKILLQUEST_ENABLE_GOOGLE_MENTOR": os.environ.get("SKILLQUEST_ENABLE_GOOGLE_MENTOR"),
+            "GOOGLE_CLOUD_AI_API_KEY": os.environ.get("GOOGLE_CLOUD_AI_API_KEY"),
+            "GOOGLE_CLOUD_AI_MAX_TOKENS": os.environ.get("GOOGLE_CLOUD_AI_MAX_TOKENS"),
+            "GOOGLE_CLOUD_AI_TIMEOUT_SECONDS": os.environ.get("GOOGLE_CLOUD_AI_TIMEOUT_SECONDS"),
+            "SKILLQUEST_ENABLE_OPENAI_MENTOR": os.environ.get("SKILLQUEST_ENABLE_OPENAI_MENTOR"),
+            "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY"),
+            "OPENAI_MAX_TOKENS": os.environ.get("OPENAI_MAX_TOKENS"),
+            "OPENAI_TIMEOUT_SECONDS": os.environ.get("OPENAI_TIMEOUT_SECONDS"),
+        }
+        os.environ["SKILLQUEST_ENABLE_GOOGLE_MENTOR"] = "true"
+        os.environ["GOOGLE_CLOUD_AI_API_KEY"] = "demo_google_key"
+        os.environ["GOOGLE_CLOUD_AI_MAX_TOKENS"] = "many"
+        os.environ["GOOGLE_CLOUD_AI_TIMEOUT_SECONDS"] = "slow"
+        os.environ["SKILLQUEST_ENABLE_OPENAI_MENTOR"] = "true"
+        os.environ["OPENAI_API_KEY"] = "demo_openai_key"
+        os.environ["OPENAI_MAX_TOKENS"] = "999999"
+        os.environ["OPENAI_TIMEOUT_SECONDS"] = "-10"
+
+        try:
+            status, payload = self.get_json("/api/ai/status")
+        finally:
+            for key, value in originals.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["provider"], "google-cloud-live")
+        self.assertEqual(payload["google"]["maxTokens"], 240)
+        self.assertEqual(payload["google"]["timeout"], 12)
+
+    def test_safe_env_numeric_helpers_default_and_clamp(self) -> None:
+        originals = {
+            "SKILLQUEST_TEST_INT": os.environ.get("SKILLQUEST_TEST_INT"),
+            "SKILLQUEST_TEST_FLOAT": os.environ.get("SKILLQUEST_TEST_FLOAT"),
+        }
+        os.environ["SKILLQUEST_TEST_INT"] = "not-a-number"
+        os.environ["SKILLQUEST_TEST_FLOAT"] = "Infinity"
+        try:
+            self.assertEqual(env_int("SKILLQUEST_TEST_INT", 7, min_value=1, max_value=10), 7)
+            self.assertEqual(env_float("SKILLQUEST_TEST_FLOAT", 1.5, min_value=0.1, max_value=3), 1.5)
+            os.environ["SKILLQUEST_TEST_INT"] = "999"
+            os.environ["SKILLQUEST_TEST_FLOAT"] = "-2"
+            self.assertEqual(env_int("SKILLQUEST_TEST_INT", 7, min_value=1, max_value=10), 10)
+            self.assertEqual(env_float("SKILLQUEST_TEST_FLOAT", 1.5, min_value=0.1, max_value=3), 0.1)
         finally:
             for key, value in originals.items():
                 if value is None:

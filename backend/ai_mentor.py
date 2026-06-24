@@ -10,6 +10,8 @@ import urllib.parse
 from pathlib import Path
 from typing import Any
 
+from backend.config import env_flag, env_float, env_int
+
 
 ALLOWED_ACTIONS = {"plain", "why", "cheaper", "two_hours", "helper"}
 DATASET_NAME = "ai_training_examples.jsonl"
@@ -24,7 +26,7 @@ def _openai_ready() -> bool:
 
 
 def _openai_enabled() -> bool:
-    return os.getenv("SKILLQUEST_ENABLE_OPENAI_MENTOR", "").strip().lower() in {"1", "true", "yes", "on"}
+    return env_flag("SKILLQUEST_ENABLE_OPENAI_MENTOR")
 
 
 def _google_ai_api_key() -> str | None:
@@ -32,11 +34,35 @@ def _google_ai_api_key() -> str | None:
 
 
 def _google_ai_enabled() -> bool:
-    return os.getenv("SKILLQUEST_ENABLE_GOOGLE_MENTOR", "").strip().lower() in {"1", "true", "yes", "on"}
+    return env_flag("SKILLQUEST_ENABLE_GOOGLE_MENTOR")
 
 
 def _google_ai_ready() -> bool:
     return bool(_google_ai_api_key()) and _google_ai_enabled()
+
+
+def _openai_timeout() -> float:
+    return env_float("OPENAI_TIMEOUT_SECONDS", 12, min_value=0.5, max_value=60)
+
+
+def _openai_max_tokens() -> int:
+    return env_int("OPENAI_MAX_TOKENS", 240, min_value=32, max_value=4000)
+
+
+def _openai_temperature() -> float:
+    return env_float("OPENAI_TEMPERATURE", 0.2, min_value=0, max_value=2)
+
+
+def _google_timeout() -> float:
+    return env_float("GOOGLE_CLOUD_AI_TIMEOUT_SECONDS", 12, min_value=0.5, max_value=60)
+
+
+def _google_max_tokens() -> int:
+    return env_int("GOOGLE_CLOUD_AI_MAX_TOKENS", 240, min_value=32, max_value=4000)
+
+
+def _google_temperature() -> float:
+    return env_float("GOOGLE_CLOUD_AI_TEMPERATURE", 0.2, min_value=0, max_value=2)
 
 
 def mentor_status(data_dir: Path) -> dict[str, Any]:
@@ -61,8 +87,8 @@ def mentor_status(data_dir: Path) -> dict[str, Any]:
             "googleKeyPresent": google_key_present,
             "google": {
                 "model": os.getenv("GOOGLE_CLOUD_AI_MODEL", "gemini-1.5-flash-latest"),
-                "maxTokens": int(os.getenv("GOOGLE_CLOUD_AI_MAX_TOKENS", "240")),
-                "timeout": float(os.getenv("GOOGLE_CLOUD_AI_TIMEOUT_SECONDS", "12")),
+                "maxTokens": _google_max_tokens(),
+                "timeout": _google_timeout(),
             },
             "openaiEnabled": False,
             "openaiKeyPresent": openai_key_present,
@@ -85,8 +111,8 @@ def mentor_status(data_dir: Path) -> dict[str, Any]:
             "googleKeyPresent": google_key_present,
             "openai": {
                 "model": os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
-                "maxTokens": int(os.getenv("OPENAI_MAX_TOKENS", "240")),
-                "timeout": float(os.getenv("OPENAI_TIMEOUT_SECONDS", "12")),
+                "maxTokens": _openai_max_tokens(),
+                "timeout": _openai_timeout(),
             },
         }
 
@@ -198,7 +224,7 @@ def _openai_reply(
     start = time.time()
     payload = _build_openai_payload(action, facts, question, examples, all_examples, request_mode)
     model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
-    timeout = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "12"))
+    timeout = _openai_timeout()
     api_key = _openai_api_key()
     if not api_key:
         raise RuntimeError("OPENAI_API_KEY is not configured.")
@@ -279,8 +305,8 @@ def _google_ai_reply(
     start = time.time()
     payload = _build_google_payload(action, facts, question, examples, all_examples, request_mode)
     model = os.getenv("GOOGLE_CLOUD_AI_MODEL", "gemini-1.5-flash-latest")
-    timeout = float(os.getenv("GOOGLE_CLOUD_AI_TIMEOUT_SECONDS", "12"))
-    max_tokens = int(os.getenv("GOOGLE_CLOUD_AI_MAX_TOKENS", "240"))
+    timeout = _google_timeout()
+    max_tokens = _google_max_tokens()
     api_key = _google_ai_api_key()
     if not api_key:
         raise RuntimeError("GOOGLE_CLOUD_AI_API_KEY is not configured.")
@@ -361,8 +387,8 @@ def _build_google_payload(
     all_examples: list[dict[str, Any]],
     request_mode: str,
 ) -> dict[str, Any]:
-    temperature = float(os.getenv("GOOGLE_CLOUD_AI_TEMPERATURE", "0.2"))
-    max_tokens = int(os.getenv("GOOGLE_CLOUD_AI_MAX_TOKENS", "240"))
+    temperature = _google_temperature()
+    max_tokens = _google_max_tokens()
 
     top_examples = action_examples[:2]
     shared_examples = (all_examples[:2] if len(action_examples) < 2 else []) + top_examples
@@ -443,8 +469,8 @@ def _build_openai_payload(
     request_mode: str,
 ) -> dict[str, Any]:
     model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
-    temperature = float(os.getenv("OPENAI_TEMPERATURE", "0.2"))
-    max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", "240"))
+    temperature = _openai_temperature()
+    max_tokens = _openai_max_tokens()
 
     top_examples = action_examples[:2]
     shared_examples = (all_examples[:2] if len(action_examples) < 2 else []) + top_examples

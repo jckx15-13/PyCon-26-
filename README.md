@@ -90,6 +90,7 @@ SkillQuest is privacy-aware and demo-safe:
 - It ranks against local course and role datasets so the demo still works if an external provider is slow, unavailable, or requires credentials.
 - Opt-in live job and map lookups share one recommendation deadline (`SKILLQUEST_LIVE_TIMEOUT_SECONDS`, default 6.5s), then fall back to local signals instead of making the learner wait twice.
 - Optional Apify job datasets are parsed defensively because scraped fields may arrive as strings, dicts, or missing values.
+- Malformed optional numeric settings for live API and AI providers fall back to bounded defaults instead of crashing the app.
 - Returned live-source URLs redact secret-like query parameters such as Google API keys before they reach the frontend.
 - You can point `COURSE_DATA_URL` at a JSON or CSV course dataset to replace or extend the seed courses.
 - You can opt in to the public data.gov.sg MySkillsFuture Course Directory import with `SKILLQUEST_ENABLE_DATA_GOV_COURSES=true`. This uses the no-key data.gov.sg poll-download API at server start and parses the XLSX with the Python standard library.

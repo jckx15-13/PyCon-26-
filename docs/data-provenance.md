@@ -113,6 +113,7 @@ The endpoint reports whether required environment variables are present, but nev
 ## Stale Or Missing Data Handling
 
 - If live APIs are slow or unavailable, the recommendation still returns from local data.
+- If optional live API or AI numeric settings are malformed, bounded defaults are used so readiness and demo flows keep working.
 - Confidence drops or caveats are shown when live signals are absent.
 - Location can be unresolved; the UI then labels travel as an estimate.
 - Course and funding data should be refreshed before any real production use.

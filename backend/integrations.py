@@ -3,6 +3,8 @@ from __future__ import annotations
 import os
 from typing import Any
 
+from backend.config import env_flag
+
 
 def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
     """Return safe integration metadata without calling external services."""
@@ -124,7 +126,7 @@ def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
             "name": "MySkillsFuture Course Directory via data.gov.sg",
             "kind": "optional_official_dataset_api",
             "status": data_gov_status,
-            "configured": data_gov_uses_cache or os.getenv("SKILLQUEST_ENABLE_DATA_GOV_COURSES", "").strip().lower() in {"1", "true", "yes", "on"},
+            "configured": data_gov_uses_cache or env_flag("SKILLQUEST_ENABLE_DATA_GOV_COURSES"),
             "usedByDefault": data_gov_uses_cache,
             "requiresConsent": False,
             "demoSafe": True,
@@ -225,4 +227,4 @@ def _openai_ready_for_upgrade(mentor: dict[str, Any]) -> bool:
 
 
 def _google_ai_ready(mentor: dict[str, Any]) -> bool:
-    return bool(os.getenv("GOOGLE_CLOUD_AI_API_KEY")) and os.getenv("SKILLQUEST_ENABLE_GOOGLE_MENTOR", "").strip().lower() in {"1", "true", "yes", "on"}
+    return bool(os.getenv("GOOGLE_CLOUD_AI_API_KEY")) and env_flag("SKILLQUEST_ENABLE_GOOGLE_MENTOR")

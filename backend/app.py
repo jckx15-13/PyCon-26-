@@ -15,6 +15,7 @@ from urllib.parse import parse_qs, urlparse
 if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parent.parent))
 
+from backend.config import env_float, env_int
 from backend.connectors import (
     ApifyJobClient,
     DataGovCourseDirectoryClient,
@@ -34,12 +35,12 @@ ROOT = Path(__file__).resolve().parent.parent
 STATIC_DIR = ROOT / "static"
 DATA_DIR = ROOT / "data"
 DATA_GOV_COURSE_CACHE = DATA_DIR / "course_directory_cache.json"
-DEFAULT_PORT = int(os.getenv("PORT", "8000"))
-MAX_JSON_BYTES = int(os.getenv("SKILLQUEST_MAX_JSON_BYTES", "32768"))
+DEFAULT_PORT = env_int("PORT", 8000, min_value=1, max_value=65535)
+MAX_JSON_BYTES = env_int("SKILLQUEST_MAX_JSON_BYTES", 32768, min_value=1024, max_value=1048576)
 RATE_LIMIT_WINDOW_SECONDS = 60
-RATE_LIMIT_MAX_REQUESTS = int(os.getenv("SKILLQUEST_RATE_LIMIT", "90"))
-LIVE_API_TIMEOUT_SECONDS = float(os.getenv("SKILLQUEST_LIVE_TIMEOUT_SECONDS", "6.5"))
-LIVE_CACHE_TTL_SECONDS = int(os.getenv("SKILLQUEST_LIVE_CACHE_SECONDS", "120"))
+RATE_LIMIT_MAX_REQUESTS = env_int("SKILLQUEST_RATE_LIMIT", 90, min_value=1, max_value=10000)
+LIVE_API_TIMEOUT_SECONDS = env_float("SKILLQUEST_LIVE_TIMEOUT_SECONDS", 6.5, min_value=0.1, max_value=30)
+LIVE_CACHE_TTL_SECONDS = env_int("SKILLQUEST_LIVE_CACHE_SECONDS", 120, min_value=0, max_value=86400)
 RATE_LIMIT_BUCKETS: dict[str, list[float]] = {}
 JOB_SIGNAL_CACHE: dict[str, dict[str, Any]] = {}
 LOCATION_SIGNAL_CACHE: dict[str, dict[str, Any]] = {}

@@ -57,6 +57,7 @@
 - Added a persistent `aria-live` form status line so loading, success, and failure states are visible and announced to assistive technology.
 - Added frontend request timeouts for options, recommendation, and mentor calls so a stalled API does not leave the learner waiting with no clear status.
 - Changed the result screen to a calmer simple-first layout: next step, course, skills, and 3 small actions stay visible, while deeper why/compare evidence sits behind one large optional disclosure.
+- Kept the privacy notice visible but moved technical source lists behind **Show data sources** so judges can inspect evidence without overwhelming the default learner view.
 
 ### Security And Privacy
 
@@ -78,6 +79,7 @@
 - Covered the learner-question mentor path so simple Q&A stays local and SkillsFuture-grounded.
 - Covered frontend status/timeout hooks so the app gives clear feedback during slow or failed calls.
 - Covered the simple-first result disclosure so evidence stays available without overwhelming the default view.
+- Covered the optional data-source disclosure so privacy stays visible while technical provenance remains available.
 - Verification commands:
 
 ```powershell

@@ -6,7 +6,7 @@ SkillQuest is an accessibility-first Singapore upskilling journey app. It helps 
 2. What skills matter most?
 3. What should I do today?
 
-The app keeps the first screen usable and simple: choose a path, pick current abilities, press **Upgrade my path**. The result shows the key next step first, then keeps deeper why/compare evidence behind one large optional disclosure so older or less confident users are not overwhelmed. The learner can copy the plan or open a plain helper sheet with copy/download actions without creating an account.
+The app keeps the first screen usable and simple: choose a path, pick current abilities, press **Upgrade my path**. The result shows the key next step first, then keeps deeper why/compare evidence behind one large optional disclosure so older or less confident users are not overwhelmed. Privacy stays visible, while technical data-source details sit behind **Show data sources** for users or judges who want proof. The learner can copy the plan or open a plain helper sheet with copy/download actions without creating an account.
 
 ## Run Locally
 

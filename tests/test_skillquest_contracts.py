@@ -136,6 +136,15 @@ class SkillQuestApiTests(unittest.TestCase):
         self.assertIn("details.open = false", app_js)
         self.assertIn("openResultDetails", app_js)
 
+    def test_frontend_keeps_data_sources_optional_but_available(self) -> None:
+        index_html = Path("static/index.html").read_text(encoding="utf-8")
+
+        self.assertIn('id="privacy-heading"', index_html)
+        self.assertIn('id="source-details"', index_html)
+        self.assertIn("<summary>Show data sources</summary>", index_html)
+        self.assertIn('id="integration-list"', index_html)
+        self.assertIn('id="source-list"', index_html)
+
     def test_ai_status_is_local_and_does_not_require_key(self) -> None:
         status, payload = self.get_json("/api/ai/status")
         self.assertEqual(status, 200)

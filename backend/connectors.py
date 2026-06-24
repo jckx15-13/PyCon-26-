@@ -30,6 +30,44 @@ def load_json(path: Path) -> Any:
         return json.load(handle)
 
 
+def load_data_gov_course_cache(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {
+            "status": "cache_missing",
+            "source": "Cached MySkillsFuture Course Directory slice",
+            "url": DATA_GOV_COURSE_DATASET_PAGE,
+            "items": [],
+            "dataset_id": DATA_GOV_COURSE_DATASET_ID,
+            "detail": "No local course-directory cache was found.",
+        }
+    try:
+        payload = load_json(path)
+    except Exception as exc:
+        return {
+            "status": "cache_invalid",
+            "source": "Cached MySkillsFuture Course Directory slice",
+            "url": DATA_GOV_COURSE_DATASET_PAGE,
+            "items": [],
+            "dataset_id": DATA_GOV_COURSE_DATASET_ID,
+            "error": f"{type(exc).__name__}: {exc}",
+        }
+    items = payload.get("items") if isinstance(payload, dict) else []
+    if not isinstance(items, list):
+        items = []
+    records = payload.get("records") if isinstance(payload.get("records"), dict) else {}
+    return {
+        "status": "cached" if items else "cache_empty",
+        "source": payload.get("source") or "Cached MySkillsFuture Course Directory slice",
+        "url": payload.get("url") or DATA_GOV_COURSE_DATASET_PAGE,
+        "items": items,
+        "dataset_id": payload.get("dataset_id") or DATA_GOV_COURSE_DATASET_ID,
+        "records": {"loaded": len(items), **records},
+        "generated_at": payload.get("generated_at"),
+        "generated_by": payload.get("generated_by"),
+        "detail": payload.get("detail") or "Loaded a local cached slice of public MySkillsFuture course rows.",
+    }
+
+
 def strip_html(value: str | None) -> str:
     if not value:
         return ""

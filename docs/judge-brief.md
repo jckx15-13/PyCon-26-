@@ -38,7 +38,7 @@ If live APIs are slow or unavailable, the demo still works because `?demo=1` for
 - Bad JSON and malformed `Content-Length` return HTTP 400 instead of silent defaults.
 - Request body limit, basic rate limiting, `HEAD`, `OPTIONS`, security headers, and CSP.
 - SkillsFuture Jobs-Skills XLSX integration and provenance UI, generated from the supplied unique skills, framework, and TSC-to-unique-skills datasets.
-- Optional no-key data.gov.sg MySkillsFuture Course Directory import, disabled by default for demo speed.
+- Cached no-key data.gov.sg MySkillsFuture Course Directory slice, with exact course-reference links and optional refresh/live import.
 - Recommendation confidence, caveats, top gaps, course alternatives, and no fake-perfect course score.
 - Result actions: why this, cheaper plan, only 2 hours, ask guide, use a helper, copy this plan, save helper sheet.
 - No-key local mentor endpoint for plain guidance, bounded learner questions, cheaper path, two-hour plan, and helper script.
@@ -48,7 +48,7 @@ If live APIs are slow or unavailable, the demo still works because `?demo=1` for
 
 ## P1 To Help Win
 
-- Curate a verified MySkillsFuture export and replace remaining seed course URLs with exact course-reference pages.
+- Expand the cached MySkillsFuture course slice and replace remaining broad seed URLs with exact course-reference pages.
 - Add optional OpenAI-backed rewriting behind the existing mentor endpoint after secure key setup is available.
 - Upgrade the plain text helper sheet into a designed PDF/share card for community helpers.
 - Add more Skills Framework sectors and richer role mappings.

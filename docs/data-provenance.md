@@ -41,13 +41,15 @@ SkillQuest uses data in layers so the product remains useful, honest, and reliab
    - Supported formats: JSON or CSV.
    - Purpose: replace or extend seed courses without code changes.
 
-6. **Optional public MySkillsFuture Course Directory import**
+6. **Cached and optional public MySkillsFuture Course Directory import**
+   - Cached file: `data/course_directory_cache.json`
+   - Refresh script: `tools/import_data_gov_course_cache.py`
    - Source: [MySkillsFuture Course Directory on data.gov.sg](https://data.gov.sg/datasets/d_b5802b76f409764c16dde4bf2feb19cd/view)
    - Environment variable: `SKILLQUEST_ENABLE_DATA_GOV_COURSES=true`
    - Optional controls: `DATA_GOV_COURSE_LIMIT`, `DATA_GOV_COURSE_KEYWORDS`
-   - Purpose: ingest a relevant slice of the public course directory without an API key.
-   - Privacy: no learner data is sent; the server fetches the public dataset at startup only when enabled.
-   - Limitation: the XLSX import is large, so it is opt-in for demo reliability. Imported rows still require provider verification before enrolment.
+   - Purpose: provide exact MySkillsFuture course-reference links in the default demo and optionally ingest a broader fresh slice without an API key.
+   - Privacy: no learner data is sent; the cache loads locally, and the refresh/live import fetches only a public dataset.
+   - Limitation: the cached slice is small, and all course rows still require provider verification before enrolment.
 
 7. **Local mentor grounding examples**
    - File: `data/ai_training_examples.jsonl`
@@ -81,7 +83,7 @@ The app reports these layers through `GET /api/integrations`:
 - optional MyCareersFuture job skill signal,
 - optional OneMap location lookup,
 - optional `COURSE_DATA_URL` course import,
-- optional data.gov.sg MySkillsFuture Course Directory import,
+- cached/optional data.gov.sg MySkillsFuture Course Directory rows,
 - no-key local mentor,
 - future OpenAI mentor upgrade status.
 - optional Google Cloud mentor status.

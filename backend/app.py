@@ -21,6 +21,7 @@ from backend.connectors import (
     ExternalCourseDatasetClient,
     GoogleCloudGeocodeClient,
     MyCareersFutureClient,
+    load_data_gov_course_cache,
     OneMapClient,
     load_json,
 )
@@ -32,6 +33,7 @@ from backend.recommendation_engine import build_recommendation
 ROOT = Path(__file__).resolve().parent.parent
 STATIC_DIR = ROOT / "static"
 DATA_DIR = ROOT / "data"
+DATA_GOV_COURSE_CACHE = DATA_DIR / "course_directory_cache.json"
 DEFAULT_PORT = int(os.getenv("PORT", "8000"))
 MAX_JSON_BYTES = int(os.getenv("SKILLQUEST_MAX_JSON_BYTES", "32768"))
 RATE_LIMIT_WINDOW_SECONDS = 60
@@ -68,11 +70,35 @@ class SkillQuestData:
         external = ExternalCourseDatasetClient().fetch(os.getenv("COURSE_DATA_URL"))
         self.external_course_status = external
         if external.get("items"):
-            self.courses.extend(external["items"])
+            self._extend_courses(external["items"])
+        cached_data_gov = load_data_gov_course_cache(DATA_GOV_COURSE_CACHE)
+        if cached_data_gov.get("items"):
+            self._extend_courses(cached_data_gov["items"])
         data_gov = DataGovCourseDirectoryClient().fetch()
-        self.data_gov_course_status = data_gov
         if data_gov.get("items"):
-            self.courses.extend(data_gov["items"])
+            self._extend_courses(data_gov["items"])
+            self.data_gov_course_status = data_gov
+        elif data_gov.get("status") == "skipped" and cached_data_gov.get("items"):
+            self.data_gov_course_status = cached_data_gov
+        elif cached_data_gov.get("items") and data_gov.get("status") == "unavailable":
+            self.data_gov_course_status = {
+                **cached_data_gov,
+                "status": "cached_fallback",
+                "liveImportError": data_gov.get("error"),
+                "detail": "Loaded cached public course rows because the live data.gov.sg import was unavailable.",
+            }
+        else:
+            self.data_gov_course_status = data_gov
+
+    def _extend_courses(self, items: list[dict[str, Any]]) -> None:
+        seen = {course.get("id") for course in self.courses}
+        for item in items:
+            course_id = item.get("id")
+            if course_id and course_id in seen:
+                continue
+            self.courses.append(item)
+            if course_id:
+                seen.add(course_id)
 
     def options(self) -> dict:
         mentor = mentor_status(DATA_DIR)

@@ -152,7 +152,9 @@ class SkillQuestApiTests(unittest.TestCase):
         self.assertIn("data-gov-course-directory", integrations)
         self.assertTrue(integrations["mycareersfuture"]["requiresConsent"])
         self.assertGreaterEqual(integrations["skills-framework"]["records"]["uniqueSkills"], 2000)
-        self.assertEqual(integrations["data-gov-course-directory"]["status"], "skipped")
+        self.assertEqual(integrations["data-gov-course-directory"]["status"], "cached")
+        self.assertGreaterEqual(integrations["data-gov-course-directory"]["records"]["loaded"], 1)
+        self.assertGreaterEqual(payload["summary"]["exactCourseLinks"], 1)
         self.assertEqual(integrations["local-mentor"]["status"], "local-deterministic")
         for item in payload["integrations"]:
             for env_var in item.get("envVars", []):

@@ -26,6 +26,7 @@
 - Added `data/ai_training_examples.jsonl` as a local grounding set for no-key mentor guidance.
 - Added `backend/integrations.py` and `GET /api/integrations` to report local, optional live, configured, and future data/API layers without exposing secrets.
 - Added optional data.gov.sg MySkillsFuture Course Directory import through the public no-key poll-download API.
+- Added `tools/import_data_gov_course_cache.py` and `data/course_directory_cache.json` so the default demo has exact MySkillsFuture course-reference links without network startup.
 - Added a Python standard-library XLSX parser for the official course directory import so the core app still has no package install requirement.
 - Added local offline market and location signals for fast private demo mode.
 - Changed default recommendation calls to avoid live external API calls unless the user opts in.

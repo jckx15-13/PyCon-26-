@@ -9,6 +9,8 @@ def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
 
     course_source_links = [course.get("source_url") for course in data.courses if course.get("source_url")]
     exact_course_links = [url for url in course_source_links if url and url.rstrip("/") != "https://www.myskillsfuture.gov.sg"]
+    data_gov_status = data.data_gov_course_status.get("status", "skipped")
+    data_gov_uses_cache = data_gov_status in {"cached", "cached_fallback"}
     integrations = [
         {
             "id": "local-role-course-data",
@@ -121,9 +123,9 @@ def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
             "id": "data-gov-course-directory",
             "name": "MySkillsFuture Course Directory via data.gov.sg",
             "kind": "optional_official_dataset_api",
-            "status": data.data_gov_course_status.get("status", "skipped"),
-            "configured": os.getenv("SKILLQUEST_ENABLE_DATA_GOV_COURSES", "").strip().lower() in {"1", "true", "yes", "on"},
-            "usedByDefault": False,
+            "status": data_gov_status,
+            "configured": data_gov_uses_cache or os.getenv("SKILLQUEST_ENABLE_DATA_GOV_COURSES", "").strip().lower() in {"1", "true", "yes", "on"},
+            "usedByDefault": data_gov_uses_cache,
             "requiresConsent": False,
             "demoSafe": True,
             "sourceUrl": data.data_gov_course_status.get("url"),
@@ -133,10 +135,10 @@ def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
                 {"name": "DATA_GOV_COURSE_KEYWORDS", "present": _env_present("DATA_GOV_COURSE_KEYWORDS")},
             ],
             "records": data.data_gov_course_status.get("records", {"loaded": len(data.data_gov_course_status.get("items", []))}),
-            "privacy": "No learner data is sent; the server imports a public course dataset at startup only when enabled.",
-            "fallback": "Local course seed data remains available when the dataset is disabled or unavailable.",
+            "privacy": "No learner data is sent; cached rows load locally, and live import fetches only a public course dataset.",
+            "fallback": "Local course seed data remains available when the cache is missing or live import is unavailable.",
             "limitation": data.data_gov_course_status.get("error")
-            or "Large public XLSX import is opt-in to keep the live demo fast and predictable.",
+            or "Cached slice is small; enable live import or refresh the cache for broader course coverage.",
         },
         {
             "id": "local-mentor",
@@ -189,7 +191,11 @@ def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
     ]
 
     summary = {
-        "ready": sum(1 for item in integrations if item["status"] in {"ready", "local-deterministic", "local-normalised"}),
+        "ready": sum(
+            1
+            for item in integrations
+            if item["status"] in {"ready", "local-deterministic", "local-normalised", "official-xlsx-normalised", "cached", "cached_fallback", "ok"}
+        ),
         "optional": sum(1 for item in integrations if item["kind"].startswith("optional")),
         "needsConfiguration": sum(1 for item in integrations if item.get("envVars") and not item.get("configured")),
         "demoSafe": all(item["demoSafe"] for item in integrations if item["usedByDefault"]),
@@ -204,8 +210,8 @@ def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
         "display": [
             "Private demo is ready without network calls.",
             "Live jobs and map lookup are opt-in.",
-            "The public MySkillsFuture Course Directory import is optional and no-key.",
-            "Seed course links are broad references until a verified course export is enabled.",
+            "Cached public MySkillsFuture course rows provide exact course-reference links without network startup.",
+            "Enable the live data.gov.sg import or refresh the cache for broader course coverage.",
         ],
     }
 

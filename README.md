@@ -81,6 +81,7 @@ SkillQuest is privacy-aware and demo-safe:
 
 - It uses local role, course, funding, and Skills Framework reference data by default.
 - `data/skills_framework.json` is generated from the supplied Jobs-Skills SkillsFuture XLSX datasets: unique skills, full framework role-skill rows, and TSC-to-unique-skill mappings.
+- `data/course_directory_cache.json` is a small cached slice of the public MySkillsFuture Course Directory, used by default for exact course-reference links without network startup.
 - It only calls MyCareersFuture and OneMap when the learner enables **Use live job and map lookup**.
 - Direct `/api/jobs` and `/api/location` requests also stay local unless `allowLiveData=true` is provided, and `?demo=1` always blocks live calls.
 - The help panel includes a **Your data** notice explaining what stays local and what only leaves after consent.
@@ -92,7 +93,13 @@ SkillQuest is privacy-aware and demo-safe:
 
 This is not a production eligibility checker for subsidies or SkillsFuture Credit. Funding calculations are estimates and should be verified with SkillsFuture Singapore or course providers before a real enrolment decision.
 
-Optional official course directory import:
+Refresh or expand the cached public course slice:
+
+```powershell
+python tools\import_data_gov_course_cache.py
+```
+
+Optional live official course directory import:
 
 ```text
 SKILLQUEST_ENABLE_DATA_GOV_COURSES=true
@@ -100,7 +107,7 @@ DATA_GOV_COURSE_LIMIT=40
 DATA_GOV_COURSE_KEYWORDS=data,python,analytics,cyber,marketing,ux,healthcare,sustainability
 ```
 
-This import does not send learner data. It fetches the public MySkillsFuture Course Directory dataset once during backend startup, filters relevant rows, and keeps local seed data as fallback.
+The cache/import does not send learner data. The refresh script or live import fetches the public MySkillsFuture Course Directory dataset, filters relevant rows, and keeps local seed data as fallback.
 
 Regenerate the SkillsFuture role-skill slice from local XLSX files:
 

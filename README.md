@@ -82,6 +82,7 @@ SkillQuest is privacy-aware and demo-safe:
 - It uses local role, course, funding, and Skills Framework reference data by default.
 - `data/skills_framework.json` is generated from the supplied Jobs-Skills SkillsFuture XLSX datasets: unique skills, full framework role-skill rows, and TSC-to-unique-skill mappings.
 - It only calls MyCareersFuture and OneMap when the learner enables **Use live job and map lookup**.
+- The help panel includes a **Your data** notice explaining what stays local and what only leaves after consent.
 - `?demo=1` always uses deterministic offline signals so judging does not depend on network speed.
 - It ranks against local course and role datasets so the demo still works if an external provider is slow, unavailable, or requires credentials.
 - You can point `COURSE_DATA_URL` at a JSON or CSV course dataset to replace or extend the seed courses.

@@ -19,7 +19,7 @@ Judges should care because the app focuses on the hard part of lifelong learning
    - **What skills matter most?** Top skill gaps.
    - **What should I do today?** Small quest and first course.
 8. Show **Why this path**, **Compare options**, and **Data sources**.
-9. Show **Data checks** in the help panel to prove the demo is private by default and live lookups are opt-in.
+9. Show **Your data** and **Data checks** in the help panel to prove the demo is private by default and live lookups are opt-in.
 10. Click **Only 2 hours** or **Cheaper plan** to show refinement.
 11. Type `Can I do this with no money?` under **Ask one question**, then click **Ask guide**.
 12. Click **Use a helper** to show a plain script for a family member or community helper.
@@ -31,6 +31,7 @@ If live APIs are slow or unavailable, the demo still works because `?demo=1` for
 
 - Private, deterministic demo mode.
 - Explicit consent for live job and map lookup.
+- Plain-language **Your data** notice in the app explaining what stays local and what only leaves after consent.
 - Explorer mode no longer defaults into Data Analyst.
 - Typed custom skills are included in the payload.
 - Bad JSON and malformed `Content-Length` return HTTP 400 instead of silent defaults.

@@ -318,6 +318,15 @@
           Read this screen
         </button>
           <p>Ask someone nearby to help you read this page. You can use it without logging in.</p>
+        <div class="privacy-card" aria-labelledby="privacy-heading">
+          <h3 id="privacy-heading">Your data</h3>
+          <ul>
+            <li id="privacy-demo-line">Private demo is on by default.</li>
+            <li id="privacy-live-line">Live job and map lookup is off.</li>
+            <li id="privacy-mentor-line">Live mentor wording is off.</li>
+            <li>Helper sheets stay on this device unless you share them.</li>
+          </ul>
+        </div>
         <div class="integration-panel" aria-labelledby="integration-heading">
           <h3 id="integration-heading">Simple data checks</h3>
           <div id="integration-list" class="integration-list"></div>
@@ -327,6 +336,6 @@
     </main>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script src="/app.js?v=20260624-helper-sheet" defer></script>
+    <script src="/app.js?v=20260624-privacy-card" defer></script>
   </body>
 </html>

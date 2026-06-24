@@ -956,6 +956,32 @@ input[type="range"] {
   height: 24px;
 }
 
+.privacy-card {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--teal-soft);
+  padding: 12px;
+}
+
+.privacy-card h3 {
+  margin: 0;
+  color: var(--teal-dark);
+}
+
+.privacy-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.privacy-card li {
+  line-height: 1.35;
+}
+
 .source-list {
   display: grid;
   gap: 10px;

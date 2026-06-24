@@ -62,6 +62,7 @@
 - Added `HEAD` and `OPTIONS`.
 - Added security headers and CSP.
 - Added explicit live lookup consent in the UI.
+- Added an in-app **Your data** notice that updates when live lookup or live mentor wording is toggled.
 - Kept logs to request metadata rather than full learner profile payload.
 
 ### Tests And Verification

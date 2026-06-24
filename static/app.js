@@ -32,6 +32,8 @@ function bindStaticEvents() {
   $("#weekly-hours").addEventListener("input", () => {
     $("#weekly-hours-output").textContent = $("#weekly-hours").value;
   });
+  $("#allow-live-data").addEventListener("change", syncPrivacyNotice);
+  $("#allow-live-mentor").addEventListener("change", syncPrivacyNotice);
 
   $("#read-page").addEventListener("click", () => readScreen(false));
   $("#read-result").addEventListener("click", () => readScreen(true));
@@ -129,6 +131,7 @@ async function loadOptions() {
       aiSourceSummary(),
     ]);
     syncMentorConsent();
+    syncPrivacyNotice();
     syncSkillsInput();
     syncMode();
   } catch (error) {
@@ -161,6 +164,7 @@ function syncMentorConsent() {
       }
       row.classList.add("is-disabled");
     }
+    syncPrivacyNotice();
     return;
   }
   mentorToggle.disabled = false;
@@ -170,6 +174,25 @@ function syncMentorConsent() {
     if (note) {
       note.textContent = "Uses optional Google/OpenAI provider for simpler explanations and rewrites.";
     }
+  }
+  syncPrivacyNotice();
+}
+
+function syncPrivacyNotice() {
+  const liveData = $("#allow-live-data")?.checked;
+  const mentorToggle = $("#allow-live-mentor");
+  const liveMentor = mentorToggle?.checked && !mentorToggle.disabled;
+  const liveLine = $("#privacy-live-line");
+  const mentorLine = $("#privacy-mentor-line");
+  if (liveLine) {
+    liveLine.textContent = liveData
+      ? "Live job and map lookup is on. It sends your goal and place to public services."
+      : "Live job and map lookup is off. Your goal and place stay in this demo.";
+  }
+  if (mentorLine) {
+    mentorLine.textContent = liveMentor
+      ? "Live mentor wording is on. It sends only recommendation facts to the configured provider."
+      : "Live mentor wording is off. The guide uses local rules.";
   }
 }
 

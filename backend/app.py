@@ -170,12 +170,18 @@ class Handler(BaseHTTPRequestHandler):
 
         if path == "/api/jobs":
             search = query.get("query", ["data analyst"])[0]
-            self._json(self._merge_job_signals(search, limit=5))
+            if _query_allows_live_data(query):
+                self._json(self._merge_job_signals(search, limit=5))
+            else:
+                self._json(self._offline_market_signal(search))
             return
 
         if path == "/api/location":
             search = query.get("query", [""])[0]
-            self._json(self._location_signal(search))
+            if _query_allows_live_data(query):
+                self._json(self._location_signal(search))
+            else:
+                self._json(self._offline_location_signal(search))
             return
 
         if path == "/api/sources":
@@ -186,7 +192,7 @@ class Handler(BaseHTTPRequestHandler):
                     "notes": [
                         "Course data uses local seed JSON unless COURSE_DATA_URL is set.",
                         "Skills Framework mappings are a local normalised slice from public Singapore Skills Framework references.",
-                        "MyCareersFuture, Apify, and Google Cloud geocode calls are opt-in so private goals and locations are not sent by default.",
+                        "MyCareersFuture, Apify, OneMap, and Google Cloud geocode calls require explicit non-demo live consent.",
                         f"Mentor mode is {mentor}.",
                     ],
                     "skillsFramework": DATA.options()["skillsFramework"],
@@ -516,6 +522,16 @@ def _run_with_timeout(
         }
     result["latency_ms"] = int((time.time() - started) * 1000)
     target["result"] = result
+
+
+def _query_allows_live_data(query: dict[str, list[str]]) -> bool:
+    if _query_flag(query, "demo"):
+        return False
+    return _query_flag(query, "allowLiveData") or _query_flag(query, "live")
+
+
+def _query_flag(query: dict[str, list[str]], name: str) -> bool:
+    return any(str(value).strip().lower() in {"1", "true", "yes", "on"} for value in query.get(name, []))
 
 
 def _safe_call_result(state: dict[str, Any], source: str, allow_missing: bool = False) -> dict[str, Any]:

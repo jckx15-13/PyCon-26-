@@ -47,8 +47,8 @@ The app uses only Python's standard library. No package install is required for 
 
 - `GET /api/health`: server and data status.
 - `GET /api/options`: interests, roles, courses, and source metadata for the frontend.
-- `GET /api/jobs?query=data%20analyst`: opt-in MyCareersFuture job skill signal, with graceful error output.
-- `GET /api/location?query=Tampines%20MRT`: opt-in OneMap geocoding lookup. Add `ONEMAP_API_TOKEN` for authenticated use.
+- `GET /api/jobs?query=data%20analyst`: private local job-skill signal by default. Add `allowLiveData=true` outside `?demo=1` to call opt-in MyCareersFuture/Apify live signals.
+- `GET /api/location?query=Tampines%20MRT`: private local location estimate by default. Add `allowLiveData=true` outside `?demo=1` to call opt-in OneMap/Google Maps lookup. Add `ONEMAP_API_TOKEN` or `GOOGLE_CLOUD_API_KEY` for stronger live results.
 - `GET /api/sources`: data provenance and source notes.
 - `GET /api/integrations`: safe readiness metadata for local datasets, optional live APIs, mentor grounding, and future OpenAI setup.
 - `GET /api/ai/status`: mentor status (local/google/openai), supported actions, and grounding metadata.
@@ -82,6 +82,7 @@ SkillQuest is privacy-aware and demo-safe:
 - It uses local role, course, funding, and Skills Framework reference data by default.
 - `data/skills_framework.json` is generated from the supplied Jobs-Skills SkillsFuture XLSX datasets: unique skills, full framework role-skill rows, and TSC-to-unique-skill mappings.
 - It only calls MyCareersFuture and OneMap when the learner enables **Use live job and map lookup**.
+- Direct `/api/jobs` and `/api/location` requests also stay local unless `allowLiveData=true` is provided, and `?demo=1` always blocks live calls.
 - The help panel includes a **Your data** notice explaining what stays local and what only leaves after consent.
 - `?demo=1` always uses deterministic offline signals so judging does not depend on network speed.
 - It ranks against local course and role datasets so the demo still works if an external provider is slow, unavailable, or requires credentials.

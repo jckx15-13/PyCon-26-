@@ -24,12 +24,14 @@ SkillQuest uses data in layers so the product remains useful, honest, and reliab
 
 3. **Optional live MyCareersFuture lookup**
    - Trigger: learner enables **Use live job and map lookup**.
+   - Direct API trigger: `/api/jobs?...&allowLiveData=true` outside `?demo=1`.
    - Data sent: target role or interest search text.
    - Purpose: add current job skill signals when available.
    - Fallback: local role-skill signals.
 
 4. **Optional live OneMap lookup**
    - Trigger: learner enables **Use live job and map lookup**.
+   - Direct API trigger: `/api/location?...&allowLiveData=true` outside `?demo=1`.
    - Data sent: typed location text.
    - Purpose: improve travel estimates.
    - Fallback: local MRT/region estimate.

@@ -32,6 +32,7 @@ If live APIs are slow or unavailable, the demo still works because `?demo=1` for
 - Private, deterministic demo mode.
 - Explicit consent for live job and map lookup.
 - Plain-language **Your data** notice in the app explaining what stays local and what only leaves after consent.
+- Direct job/location API routes stay local unless explicit non-demo live consent is passed.
 - Explorer mode no longer defaults into Data Analyst.
 - Typed custom skills are included in the payload.
 - Bad JSON and malformed `Content-Length` return HTTP 400 instead of silent defaults.

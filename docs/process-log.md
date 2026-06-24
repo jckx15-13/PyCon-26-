@@ -29,6 +29,7 @@
 - Added a Python standard-library XLSX parser for the official course directory import so the core app still has no package install requirement.
 - Added local offline market and location signals for fast private demo mode.
 - Changed default recommendation calls to avoid live external API calls unless the user opts in.
+- Changed direct `/api/jobs` and `/api/location` calls to use local signals unless explicit non-demo live consent is present.
 - Changed parallel live job/map lookups to use a shared deadline so slow providers do not stack into double waits.
 - Added confidence, caveats, and explanation fields to recommendation responses.
 - Added official role and official skill evidence to recommendation responses for the mapped app role.

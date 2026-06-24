@@ -158,6 +158,26 @@ class SkillQuestApiTests(unittest.TestCase):
             for env_var in item.get("envVars", []):
                 self.assertEqual(set(env_var.keys()), {"name", "present"})
 
+    def test_direct_live_endpoints_require_explicit_non_demo_consent(self) -> None:
+        status, jobs = self.get_json("/api/jobs?query=Data%20Analyst")
+        self.assertEqual(status, 200)
+        self.assertEqual(jobs["status"], "offline")
+        self.assertEqual(jobs["source"], "Local role skill signals")
+        self.assertIn("Live job lookup was not used", jobs["detail"])
+
+        status, location = self.get_json("/api/location?query=Tampines%20MRT")
+        self.assertEqual(status, 200)
+        self.assertEqual(location["status"], "offline")
+        self.assertEqual(location["source"], "Local location estimate")
+
+        status, demo_jobs = self.get_json("/api/jobs?query=Data%20Analyst&allowLiveData=true&demo=1")
+        self.assertEqual(status, 200)
+        self.assertEqual(demo_jobs["status"], "offline")
+
+        status, demo_location = self.get_json("/api/location?query=Tampines%20MRT&live=1&demo=true")
+        self.assertEqual(status, 200)
+        self.assertEqual(demo_location["status"], "offline")
+
     def test_local_mentor_returns_two_hour_plan_without_key(self) -> None:
         request_payload = {
             "demo": True,

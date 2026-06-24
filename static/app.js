@@ -56,6 +56,7 @@ function bindStaticEvents() {
   });
 
   $("#why-button").addEventListener("click", () => {
+    openResultDetails();
     $("#confidence-line").scrollIntoView({ behavior: "smooth", block: "center" });
     requestMentor("why", { speakResult: true });
   });
@@ -291,12 +292,17 @@ async function submitRecommendation(options = {}) {
 function renderRecommendation(data) {
   $("#empty-state").classList.add("hidden");
   $("#results").classList.remove("hidden");
+  const details = $("#result-details");
+  if (details) {
+    details.open = false;
+  }
 
   const ring = $("#readiness-ring");
   ring.style.setProperty("--score", data.readiness.score);
   $("#readiness-score").textContent = `${data.readiness.score}%`;
   $("#readiness-label").textContent = data.readiness.label;
   $("#readiness-summary").textContent = `You are about ${data.readiness.score}% ready for ${data.recommendedRole.title}.`;
+  $("#simple-confidence").textContent = `${data.confidence?.level || "Medium"} confidence. Details are below if you want them.`;
 
   renderCourse(data.bestCourse);
   renderFactors(data.bestCourse);
@@ -427,6 +433,13 @@ function renderMentor(mentor, data) {
   $("#mentor-summary").textContent = data
     ? `You are ${data.readiness.score}% ready for ${data.recommendedRole.title}.`
     : "This is a good first step for you.";
+}
+
+function openResultDetails() {
+  const details = $("#result-details");
+  if (details) {
+    details.open = true;
+  }
 }
 
 async function requestMentor(action, options = {}) {

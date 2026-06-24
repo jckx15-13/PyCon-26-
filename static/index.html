@@ -241,6 +241,7 @@
               <div>
                 <strong id="readiness-label">Start here</strong>
                 <p id="readiness-summary"></p>
+                <p id="simple-confidence" class="simple-confidence">Confidence will appear here.</p>
               </div>
             </div>
           </article>
@@ -252,21 +253,31 @@
             <dl id="factor-list" class="factor-list"></dl>
           </article>
 
-          <article class="evidence-card">
-            <h3>Why this path</h3>
-            <p id="confidence-line" class="confidence-line">Medium confidence.</p>
-            <ul id="why-list" class="plain-list"></ul>
-          </article>
-
           <article class="skills-card">
             <h3>Skills to learn first</h3>
             <div id="skill-gap-list" class="skill-gap-list"></div>
           </article>
 
-          <article class="compare-card" id="compare-card">
-            <h3>Compare options</h3>
-            <div id="compare-list" class="compare-list"></div>
+          <article class="quest-card">
+            <h3>Do these 3 small steps</h3>
+            <div id="questline" class="questline"></div>
           </article>
+
+          <details class="result-details" id="result-details">
+            <summary>Show why and other choices</summary>
+            <div class="result-detail-grid">
+              <article class="evidence-card">
+                <h3>Why this path</h3>
+                <p id="confidence-line" class="confidence-line">Medium confidence.</p>
+                <ul id="why-list" class="plain-list"></ul>
+              </article>
+
+              <article class="compare-card" id="compare-card">
+                <h3>Compare options</h3>
+                <div id="compare-list" class="compare-list"></div>
+              </article>
+            </div>
+          </details>
 
           <article class="action-card">
             <h3>Need simpler?</h3>
@@ -301,11 +312,6 @@
                 <button id="download-sheet-button" type="button">Download .txt</button>
               </div>
             </div>
-          </article>
-
-          <article class="quest-card">
-            <h3>Do these 3 small steps</h3>
-            <div id="questline" class="questline"></div>
           </article>
         </div>
       </section>

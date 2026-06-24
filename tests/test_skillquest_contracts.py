@@ -124,6 +124,18 @@ class SkillQuestApiTests(unittest.TestCase):
         self.assertIn("setFormStatus", app_js)
         self.assertIn("aria-busy", app_js)
 
+    def test_frontend_keeps_results_simple_with_optional_details(self) -> None:
+        index_html = Path("static/index.html").read_text(encoding="utf-8")
+        app_js = Path("static/app.js").read_text(encoding="utf-8")
+
+        self.assertIn('id="simple-confidence"', index_html)
+        self.assertIn('id="result-details"', index_html)
+        self.assertIn("<summary>Show why and other choices</summary>", index_html)
+        self.assertEqual(index_html.count('id="confidence-line"'), 1)
+        self.assertEqual(index_html.count('id="why-list"'), 1)
+        self.assertIn("details.open = false", app_js)
+        self.assertIn("openResultDetails", app_js)
+
     def test_ai_status_is_local_and_does_not_require_key(self) -> None:
         status, payload = self.get_json("/api/ai/status")
         self.assertEqual(status, 200)

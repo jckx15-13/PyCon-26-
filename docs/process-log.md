@@ -56,6 +56,7 @@
 - Added **Save helper sheet**, a visible local text preview plus copy/download actions for learners and helpers that does not require login or backend storage.
 - Added a persistent `aria-live` form status line so loading, success, and failure states are visible and announced to assistive technology.
 - Added frontend request timeouts for options, recommendation, and mentor calls so a stalled API does not leave the learner waiting with no clear status.
+- Changed the result screen to a calmer simple-first layout: next step, course, skills, and 3 small actions stay visible, while deeper why/compare evidence sits behind one large optional disclosure.
 
 ### Security And Privacy
 
@@ -76,6 +77,7 @@
 - Covered the data.gov.sg XLSX row parser, course normalization, integration readiness, and shared live-timeout deadline helper.
 - Covered the learner-question mentor path so simple Q&A stays local and SkillsFuture-grounded.
 - Covered frontend status/timeout hooks so the app gives clear feedback during slow or failed calls.
+- Covered the simple-first result disclosure so evidence stays available without overwhelming the default view.
 - Verification commands:
 
 ```powershell

@@ -663,6 +663,12 @@ input[type="range"] {
   font-weight: 900;
 }
 
+.simple-confidence {
+  margin: 6px 0 0;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
 .course-card strong {
   display: block;
   margin-bottom: 6px;
@@ -824,6 +830,35 @@ input[type="range"] {
 .framework-match {
   color: var(--teal-dark) !important;
   font-weight: 900;
+}
+
+.result-details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--soft);
+  padding: 0;
+}
+
+.result-details summary {
+  min-height: 58px;
+  border-radius: var(--radius);
+  color: var(--blue);
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.result-details[open] summary {
+  border-bottom: 1px solid var(--line);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.result-detail-grid {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
 }
 
 .quick-actions {

@@ -23,6 +23,7 @@ DATA_GOV_COURSE_POLL_URL = (
     f"https://api-open.data.gov.sg/v1/public/api/datasets/{DATA_GOV_COURSE_DATASET_ID}/poll-download"
 )
 XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+SENSITIVE_QUERY_PARAMS = {"key", "api_key", "apikey", "token", "access_token", "auth", "authorization"}
 
 
 def load_json(path: Path) -> Any:
@@ -105,6 +106,20 @@ def fetch_bytes(url: str, timeout: float = 8.0) -> tuple[bytes | None, str | Non
             return response.read(), None
     except Exception as exc:
         return None, f"{type(exc).__name__}: {exc}"
+
+
+def redact_url_secrets(url: str | None) -> str | None:
+    if not url:
+        return url
+    parsed = urllib.parse.urlsplit(url)
+    query = urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)
+    redacted = [
+        (key, "REDACTED" if key.lower() in SENSITIVE_QUERY_PARAMS else value)
+        for key, value in query
+    ]
+    return urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc, parsed.path, urllib.parse.urlencode(redacted), parsed.fragment)
+    )
 
 
 class MyCareersFutureClient:
@@ -548,7 +563,7 @@ class GoogleCloudGeocodeClient:
             return {
                 "status": "unavailable",
                 "source": "Google Maps",
-                "url": url,
+                "url": redact_url_secrets(url),
                 "error": error or "Empty response",
                 "items": [],
                 "latency_ms": int((time.time() - started) * 1000),
@@ -559,7 +574,7 @@ class GoogleCloudGeocodeClient:
             return {
                 "status": "unavailable",
                 "source": "Google Maps",
-                "url": url,
+                "url": redact_url_secrets(url),
                 "error": payload.get("error_message") or f"Geocode status: {payload.get('status', 'UNKNOWN')}",
                 "items": [],
                 "latency_ms": int((time.time() - started) * 1000),
@@ -570,7 +585,7 @@ class GoogleCloudGeocodeClient:
         return {
             "status": "ok",
             "source": "Google Maps",
-            "url": url,
+            "url": redact_url_secrets(url),
             "items": [
                 {
                     "label": result.get("formatted_address") or query,

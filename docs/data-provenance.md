@@ -98,6 +98,7 @@ The endpoint reports whether required environment variables are present, but nev
 - The current mentor endpoint sends only recommendation facts when a live model provider is enabled.
 - OpenAI-backed mentor is disabled by default and only enabled when `SKILLQUEST_ENABLE_OPENAI_MENTOR=true` and `OPENAI_API_KEY` are both present.
 - Google Cloud mentor follows the same rule with `SKILLQUEST_ENABLE_GOOGLE_MENTOR=true` and `GOOGLE_CLOUD_AI_API_KEY`.
+- Secret-like query parameters in returned live-source URLs are redacted before the frontend or source summary receives them.
 - Server logs record only request metadata, not the full user profile payload.
 
 ## Stale Or Missing Data Handling

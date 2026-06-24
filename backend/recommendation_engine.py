@@ -4,10 +4,12 @@ import math
 import re
 from datetime import datetime, timezone
 from typing import Any
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 
 POSITIVE_WORDS = {"clear", "good", "useful", "helpful", "friendly", "practical", "current", "memorable", "relevant"}
 NEGATIVE_WORDS = {"demanding", "intense", "long", "wanted", "more", "could", "revision"}
+SECRET_QUERY_PARAMS = {"key", "api_key", "apikey", "token", "access_token", "auth", "authorization"}
 
 SKILL_ALIASES = {
     "spreadsheet modelling": {"strong": ["excel", "spreadsheet", "worksheet"], "weak": ["data entry", "admin reporting"]},
@@ -574,7 +576,7 @@ def _source_summary(market_signal: dict[str, Any], location_signal: dict[str, An
                 if market_signal.get("status") == "ok"
                 else market_signal.get("detail") or market_signal.get("error", "Live lookup not used.")
             ),
-            "url": market_signal.get("url"),
+            "url": _redacted_source_url(market_signal.get("url")),
         },
     ]
     if location_signal:
@@ -583,10 +585,22 @@ def _source_summary(market_signal: dict[str, Any], location_signal: dict[str, An
                 "name": "OneMap",
                 "status": location_signal.get("status"),
                 "detail": location_signal.get("warning") or (location_signal.get("items") and location_signal["items"][0].get("address")) or location_signal.get("error", "Skipped"),
-                "url": location_signal.get("url"),
+                "url": _redacted_source_url(location_signal.get("url")),
             }
         )
     return summary
+
+
+def _redacted_source_url(url: Any) -> str | None:
+    if not url:
+        return None
+    parsed = urlsplit(str(url))
+    query = parse_qsl(parsed.query, keep_blank_values=True)
+    redacted = [
+        (key, "REDACTED" if key.lower() in SECRET_QUERY_PARAMS else value)
+        for key, value in query
+    ]
+    return urlunsplit((parsed.scheme, parsed.netloc, parsed.path, urlencode(redacted), parsed.fragment))
 
 
 def _location_fit(course: dict[str, Any], profile: dict[str, Any]) -> dict[str, Any]:

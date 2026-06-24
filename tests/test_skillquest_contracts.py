@@ -13,8 +13,9 @@ from http.server import ThreadingHTTPServer
 from pathlib import Path
 
 import backend.app as app_module
+import backend.connectors as connectors_module
 from backend.app import DATA, Handler, _join_threads_until_deadline
-from backend.connectors import DataGovCourseDirectoryClient, _xlsx_dict_rows
+from backend.connectors import DataGovCourseDirectoryClient, GoogleCloudGeocodeClient, _xlsx_dict_rows
 from backend.recommendation_engine import build_recommendation
 
 
@@ -194,6 +195,43 @@ class SkillQuestApiTests(unittest.TestCase):
         for item in payload["integrations"]:
             for env_var in item.get("envVars", []):
                 self.assertEqual(set(env_var.keys()), {"name", "present"})
+
+    def test_google_geocode_does_not_return_api_key_in_urls(self) -> None:
+        original_key = os.environ.get("GOOGLE_CLOUD_API_KEY")
+        original_fetch_json = connectors_module.fetch_json
+        captured: dict[str, str] = {}
+
+        def fake_fetch_json(url: str, timeout: float = 5.0, headers: dict | None = None) -> tuple[dict, None]:
+            captured["url"] = url
+            return (
+                {
+                    "status": "OK",
+                    "results": [
+                        {
+                            "formatted_address": "Tampines MRT, Singapore",
+                            "geometry": {"location": {"lat": 1.3547, "lng": 103.9451}},
+                            "address_components": [{"types": ["postal_code"], "long_name": "529538"}],
+                        }
+                    ],
+                },
+                None,
+            )
+
+        os.environ["GOOGLE_CLOUD_API_KEY"] = "demo-google-secret"
+        connectors_module.fetch_json = fake_fetch_json
+        try:
+            result = GoogleCloudGeocodeClient().search("Tampines MRT")
+        finally:
+            connectors_module.fetch_json = original_fetch_json
+            if original_key is None:
+                os.environ.pop("GOOGLE_CLOUD_API_KEY", None)
+            else:
+                os.environ["GOOGLE_CLOUD_API_KEY"] = original_key
+
+        self.assertIn("demo-google-secret", captured["url"])
+        self.assertEqual(result["status"], "ok")
+        self.assertIn("key=REDACTED", result["url"])
+        self.assertNotIn("demo-google-secret", result["url"])
 
     def test_direct_live_endpoints_require_explicit_non_demo_consent(self) -> None:
         status, jobs = self.get_json("/api/jobs?query=Data%20Analyst")
@@ -457,6 +495,45 @@ class RecommendationEngineTests(unittest.TestCase):
         result = self.recommend(payload)
         self.assertLessEqual(max(course["match_score"] for course in result["recommendedCourses"]), 88)
         self.assertTrue(all("whyChosen" in course for course in result["recommendedCourses"]))
+
+    def test_source_summary_redacts_secret_url_params(self) -> None:
+        payload = {
+            "mode": "pathfinder",
+            "targetRole": "Data Analyst",
+            "interests": ["Data"],
+            "skills": ["Excel"],
+            "weeklyHours": 6,
+            "budget": 700,
+            "learningMode": "Blended",
+            "location": "Tampines MRT",
+        }
+        market_signal = {
+            "status": "ok",
+            "url": "https://example.com/jobs?query=data&token=secret-token",
+            "items": [],
+            "top_skills": [{"name": "Data Analysis", "demand": 3}],
+        }
+        location_signal = {
+            "status": "ok",
+            "url": "https://maps.googleapis.com/maps/api/geocode/json?address=Tampines+MRT&key=secret-google-key",
+            "items": [{"lat": 1.3547, "lng": 103.9451, "address": "Tampines MRT"}],
+        }
+        result = build_recommendation(
+            payload,
+            roles=DATA.roles,
+            courses=DATA.courses,
+            funding_rules=DATA.funding_rules,
+            skills_framework=DATA.skills_framework,
+            market_signal=market_signal,
+            location_signal=location_signal,
+        )
+        urls = [source.get("url", "") for source in result["sourceSummary"]]
+        joined = " ".join(urls)
+
+        self.assertNotIn("secret-token", joined)
+        self.assertNotIn("secret-google-key", joined)
+        self.assertIn("token=REDACTED", joined)
+        self.assertIn("key=REDACTED", joined)
 
 def _minimal_xlsx(sheet_xml: str) -> bytes:
     buffer = io.BytesIO()

@@ -69,6 +69,7 @@
 - Added security headers and CSP.
 - Added explicit live lookup consent in the UI.
 - Added an in-app **Your data** notice that updates when live lookup or live mentor wording is toggled.
+- Redacted secret-like query parameters from returned live-source URLs so Google Cloud keys are not exposed through API payloads or source summaries.
 - Kept logs to request metadata rather than full learner profile payload.
 
 ### Tests And Verification
@@ -80,6 +81,7 @@
 - Covered frontend status/timeout hooks so the app gives clear feedback during slow or failed calls.
 - Covered the simple-first result disclosure so evidence stays available without overwhelming the default view.
 - Covered the optional data-source disclosure so privacy stays visible while technical provenance remains available.
+- Covered Google Cloud geocode URL redaction so outbound requests can use a key without returning it to the frontend.
 - Verification commands:
 
 ```powershell

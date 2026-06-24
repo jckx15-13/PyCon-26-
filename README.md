@@ -85,6 +85,7 @@ SkillQuest is privacy-aware and demo-safe:
 - It only calls MyCareersFuture and OneMap when the learner enables **Use live job and map lookup**.
 - Direct `/api/jobs` and `/api/location` requests also stay local unless `allowLiveData=true` is provided, and `?demo=1` always blocks live calls.
 - The help panel includes a **Your data** notice explaining what stays local and what only leaves after consent.
+- The form has a persistent `aria-live` status line for loading, success, and error states, so assistive-tech users are not left guessing.
 - `?demo=1` always uses deterministic offline signals so judging does not depend on network speed.
 - It ranks against local course and role datasets so the demo still works if an external provider is slow, unavailable, or requires credentials.
 - Opt-in live job and map lookups share one recommendation deadline (`SKILLQUEST_LIVE_TIMEOUT_SECONDS`, default 6.5s), then fall back to local signals instead of making the learner wait twice.

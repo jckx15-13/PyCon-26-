@@ -11,6 +11,12 @@ const state = {
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const REQUEST_TIMEOUTS = {
+  options: 8000,
+  status: 5000,
+  recommend: 12000,
+  mentor: 10000,
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
   bindStaticEvents();
@@ -119,8 +125,7 @@ async function askGuideQuestion(event) {
 
 async function loadOptions() {
   try {
-    const response = await fetch("/api/options");
-    state.options = await response.json();
+    state.options = await fetchJson("/api/options", {}, REQUEST_TIMEOUTS.options);
     await loadAiStatus();
     await loadIntegrationStatus();
     renderOptions(state.options);
@@ -134,15 +139,16 @@ async function loadOptions() {
     syncPrivacyNotice();
     syncSkillsInput();
     syncMode();
+    setFormStatus("Ready. Press the green button when you want your plan.", "ready");
   } catch (error) {
+    setFormStatus(readableError(error, "Could not load choices. Try refreshing the page."), "error");
     showToast("Could not load choices.");
   }
 }
 
 async function loadAiStatus() {
   try {
-    const response = await fetch("/api/ai/status");
-    state.aiStatus = response.ok ? await response.json() : null;
+    state.aiStatus = await fetchJson("/api/ai/status", {}, REQUEST_TIMEOUTS.status);
   } catch (error) {
     state.aiStatus = null;
   }
@@ -198,8 +204,7 @@ function syncPrivacyNotice() {
 
 async function loadIntegrationStatus() {
   try {
-    const response = await fetch("/api/integrations");
-    state.integrationStatus = response.ok ? await response.json() : null;
+    state.integrationStatus = await fetchJson("/api/integrations", {}, REQUEST_TIMEOUTS.status);
   } catch (error) {
     state.integrationStatus = null;
   }
@@ -253,30 +258,32 @@ async function submitRecommendation(options = {}) {
   const original = button.innerHTML;
   button.disabled = true;
   button.innerHTML = `<span class="button-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.9 19.1l2.8-2.8"/><path d="M16.3 7.7l2.8-2.8"/></svg></span><span>Finding your step...</span>`;
+  button.setAttribute("aria-busy", "true");
+  $("#snapshot").setAttribute("aria-busy", "true");
+  setFormStatus("Finding your step. This should only take a moment.", "working");
 
   try {
     const payload = collectPayload();
     state.lastPayload = payload;
-    const response = await fetch("/api/recommend", {
+    const recommendation = await fetchJson("/api/recommend", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
-    });
-    if (!response.ok) {
-      const errorBody = await response.json().catch(() => ({}));
-      throw new Error(errorBody.error || `API returned ${response.status}`);
-    }
-    const recommendation = await response.json();
+    }, REQUEST_TIMEOUTS.recommend);
     state.lastRecommendation = recommendation;
     renderRecommendation(recommendation);
+    setFormStatus("Plan ready. Your next step is shown below.", "ready");
     if (options.mentorAction) {
       await requestMentor(options.mentorAction, { requestMode: "auto-adjust" });
     }
     $("#snapshot").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (error) {
+    setFormStatus(readableError(error, "Could not build your plan. Please try again."), "error");
     showToast("Could not build your plan.");
   } finally {
     button.disabled = false;
+    button.removeAttribute("aria-busy");
+    $("#snapshot").removeAttribute("aria-busy");
     button.innerHTML = original;
   }
 }
@@ -429,7 +436,7 @@ async function requestMentor(action, options = {}) {
   }
 
   try {
-    const response = await fetch("/api/mentor", {
+    const reply = await fetchJson("/api/mentor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -440,20 +447,17 @@ async function requestMentor(action, options = {}) {
         requestMode: options.requestMode || "single-click",
         question: options.question ? String(options.question).slice(0, 140) : "",
       }),
-    });
-    if (!response.ok) {
-      const errorBody = await response.json().catch(() => ({}));
-      throw new Error(errorBody.error || `Mentor returned ${response.status}`);
-    }
-    const reply = await response.json();
+    }, REQUEST_TIMEOUTS.mentor);
     state.lastMentorReply = reply;
     renderMentorReply(reply);
+    setFormStatus("Guide answer ready.", "ready");
     $("#mentor-advice").scrollIntoView({ behavior: "smooth", block: "center" });
     if (options.speakResult) {
       speak(reply.speakText || reply.summary);
     }
     return reply;
   } catch (error) {
+    setFormStatus(readableError(error, "Guide is not ready. Your plan is still available."), "error");
     showToast("Guide not ready.");
     return null;
   }
@@ -571,6 +575,48 @@ function showToast(message) {
   toast.classList.add("show");
   window.clearTimeout(showToast.timer);
   showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 3500);
+}
+
+async function fetchJson(url, options = {}, timeoutMs = 8000) {
+  const controller = typeof AbortController === "function" ? new AbortController() : null;
+  const timeoutId = controller
+    ? window.setTimeout(() => controller.abort(), timeoutMs)
+    : null;
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: controller ? controller.signal : options.signal,
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(body.error || `Request failed with status ${response.status}.`);
+    }
+    return body;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error("Request took too long. Please try again.");
+    }
+    throw error;
+  } finally {
+    if (timeoutId) {
+      window.clearTimeout(timeoutId);
+    }
+  }
+}
+
+function setFormStatus(message, tone = "ready") {
+  const status = $("#form-status");
+  if (!status) return;
+  status.textContent = message;
+  status.classList.toggle("is-working", tone === "working");
+  status.classList.toggle("is-error", tone === "error");
+  status.classList.toggle("is-ready", tone === "ready");
+}
+
+function readableError(error, fallback) {
+  const message = String(error?.message || "").trim();
+  return message || fallback;
 }
 
 async function copyPlan() {

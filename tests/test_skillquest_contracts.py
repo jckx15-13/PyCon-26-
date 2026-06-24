@@ -10,6 +10,7 @@ import urllib.error
 import urllib.request
 import zipfile
 from http.server import ThreadingHTTPServer
+from pathlib import Path
 
 import backend.app as app_module
 from backend.app import DATA, Handler, _join_threads_until_deadline
@@ -110,6 +111,18 @@ class SkillQuestApiTests(unittest.TestCase):
         head_request = urllib.request.Request(f"{self.base_url}/api/health", method="HEAD")
         with urllib.request.urlopen(head_request, timeout=5) as response:
             self.assertEqual(response.status, 200)
+
+    def test_frontend_announces_status_and_bounds_fetch_waits(self) -> None:
+        index_html = Path("static/index.html").read_text(encoding="utf-8")
+        app_js = Path("static/app.js").read_text(encoding="utf-8")
+
+        self.assertIn('id="form-status"', index_html)
+        self.assertIn('role="status"', index_html)
+        self.assertIn('aria-describedby="form-status"', index_html)
+        self.assertIn("AbortController", app_js)
+        self.assertIn("Request took too long", app_js)
+        self.assertIn("setFormStatus", app_js)
+        self.assertIn("aria-busy", app_js)
 
     def test_ai_status_is_local_and_does_not_require_key(self) -> None:
         status, payload = self.get_json("/api/ai/status")

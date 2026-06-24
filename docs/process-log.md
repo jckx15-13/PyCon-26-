@@ -54,6 +54,8 @@
 - Added visible SkillsFuture role and skill evidence in `Why this path` and `Skills to learn first`.
 - Added an **Ask one question** control that sends a short bounded learner question to the same no-key mentor endpoint.
 - Added **Save helper sheet**, a visible local text preview plus copy/download actions for learners and helpers that does not require login or backend storage.
+- Added a persistent `aria-live` form status line so loading, success, and failure states are visible and announced to assistive technology.
+- Added frontend request timeouts for options, recommendation, and mentor calls so a stalled API does not leave the learner waiting with no clear status.
 
 ### Security And Privacy
 
@@ -73,6 +75,7 @@
 - Covered malformed JSON, demo/offline sources, `HEAD`/`OPTIONS`, explorer role behavior, pathfinder target behavior, and course-score cap behavior.
 - Covered the data.gov.sg XLSX row parser, course normalization, integration readiness, and shared live-timeout deadline helper.
 - Covered the learner-question mentor path so simple Q&A stays local and SkillsFuture-grounded.
+- Covered frontend status/timeout hooks so the app gives clear feedback during slow or failed calls.
 - Verification commands:
 
 ```powershell

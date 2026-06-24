@@ -202,12 +202,13 @@
           </div>
           </details>
 
-          <button id="upgrade-button" class="upgrade-button" type="submit">
+          <button id="upgrade-button" class="upgrade-button" type="submit" aria-describedby="form-status">
             <span class="button-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg>
             </span>
             <span>Upgrade my path</span>
           </button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite">Ready. Press the green button when you want your plan.</p>
         </section>
       </form>
 

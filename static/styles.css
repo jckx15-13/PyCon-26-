@@ -532,6 +532,31 @@ input[type="range"] {
   background: var(--teal-dark);
 }
 
+.form-status {
+  margin: 10px 0 0;
+  border-radius: var(--radius);
+  background: var(--soft);
+  color: var(--muted);
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.form-status.is-working {
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+}
+
+.form-status.is-error {
+  background: #fff0f0;
+  color: #8a1f1f;
+}
+
+.form-status.is-ready {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
 .result-panel {
   margin-top: 2px;
 }

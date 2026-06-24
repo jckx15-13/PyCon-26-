@@ -27,7 +27,7 @@ from backend.connectors import (
     load_json,
 )
 from backend.ai_mentor import MentorInputError, mentor_reply, mentor_status
-from backend.integrations import integration_readiness
+from backend.integrations import integration_diagnostics, integration_readiness
 from backend.recommendation_engine import build_recommendation
 
 
@@ -136,7 +136,13 @@ class SkillQuestData:
         }
 
     def integrations(self) -> dict:
-        return integration_readiness(self, mentor_status(DATA_DIR))
+        return integration_readiness(self, self.mentor_status())
+
+    def diagnostics(self) -> dict:
+        return integration_diagnostics(self, self.mentor_status())
+
+    def mentor_status(self) -> dict:
+        return mentor_status(DATA_DIR)
 
 
 DATA = SkillQuestData()
@@ -229,11 +235,15 @@ class Handler(BaseHTTPRequestHandler):
             return
 
         if path == "/api/ai/status":
-            self._json(mentor_status(DATA_DIR))
+            self._json(DATA.mentor_status())
             return
 
         if path == "/api/integrations":
             self._json(DATA.integrations())
+            return
+
+        if path == "/api/integrations/diagnostics":
+            self._json(DATA.diagnostics())
             return
 
         self._static(path)

@@ -1,22 +1,22 @@
 :root {
-  --ink: #12263f;
-  --muted: #44576f;
-  --line: #d2ddef;
-  --soft: #f4f7fb;
+  --ink: #111827;
+  --muted: #4b5563;
+  --line: #e5e7eb;
+  --soft: #f8fafc;
   --white: #ffffff;
-  --teal: #007f75;
-  --teal-dark: #00695f;
-  --teal-soft: #e8f6f3;
-  --blue: #1f64bf;
-  --blue-soft: #eaf0fb;
-  --green: #1b7f43;
-  --focus: 0 0 0 4px rgba(0, 127, 115, 0.22);
+  --teal: #047857;
+  --teal-dark: #065f46;
+  --teal-soft: #f0fdfa;
+  --blue: #2563eb;
+  --blue-soft: #eff6ff;
+  --green: #15803d;
+  --focus: 0 0 0 4px rgba(4, 120, 87, 0.22);
   --radius: 8px;
   color: var(--ink);
-  font-family: "Trebuchet MS", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-size: 19px;
   line-height: 1.6;
-  background: var(--soft);
+  background: var(--white);
 }
 
 * {
@@ -27,7 +27,7 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
-  background: var(--soft);
+  background: var(--white);
   color: var(--ink);
 }
 
@@ -141,11 +141,12 @@ p {
 
 .brand-mark {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   place-items: center;
   border-radius: 50%;
-  background: var(--teal-soft);
+  border: 1px solid var(--line);
+  background: var(--white);
   color: var(--teal-dark);
   font-size: 0.88rem;
 }
@@ -165,7 +166,7 @@ p {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: 2px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
   color: var(--ink);
@@ -175,8 +176,8 @@ p {
 }
 
 .voice-button {
-  border-color: #a8d8d3;
-  background: var(--teal-soft);
+  border-color: var(--line);
+  background: var(--white);
   color: var(--teal-dark);
 }
 
@@ -200,23 +201,23 @@ a:focus-visible {
 .simple-shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 18px;
-  width: min(900px, calc(100% - 18px));
+  gap: 14px;
+  width: min(780px, calc(100% - 20px));
   margin: 0 auto;
-  padding: 16px 0 40px;
+  padding: 12px 0 40px;
 }
 
 .hero-panel,
 .guided-card,
 .result-panel,
 .support-panel {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--white);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .hero-panel {
-  padding: 10px 14px;
+  padding: 8px 0 4px;
 }
 
 .start-label,
@@ -225,6 +226,10 @@ a:focus-visible {
   color: var(--teal-dark);
   font-size: 1rem;
   font-weight: 900;
+}
+
+.start-label {
+  display: none;
 }
 
 .lede {
@@ -238,11 +243,11 @@ a:focus-visible {
   width: 100%;
   align-items: center;
   gap: 10px;
-  border: 1px solid #a8d8bc;
+  border: 0;
   border-radius: var(--radius);
-  background: var(--teal-soft);
+  background: transparent;
   color: var(--teal-dark);
-  padding: 12px;
+  padding: 0;
   font-weight: 800;
   margin-top: 10px;
 }
@@ -256,11 +261,11 @@ a:focus-visible {
 .guided-card,
 .result-panel,
 .support-panel {
-  padding: 18px;
+  padding: 14px 0;
 }
 
 .stepper {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 8px;
   max-width: 420px;
@@ -293,8 +298,8 @@ a:focus-visible {
 }
 
 .simple-step + .simple-step {
-  margin-top: 24px;
-  padding-top: 24px;
+  margin-top: 18px;
+  padding-top: 18px;
   border-top: 1px solid var(--line);
 }
 
@@ -319,7 +324,7 @@ a:focus-visible {
 .choice-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   border: 0;
@@ -328,11 +333,11 @@ a:focus-visible {
 .big-choice {
   position: relative;
   display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
   align-items: center;
-  min-height: 118px;
-  border: 2px solid var(--line);
+  min-height: 104px;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
   padding: 16px;
@@ -340,7 +345,7 @@ a:focus-visible {
 
 .big-choice.selected {
   border-color: var(--teal);
-  background: var(--teal-soft);
+  background: var(--white);
 }
 
 .big-choice input {
@@ -370,36 +375,38 @@ a:focus-visible {
 
 .choice-icon {
   display: grid;
-  width: 62px;
-  height: 62px;
+  width: 48px;
+  height: 48px;
   place-items: center;
-  border-radius: 999px;
-  color: var(--white);
-  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--teal-dark);
+  padding: 12px;
   flex: 0 0 auto;
 }
 
 .choice-icon.teal {
-  background: var(--teal);
+  background: var(--white);
 }
 
 .choice-icon.blue {
-  background: var(--blue);
+  background: var(--white);
+  color: var(--blue);
 }
 
 .ability-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .ability-card {
   display: grid;
-  min-height: 112px;
+  min-height: 98px;
   gap: 10px;
   align-content: center;
   justify-items: start;
-  border: 2px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
   color: var(--ink);
@@ -413,14 +420,15 @@ a:focus-visible {
   height: 40px;
   place-items: center;
   border-radius: 50%;
-  background: var(--blue-soft);
-  color: var(--blue);
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--muted);
   padding: 11px;
 }
 
 .ability-card.selected {
   border-color: var(--teal);
-  background: var(--teal-soft);
+  background: var(--white);
 }
 
 .ability-card.selected span {
@@ -450,7 +458,7 @@ input,
 select {
   width: 100%;
   min-height: 52px;
-  border: 2px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
   color: var(--ink);
@@ -494,10 +502,10 @@ input[type="range"] {
 
 .more-options {
   margin-top: 14px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: var(--radius);
-  background: var(--soft);
-  padding: 12px;
+  background: transparent;
+  padding: 8px 0;
 }
 
 .more-options summary {
@@ -535,7 +543,8 @@ input[type="range"] {
 .form-status {
   margin: 10px 0 0;
   border-radius: var(--radius);
-  background: var(--soft);
+  border: 1px solid var(--line);
+  background: var(--white);
   color: var(--muted);
   padding: 10px 12px;
   font-size: 1rem;
@@ -565,7 +574,7 @@ input[type="range"] {
   display: flex;
   gap: 14px;
   align-items: center;
-  border: 2px dashed var(--line);
+  border: 1px dashed var(--line);
   border-radius: var(--radius);
   background: var(--soft);
   padding: 16px;
@@ -600,12 +609,12 @@ input[type="range"] {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
-  padding: 16px;
+  padding: 14px;
 }
 
 .next-card {
-  background: var(--teal-soft);
-  border-color: #a8d8d3;
+  background: var(--white);
+  border-color: var(--line);
 }
 
 .mentor-advice {
@@ -711,7 +720,7 @@ input[type="range"] {
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  border: 2px solid #a8d8d3;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--teal-soft);
   color: var(--teal-dark);
@@ -869,7 +878,7 @@ input[type="range"] {
 
 .quick-actions button {
   min-height: 52px;
-  border: 2px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
   color: var(--ink);
@@ -922,7 +931,7 @@ input[type="range"] {
 }
 
 .ask-guide input:focus {
-  outline: 4px solid var(--focus);
+  outline: 4px solid rgba(4, 120, 87, 0.22);
   outline-offset: 2px;
 }
 
@@ -969,11 +978,11 @@ input[type="range"] {
   background: var(--soft);
   color: var(--ink);
   padding: 12px;
-  font: 800 0.96rem/1.45 var(--font);
+  font: 800 0.96rem/1.45 "Trebuchet MS", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 .helper-sheet textarea:focus {
-  outline: 4px solid var(--focus);
+  outline: 4px solid rgba(4, 120, 87, 0.22);
   outline-offset: 2px;
 }
 
@@ -1001,7 +1010,7 @@ input[type="range"] {
 }
 
 .support-panel {
-  padding: 18px;
+  padding: 14px 0;
 }
 
 .support-button {
@@ -1022,7 +1031,7 @@ input[type="range"] {
   margin-top: 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--teal-soft);
+  background: var(--white);
   padding: 12px;
 }
 
@@ -1163,7 +1172,7 @@ input[type="range"] {
   .result-panel,
   .support-panel,
   .hero-panel {
-    padding: 14px;
+    padding: 12px 0;
   }
 
   h1 {

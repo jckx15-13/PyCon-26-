@@ -147,6 +147,25 @@ class SkillQuestApiTests(unittest.TestCase):
         self.assertIn('id="integration-list"', index_html)
         self.assertIn('id="source-list"', index_html)
 
+    def test_frontend_keeps_elderly_flow_simple_first(self) -> None:
+        index_html = Path("static/index.html").read_text(encoding="utf-8")
+        styles_css = Path("static/styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("Get one clear next step now.", index_html)
+        self.assertIn("Upgrade my path", index_html)
+        self.assertIn("Read aloud", index_html)
+        self.assertIn("Need help?", index_html)
+        self.assertIn("Save helper sheet", index_html)
+        self.assertIn("<summary>Show more options</summary>", index_html)
+        self.assertIn("<summary>Show why and other choices</summary>", index_html)
+        self.assertIn("<summary>Show data sources</summary>", index_html)
+        self.assertIn("font-size: 19px", styles_css)
+        self.assertIn("min-height: 78px", styles_css)
+        self.assertIn("width: min(780px", styles_css)
+        self.assertIn(".stepper {\n  display: none;", styles_css)
+        self.assertIn(".hero-panel,\n.guided-card,\n.result-panel,\n.support-panel {\n  border: 0;", styles_css)
+        self.assertNotIn("var(--font)", styles_css)
+
     def test_ai_status_is_local_and_does_not_require_key(self) -> None:
         status, payload = self.get_json("/api/ai/status")
         self.assertEqual(status, 200)
@@ -251,6 +270,58 @@ class SkillQuestApiTests(unittest.TestCase):
         for item in payload["integrations"]:
             for env_var in item.get("envVars", []):
                 self.assertEqual(set(env_var.keys()), {"name", "present"})
+
+    def test_integration_diagnostics_are_no_network_and_no_secret(self) -> None:
+        originals = {
+            "APIFY_API_TOKEN": os.environ.get("APIFY_API_TOKEN"),
+            "APIFY_DATASET_ID": os.environ.get("APIFY_DATASET_ID"),
+            "GOOGLE_CLOUD_API_KEY": os.environ.get("GOOGLE_CLOUD_API_KEY"),
+            "SKILLQUEST_ENABLE_GOOGLE_MENTOR": os.environ.get("SKILLQUEST_ENABLE_GOOGLE_MENTOR"),
+            "GOOGLE_CLOUD_AI_API_KEY": os.environ.get("GOOGLE_CLOUD_AI_API_KEY"),
+            "SKILLQUEST_ENABLE_OPENAI_MENTOR": os.environ.get("SKILLQUEST_ENABLE_OPENAI_MENTOR"),
+            "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY"),
+        }
+        secret_values = [
+            "test-apify-secret-token",
+            "test-apify-dataset-secret",
+            "test-google-maps-secret",
+            "test-google-ai-secret",
+            "test-openai-secret",
+        ]
+        os.environ["APIFY_API_TOKEN"] = secret_values[0]
+        os.environ["APIFY_DATASET_ID"] = secret_values[1]
+        os.environ["GOOGLE_CLOUD_API_KEY"] = secret_values[2]
+        os.environ["SKILLQUEST_ENABLE_GOOGLE_MENTOR"] = "true"
+        os.environ["GOOGLE_CLOUD_AI_API_KEY"] = secret_values[3]
+        os.environ["SKILLQUEST_ENABLE_OPENAI_MENTOR"] = "true"
+        os.environ["OPENAI_API_KEY"] = secret_values[4]
+
+        try:
+            status, payload = self.get_json("/api/integrations/diagnostics")
+        finally:
+            for key, value in originals.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
+
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["status"], "ok")
+        self.assertTrue(payload["canRunDemoOffline"])
+        self.assertFalse(payload["secretsExposed"])
+        self.assertFalse(payload["networkCalled"])
+        self.assertTrue(payload["learnerSafety"]["advancedOptionsHiddenByDefault"])
+        self.assertTrue(payload["learnerSafety"]["advancedEvidenceHiddenByDefault"])
+        checks = {item["id"]: item for item in payload["checks"]}
+        self.assertEqual(checks["apify-jobs"]["status"], "configured")
+        self.assertEqual(checks["google-cloud-maps"]["status"], "configured")
+        self.assertEqual(checks["google-cloud-mentor"]["status"], "configured")
+        self.assertTrue(all(item["networkCalled"] is False for item in payload["checks"]))
+        for env_var in checks["apify-jobs"]["envVars"]:
+            self.assertEqual(set(env_var.keys()), {"name", "present"})
+        serialized = json.dumps(payload)
+        for secret in secret_values:
+            self.assertNotIn(secret, serialized)
 
     def test_google_geocode_does_not_return_api_key_in_urls(self) -> None:
         original_key = os.environ.get("GOOGLE_CLOUD_API_KEY")

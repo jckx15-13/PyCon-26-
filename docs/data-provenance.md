@@ -77,6 +77,7 @@ SkillQuest uses data in layers so the product remains useful, honest, and reliab
 - The app does not decide SkillsFuture Credit eligibility, subsidy eligibility, or enrolment status.
 - Source summaries distinguish local, offline, optional live, unavailable, and partial data.
 - `/api/integrations` exposes readiness metadata for every data layer without printing secret values.
+- `/api/integrations/diagnostics` adds an operator-facing no-network check for optional provider configuration, demo safety, and simple-first learner defaults without exposing secret values.
 - MyCareersFuture and Apify text says only how many returned records were checked; it does not claim a complete market scan.
 - Skills Framework text says "mapped from local SkillsFuture XLSX datasets" rather than official certification.
 - Course source links point users to official or provider pages for verification when available.
@@ -98,6 +99,8 @@ The app reports these layers through `GET /api/integrations`:
 - optional Google Cloud mentor status.
 
 The endpoint reports whether required environment variables are present, but never returns their values.
+
+`GET /api/integrations/diagnostics` uses the same safe readiness data but formats it as checks for presentation and operations. It reports `networkCalled: false`, `secretsExposed: false`, whether the demo can run offline, which optional providers are configured, and whether the learner-facing flow keeps advanced options and evidence hidden by default.
 
 ## Data Minimisation
 

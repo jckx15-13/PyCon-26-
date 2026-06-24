@@ -73,6 +73,9 @@
 - Redacted secret-like query parameters from returned live-source URLs so Google Cloud keys are not exposed through API payloads or source summaries.
 - Kept logs to request metadata rather than full learner profile payload.
 - Added bounded environment parsing for optional live API and AI settings so malformed timeouts, limits, or token counts do not crash readiness or demo flows.
+- Added `GET /api/integrations/diagnostics` as a no-network operator check for Apify, Google Cloud, OpenAI, offline demo readiness, and simple-first learner safety. It returns only environment-variable presence booleans and safe metadata, never secret values.
+- Fixed the helper-sheet textarea font fallback so the downloadable helper flow keeps the same readable typeface in browsers that do not know custom variables.
+- Simplified the learner interface again for older and less digitally confident users: white background, narrower reading width, fewer framed panels, lighter icons, hidden redundant stepper, and quieter result cards while keeping large text and the primary **Upgrade my path** action.
 
 ### Tests And Verification
 
@@ -86,6 +89,9 @@
 - Covered Google Cloud geocode URL redaction so outbound requests can use a key without returning it to the frontend.
 - Covered Apify job-signal parsing with a fake scraped dataset response and verified the token is sent only as an authorization header, not in returned URLs.
 - Covered malformed optional AI numeric settings and shared safe env parsing defaults/clamps.
+- Covered provider diagnostics with fake Apify, Google, and OpenAI secrets to verify no secret values are returned.
+- Covered the elderly-friendly frontend contract: large primary action, read-aloud/help controls, helper sheet, and advanced sections hidden behind optional disclosures.
+- Covered the minimalist frontend contract so the main layout stays unframed, narrower, and free of the redundant visual stepper.
 - Verification commands:
 
 ```powershell

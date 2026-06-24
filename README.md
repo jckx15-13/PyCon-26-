@@ -51,6 +51,7 @@ The app uses only Python's standard library. No package install is required for 
 - `GET /api/location?query=Tampines%20MRT`: private local location estimate by default. Add `allowLiveData=true` outside `?demo=1` to call opt-in OneMap/Google Maps lookup. Add `ONEMAP_API_TOKEN` or `GOOGLE_CLOUD_API_KEY` for stronger live results.
 - `GET /api/sources`: data provenance and source notes.
 - `GET /api/integrations`: safe readiness metadata for local datasets, optional live APIs, mentor grounding, and future OpenAI setup.
+- `GET /api/integrations/diagnostics`: operator-facing readiness checks for optional providers, demo safety, and elderly-friendly defaults. It does not call external services or return secret values.
 - `GET /api/ai/status`: mentor status (local/google/openai), supported actions, and grounding metadata.
 - `POST /api/recommend`: main personalised recommendation endpoint.
 - `POST /api/mentor`: rewrites an existing recommendation into plain-language guidance. No API key is required by default.
@@ -95,6 +96,7 @@ SkillQuest is privacy-aware and demo-safe:
 - You can point `COURSE_DATA_URL` at a JSON or CSV course dataset to replace or extend the seed courses.
 - You can opt in to the public data.gov.sg MySkillsFuture Course Directory import with `SKILLQUEST_ENABLE_DATA_GOV_COURSES=true`. This uses the no-key data.gov.sg poll-download API at server start and parses the XLSX with the Python standard library.
 - `/api/integrations` reports what is ready, optional, local, or not configured without exposing secret values.
+- `/api/integrations/diagnostics` gives a no-network operator check for Apify, Google Cloud, OpenAI, local demo readiness, and simple-first learner safety.
 
 This is not a production eligibility checker for subsidies or SkillsFuture Credit. Funding calculations are estimates and should be verified with SkillsFuture Singapore or course providers before a real enrolment decision.
 

@@ -218,8 +218,135 @@ def integration_readiness(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def integration_diagnostics(data: Any, mentor: dict[str, Any]) -> dict[str, Any]:
+    """Return operator-facing readiness checks without network calls or secrets."""
+
+    readiness = integration_readiness(data, mentor)
+    integrations = {item["id"]: item for item in readiness["integrations"]}
+    checks = [
+        {
+            "id": "offline-demo",
+            "label": "Private demo path",
+            "status": "ready" if readiness["summary"]["demoSafe"] else "review",
+            "safeForDefaultFlow": bool(readiness["summary"]["demoSafe"]),
+            "requiresConsent": False,
+            "networkCalled": False,
+            "evidence": [
+                f"{len(data.roles)} local roles loaded.",
+                f"{len(data.courses)} local and cached courses loaded.",
+                "Demo mode blocks live job, map, and mentor calls.",
+            ],
+            "learnerImpact": "The learner can press Upgrade my path without waiting for external services.",
+            "operatorAction": "Use http://127.0.0.1:8000/?demo=1 for judging or offline presentation.",
+        },
+        {
+            "id": "skillsfuture-datasets",
+            "label": "SkillsFuture Jobs-Skills datasets",
+            "status": data.skills_framework.get("status", "local-normalised"),
+            "safeForDefaultFlow": True,
+            "requiresConsent": False,
+            "networkCalled": False,
+            "records": data.skills_framework.get("record_counts") or {},
+            "sourceUrl": data.skills_framework.get("source_url"),
+            "learnerImpact": "Recommendations can explain which Singapore SkillsFuture role and skill evidence was used.",
+            "operatorAction": "Regenerate data/skills_framework.json if the XLSX files are refreshed.",
+        },
+        _integration_check(
+            integrations["data-gov-course-directory"],
+            "Exact course links",
+            "Cached public MySkillsFuture rows can add course-reference links without network startup.",
+            "Refresh data/course_directory_cache.json or enable SKILLQUEST_ENABLE_DATA_GOV_COURSES for a broader slice.",
+        ),
+        _integration_check(
+            integrations["mycareersfuture"],
+            "MyCareersFuture job signal",
+            "Optional live job signal is hidden behind consent and never runs in demo mode.",
+            "Use allowLiveData=true only when the user has opted in and the network is available.",
+        ),
+        _integration_check(
+            integrations["apify-jobs"],
+            "Apify job signal dataset",
+            "Optional Apify job rows can enrich skill demand when APIFY_API_TOKEN and APIFY_DATASET_ID are present.",
+            "Set APIFY_API_TOKEN and APIFY_DATASET_ID; keep live lookup opt-in.",
+        ),
+        _integration_check(
+            integrations["onemap"],
+            "OneMap location lookup",
+            "Optional place lookup can improve location confidence when a token is configured.",
+            "Set ONEMAP_API_TOKEN for stronger OneMap responses; local MRT estimates stay available.",
+        ),
+        _integration_check(
+            integrations["google-cloud-maps"],
+            "Google Cloud Maps lookup",
+            "Optional Google geocoding is available only after consent and key configuration.",
+            "Set GOOGLE_CLOUD_API_KEY if OneMap is unavailable or insufficient.",
+        ),
+        _integration_check(
+            integrations["google-cloud-mentor"],
+            "Google Cloud mentor wording",
+            "Optional Gemini wording can simplify guidance while using only recommendation facts.",
+            "Set SKILLQUEST_ENABLE_GOOGLE_MENTOR=true and GOOGLE_CLOUD_AI_API_KEY, then test with consent enabled.",
+        ),
+        _integration_check(
+            integrations["openai-future"],
+            "OpenAI mentor wording",
+            "Optional OpenAI wording remains disabled unless explicitly configured.",
+            "Set SKILLQUEST_ENABLE_OPENAI_MENTOR=true and OPENAI_API_KEY only when a live provider is intended.",
+        ),
+    ]
+
+    return {
+        "status": "ok",
+        "secretsExposed": False,
+        "networkCalled": False,
+        "canRunDemoOffline": bool(readiness["summary"]["demoSafe"]),
+        "aiProvider": readiness.get("aiProvider", "local-deterministic"),
+        "learnerSafety": {
+            "defaultMode": "offline-private",
+            "firstScreenIsUsableApp": True,
+            "advancedOptionsHiddenByDefault": True,
+            "advancedEvidenceHiddenByDefault": True,
+            "liveLookupsRequireConsent": True,
+            "mainActionLabel": "Upgrade my path",
+            "readAloudAvailable": True,
+            "helperSheetAvailable": True,
+        },
+        "checks": checks,
+        "nextSteps": [
+            "Run ?demo=1 first; it proves the product without keys or network calls.",
+            "Use /api/integrations/diagnostics to check which optional providers are configured before enabling live lookup.",
+            "Keep the live data and live mentor checkboxes off for older learners unless a helper explains what will be sent.",
+            "Verify funding, eligibility, and enrolment on official provider pages before any real learner acts.",
+        ],
+    }
+
+
 def _env_present(name: str) -> bool:
     return bool(os.getenv(name))
+
+
+def _integration_check(
+    item: dict[str, Any],
+    label: str,
+    learner_impact: str,
+    operator_action: str,
+) -> dict[str, Any]:
+    return {
+        "id": item["id"],
+        "label": label,
+        "status": item.get("status", "unknown"),
+        "configured": bool(item.get("configured")),
+        "safeForDefaultFlow": bool(item.get("demoSafe") or not item.get("usedByDefault")),
+        "usedByDefault": bool(item.get("usedByDefault")),
+        "requiresConsent": bool(item.get("requiresConsent")),
+        "networkCalled": False,
+        "envVars": item.get("envVars", []),
+        "records": item.get("records", {}),
+        "learnerImpact": learner_impact,
+        "operatorAction": operator_action,
+        "fallback": item.get("fallback", ""),
+        "limitation": item.get("limitation", ""),
+    }
 
 
 def _openai_ready_for_upgrade(mentor: dict[str, Any]) -> bool:
